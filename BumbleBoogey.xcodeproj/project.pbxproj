@@ -14,6 +14,10 @@
 		B8F847E12C8F30E800F905FE /* Conditional_RenderingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847E02C8F30E800F905FE /* Conditional_RenderingTests.swift */; };
 		B8F847EB2C8F30E800F905FE /* Conditional_RenderingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847EA2C8F30E800F905FE /* Conditional_RenderingUITests.swift */; };
 		B8F847ED2C8F30E900F905FE /* Conditional_RenderingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847EC2C8F30E900F905FE /* Conditional_RenderingUITestsLaunchTests.swift */; };
+		B8F847FA2C8F314D00F905FE /* CookieBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847F92C8F314D00F905FE /* CookieBtn.swift */; };
+		B8F847FC2C8F5C2800F905FE /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847FB2C8F5C2800F905FE /* GameState.swift */; };
+		B8F847FE2C918E1500F905FE /* GameStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847FD2C918E1500F905FE /* GameStats.swift */; };
+		B8F848012C919C3500F905FE /* ResetBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F848002C919C3500F905FE /* ResetBtn.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,16 +38,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B8F847CC2C8F30E300F905FE /* Conditional Rendering.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Conditional Rendering.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8F847CC2C8F30E300F905FE /* BumbleBoogey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumbleBoogey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847CF2C8F30E300F905FE /* Conditional_RenderingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conditional_RenderingApp.swift; sourceTree = "<group>"; };
 		B8F847D12C8F30E300F905FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B8F847D32C8F30E800F905FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8F847D62C8F30E800F905FE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B8F847DC2C8F30E800F905FE /* Conditional RenderingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Conditional RenderingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8F847DC2C8F30E800F905FE /* BumbleBoogeyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogeyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847E02C8F30E800F905FE /* Conditional_RenderingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conditional_RenderingTests.swift; sourceTree = "<group>"; };
-		B8F847E62C8F30E800F905FE /* Conditional RenderingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Conditional RenderingUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8F847E62C8F30E800F905FE /* BumbleBoogeyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogeyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847EA2C8F30E800F905FE /* Conditional_RenderingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conditional_RenderingUITests.swift; sourceTree = "<group>"; };
 		B8F847EC2C8F30E900F905FE /* Conditional_RenderingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conditional_RenderingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B8F847F92C8F314D00F905FE /* CookieBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieBtn.swift; sourceTree = "<group>"; };
+		B8F847FB2C8F5C2800F905FE /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		B8F847FD2C918E1500F905FE /* GameStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStats.swift; sourceTree = "<group>"; };
+		B8F848002C919C3500F905FE /* ResetBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetBtn.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,9 +92,9 @@
 		B8F847CD2C8F30E300F905FE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B8F847CC2C8F30E300F905FE /* Conditional Rendering.app */,
-				B8F847DC2C8F30E800F905FE /* Conditional RenderingTests.xctest */,
-				B8F847E62C8F30E800F905FE /* Conditional RenderingUITests.xctest */,
+				B8F847CC2C8F30E300F905FE /* BumbleBoogey.app */,
+				B8F847DC2C8F30E800F905FE /* BumbleBoogeyTests.xctest */,
+				B8F847E62C8F30E800F905FE /* BumbleBoogeyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,6 +104,10 @@
 			children = (
 				B8F847CF2C8F30E300F905FE /* Conditional_RenderingApp.swift */,
 				B8F847D12C8F30E300F905FE /* ContentView.swift */,
+				B8F847F92C8F314D00F905FE /* CookieBtn.swift */,
+				B8F848002C919C3500F905FE /* ResetBtn.swift */,
+				B8F847FF2C918E2F00F905FE /* Model */,
+				B8F847FD2C918E1500F905FE /* GameStats.swift */,
 				B8F847D32C8F30E800F905FE /* Assets.xcassets */,
 				B8F847D52C8F30E800F905FE /* Preview Content */,
 			);
@@ -127,12 +139,20 @@
 			path = "Conditional RenderingUITests";
 			sourceTree = "<group>";
 		};
+		B8F847FF2C918E2F00F905FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B8F847FB2C8F5C2800F905FE /* GameState.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B8F847CB2C8F30E300F905FE /* Conditional Rendering */ = {
+		B8F847CB2C8F30E300F905FE /* BumbleBoogey */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8F847F02C8F30E900F905FE /* Build configuration list for PBXNativeTarget "Conditional Rendering" */;
+			buildConfigurationList = B8F847F02C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogey" */;
 			buildPhases = (
 				B8F847C82C8F30E300F905FE /* Sources */,
 				B8F847C92C8F30E300F905FE /* Frameworks */,
@@ -142,14 +162,14 @@
 			);
 			dependencies = (
 			);
-			name = "Conditional Rendering";
+			name = BumbleBoogey;
 			productName = "Conditional Rendering";
-			productReference = B8F847CC2C8F30E300F905FE /* Conditional Rendering.app */;
+			productReference = B8F847CC2C8F30E300F905FE /* BumbleBoogey.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B8F847DB2C8F30E800F905FE /* Conditional RenderingTests */ = {
+		B8F847DB2C8F30E800F905FE /* BumbleBoogeyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8F847F32C8F30E900F905FE /* Build configuration list for PBXNativeTarget "Conditional RenderingTests" */;
+			buildConfigurationList = B8F847F32C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogeyTests" */;
 			buildPhases = (
 				B8F847D82C8F30E800F905FE /* Sources */,
 				B8F847D92C8F30E800F905FE /* Frameworks */,
@@ -160,14 +180,14 @@
 			dependencies = (
 				B8F847DE2C8F30E800F905FE /* PBXTargetDependency */,
 			);
-			name = "Conditional RenderingTests";
+			name = BumbleBoogeyTests;
 			productName = "Conditional RenderingTests";
-			productReference = B8F847DC2C8F30E800F905FE /* Conditional RenderingTests.xctest */;
+			productReference = B8F847DC2C8F30E800F905FE /* BumbleBoogeyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B8F847E52C8F30E800F905FE /* Conditional RenderingUITests */ = {
+		B8F847E52C8F30E800F905FE /* BumbleBoogeyUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8F847F62C8F30E900F905FE /* Build configuration list for PBXNativeTarget "Conditional RenderingUITests" */;
+			buildConfigurationList = B8F847F62C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogeyUITests" */;
 			buildPhases = (
 				B8F847E22C8F30E800F905FE /* Sources */,
 				B8F847E32C8F30E800F905FE /* Frameworks */,
@@ -178,9 +198,9 @@
 			dependencies = (
 				B8F847E82C8F30E800F905FE /* PBXTargetDependency */,
 			);
-			name = "Conditional RenderingUITests";
+			name = BumbleBoogeyUITests;
 			productName = "Conditional RenderingUITests";
-			productReference = B8F847E62C8F30E800F905FE /* Conditional RenderingUITests.xctest */;
+			productReference = B8F847E62C8F30E800F905FE /* BumbleBoogeyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -206,7 +226,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B8F847C72C8F30E300F905FE /* Build configuration list for PBXProject "Conditional Rendering" */;
+			buildConfigurationList = B8F847C72C8F30E300F905FE /* Build configuration list for PBXProject "BumbleBoogey" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -219,9 +239,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B8F847CB2C8F30E300F905FE /* Conditional Rendering */,
-				B8F847DB2C8F30E800F905FE /* Conditional RenderingTests */,
-				B8F847E52C8F30E800F905FE /* Conditional RenderingUITests */,
+				B8F847CB2C8F30E300F905FE /* BumbleBoogey */,
+				B8F847DB2C8F30E800F905FE /* BumbleBoogeyTests */,
+				B8F847E52C8F30E800F905FE /* BumbleBoogeyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,7 +278,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F847D22C8F30E300F905FE /* ContentView.swift in Sources */,
+				B8F847FC2C8F5C2800F905FE /* GameState.swift in Sources */,
+				B8F847FA2C8F314D00F905FE /* CookieBtn.swift in Sources */,
 				B8F847D02C8F30E300F905FE /* Conditional_RenderingApp.swift in Sources */,
+				B8F848012C919C3500F905FE /* ResetBtn.swift in Sources */,
+				B8F847FE2C918E1500F905FE /* GameStats.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,12 +308,12 @@
 /* Begin PBXTargetDependency section */
 		B8F847DE2C8F30E800F905FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B8F847CB2C8F30E300F905FE /* Conditional Rendering */;
+			target = B8F847CB2C8F30E300F905FE /* BumbleBoogey */;
 			targetProxy = B8F847DD2C8F30E800F905FE /* PBXContainerItemProxy */;
 		};
 		B8F847E82C8F30E800F905FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B8F847CB2C8F30E300F905FE /* Conditional Rendering */;
+			target = B8F847CB2C8F30E300F905FE /* BumbleBoogey */;
 			targetProxy = B8F847E72C8F30E800F905FE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -488,7 +512,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Conditional Rendering.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Conditional Rendering";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BumbleBoogey.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BumbleBoogey";
 			};
 			name = Debug;
 		};
@@ -508,7 +532,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Conditional Rendering.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Conditional Rendering";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BumbleBoogey.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BumbleBoogey";
 			};
 			name = Release;
 		};
@@ -551,7 +575,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B8F847C72C8F30E300F905FE /* Build configuration list for PBXProject "Conditional Rendering" */ = {
+		B8F847C72C8F30E300F905FE /* Build configuration list for PBXProject "BumbleBoogey" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8F847EE2C8F30E900F905FE /* Debug */,
@@ -560,7 +584,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8F847F02C8F30E900F905FE /* Build configuration list for PBXNativeTarget "Conditional Rendering" */ = {
+		B8F847F02C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogey" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8F847F12C8F30E900F905FE /* Debug */,
@@ -569,7 +593,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8F847F32C8F30E900F905FE /* Build configuration list for PBXNativeTarget "Conditional RenderingTests" */ = {
+		B8F847F32C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogeyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8F847F42C8F30E900F905FE /* Debug */,
@@ -578,7 +602,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8F847F62C8F30E900F905FE /* Build configuration list for PBXNativeTarget "Conditional RenderingUITests" */ = {
+		B8F847F62C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogeyUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8F847F72C8F30E900F905FE /* Debug */,

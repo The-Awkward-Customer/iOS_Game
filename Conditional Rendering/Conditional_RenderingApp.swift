@@ -11,7 +11,7 @@ import SwiftUI
 struct Conditional_RenderingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(gameState: GameState())
         }
     }
 }

@@ -8,17 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+
+    @ObservedObject var gameState: GameState  // Reference the game state
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            CookieButton(gameState: gameState)
+            GameStats(gameState: gameState)
+            ResetBtn(gameState: gameState)
         }
         .padding()
+        
+        .onAppear{
+            gameState.startTimer()
+        }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(gameState: GameState())
 }
