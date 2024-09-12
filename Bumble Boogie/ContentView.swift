@@ -18,9 +18,12 @@ struct ContentView: View {
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
-            VStack {
+            VStack (spacing: 20) {
                 Text("v 0.0.1")
-                Text("If you can see this view you have succesfully installed the game")
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                Text(" If you can see this view you have succesfully installed the game")
+                    .multilineTextAlignment(.center)
+                Text("Buy a bee to start collecting Honey")
                     .multilineTextAlignment(.center)
                 CookieButton(gameState: gameState)
                 GameStats(gameState: gameState)
