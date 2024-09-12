@@ -10,9 +10,10 @@ import SwiftUI
 import UIKit
 
 class GameState: ObservableObject {
-    @AppStorage ("Cookies") var Cookies: Int = 0
-    @AppStorage ("CookiesPerTap") var CookiesPerTap: Int = 1
-    @AppStorage ("CookiesPerSecond") var CookiesPerSecond: Int = 1
+    @AppStorage ("Bees") var Bees: Int = 0
+    @AppStorage ("Honey") var Honey: Int = 0
+    @AppStorage ("HoneyPerTap") var HoneyPerTap: Int = 1
+    @AppStorage ("HoneyPerSecond") var HoneyPerSecond: Int = 1
     var timer: Timer?
     
     
@@ -21,21 +22,23 @@ class GameState: ObservableObject {
     }
     
     func updateCounter(){
-        Cookies += CookiesPerSecond
-        print("Cookies Updated to \(Cookies)")
+        Honey += Bees
     }
     
+    func BuyABee(){
+        Bees += 1
+        
+    }
     
-    func buyCookies(){
-        Cookies += CookiesPerTap
-        print("Cookie Purchased")
-        print(Cookies)
-        print(CookiesPerTap)
+    func HarvestHoney(){
+        Honey += HoneyPerTap
+        
         let generator = UIImpactFeedbackGenerator(style: .medium)
                 generator.impactOccurred()  // Trigger vibration
     }
     
     func resetCookies() {
-        Cookies = 0
+        Honey = 0
+        Bees = 0
     }
 }

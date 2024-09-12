@@ -13,11 +13,13 @@ struct GameStats: View {
     
     var body: some View {
         HStack {
-            Text("🍪: \(gameState.Cookies)")  // Display the count value
-                .font(.title)
+            Text("🐝 Bees: \(gameState.Bees)")  // Display the count value
+                .font(.subheadline)
+                .fontWeight(.bold)
             .padding()
-            Text("➕: \(gameState.CookiesPerTap)")  // Display the count value
-                .font(.title)
+            Text("🍯 Honey: \(gameState.Honey)")  // Display the count value
+                .font(.subheadline)
+                .fontWeight(.bold)
             .padding()
         }
     }

@@ -7,17 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B8F847D02C8F30E300F905FE /* Conditional_RenderingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847CF2C8F30E300F905FE /* Conditional_RenderingApp.swift */; };
+		B8F847D02C8F30E300F905FE /* BumbleBoogie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */; };
 		B8F847D22C8F30E300F905FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847D12C8F30E300F905FE /* ContentView.swift */; };
 		B8F847D42C8F30E800F905FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8F847D32C8F30E800F905FE /* Assets.xcassets */; };
 		B8F847D72C8F30E800F905FE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8F847D62C8F30E800F905FE /* Preview Assets.xcassets */; };
-		B8F847E12C8F30E800F905FE /* Conditional_RenderingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847E02C8F30E800F905FE /* Conditional_RenderingTests.swift */; };
-		B8F847EB2C8F30E800F905FE /* Conditional_RenderingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847EA2C8F30E800F905FE /* Conditional_RenderingUITests.swift */; };
-		B8F847ED2C8F30E900F905FE /* Conditional_RenderingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847EC2C8F30E900F905FE /* Conditional_RenderingUITestsLaunchTests.swift */; };
 		B8F847FA2C8F314D00F905FE /* CookieBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847F92C8F314D00F905FE /* CookieBtn.swift */; };
 		B8F847FC2C8F5C2800F905FE /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847FB2C8F5C2800F905FE /* GameState.swift */; };
 		B8F847FE2C918E1500F905FE /* GameStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847FD2C918E1500F905FE /* GameStats.swift */; };
 		B8F848012C919C3500F905FE /* ResetBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F848002C919C3500F905FE /* ResetBtn.swift */; };
+		B8F848032C9312BF00F905FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8F848022C9312BF00F905FE /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,20 +36,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B8F847CC2C8F30E300F905FE /* BumbleBoogey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumbleBoogey.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8F847CF2C8F30E300F905FE /* Conditional_RenderingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conditional_RenderingApp.swift; sourceTree = "<group>"; };
+		B8F847CC2C8F30E300F905FE /* BumbleBoogie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumbleBoogie.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumbleBoogie.swift; sourceTree = "<group>"; };
 		B8F847D12C8F30E300F905FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B8F847D32C8F30E800F905FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8F847D62C8F30E800F905FE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B8F847DC2C8F30E800F905FE /* BumbleBoogeyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogeyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8F847E02C8F30E800F905FE /* Conditional_RenderingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conditional_RenderingTests.swift; sourceTree = "<group>"; };
-		B8F847E62C8F30E800F905FE /* BumbleBoogeyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogeyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8F847EA2C8F30E800F905FE /* Conditional_RenderingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conditional_RenderingUITests.swift; sourceTree = "<group>"; };
-		B8F847EC2C8F30E900F905FE /* Conditional_RenderingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conditional_RenderingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B8F847DC2C8F30E800F905FE /* BumbleBoogieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8F847E62C8F30E800F905FE /* BumbleBoogieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847F92C8F314D00F905FE /* CookieBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieBtn.swift; sourceTree = "<group>"; };
 		B8F847FB2C8F5C2800F905FE /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		B8F847FD2C918E1500F905FE /* GameStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStats.swift; sourceTree = "<group>"; };
 		B8F848002C919C3500F905FE /* ResetBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetBtn.swift; sourceTree = "<group>"; };
+		B8F848022C9312BF00F905FE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,9 +78,7 @@
 		B8F847C32C8F30E300F905FE = {
 			isa = PBXGroup;
 			children = (
-				B8F847CE2C8F30E300F905FE /* Conditional Rendering */,
-				B8F847DF2C8F30E800F905FE /* Conditional RenderingTests */,
-				B8F847E92C8F30E800F905FE /* Conditional RenderingUITests */,
+				B8F847CE2C8F30E300F905FE /* Bumble Boogie */,
 				B8F847CD2C8F30E300F905FE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,26 +86,27 @@
 		B8F847CD2C8F30E300F905FE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B8F847CC2C8F30E300F905FE /* BumbleBoogey.app */,
-				B8F847DC2C8F30E800F905FE /* BumbleBoogeyTests.xctest */,
-				B8F847E62C8F30E800F905FE /* BumbleBoogeyUITests.xctest */,
+				B8F847CC2C8F30E300F905FE /* BumbleBoogie.app */,
+				B8F847DC2C8F30E800F905FE /* BumbleBoogieTests.xctest */,
+				B8F847E62C8F30E800F905FE /* BumbleBoogieUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B8F847CE2C8F30E300F905FE /* Conditional Rendering */ = {
+		B8F847CE2C8F30E300F905FE /* Bumble Boogie */ = {
 			isa = PBXGroup;
 			children = (
-				B8F847CF2C8F30E300F905FE /* Conditional_RenderingApp.swift */,
+				B8F847D52C8F30E800F905FE /* Preview Content */,
+				B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */,
 				B8F847D12C8F30E300F905FE /* ContentView.swift */,
+				B8F848022C9312BF00F905FE /* LaunchScreen.storyboard */,
 				B8F847F92C8F314D00F905FE /* CookieBtn.swift */,
 				B8F848002C919C3500F905FE /* ResetBtn.swift */,
 				B8F847FF2C918E2F00F905FE /* Model */,
 				B8F847FD2C918E1500F905FE /* GameStats.swift */,
 				B8F847D32C8F30E800F905FE /* Assets.xcassets */,
-				B8F847D52C8F30E800F905FE /* Preview Content */,
 			);
-			path = "Conditional Rendering";
+			path = "Bumble Boogie";
 			sourceTree = "<group>";
 		};
 		B8F847D52C8F30E800F905FE /* Preview Content */ = {
@@ -120,23 +115,6 @@
 				B8F847D62C8F30E800F905FE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		B8F847DF2C8F30E800F905FE /* Conditional RenderingTests */ = {
-			isa = PBXGroup;
-			children = (
-				B8F847E02C8F30E800F905FE /* Conditional_RenderingTests.swift */,
-			);
-			path = "Conditional RenderingTests";
-			sourceTree = "<group>";
-		};
-		B8F847E92C8F30E800F905FE /* Conditional RenderingUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B8F847EA2C8F30E800F905FE /* Conditional_RenderingUITests.swift */,
-				B8F847EC2C8F30E900F905FE /* Conditional_RenderingUITestsLaunchTests.swift */,
-			);
-			path = "Conditional RenderingUITests";
 			sourceTree = "<group>";
 		};
 		B8F847FF2C918E2F00F905FE /* Model */ = {
@@ -150,9 +128,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B8F847CB2C8F30E300F905FE /* BumbleBoogey */ = {
+		B8F847CB2C8F30E300F905FE /* BumbleBoogie */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8F847F02C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogey" */;
+			buildConfigurationList = B8F847F02C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogie" */;
 			buildPhases = (
 				B8F847C82C8F30E300F905FE /* Sources */,
 				B8F847C92C8F30E300F905FE /* Frameworks */,
@@ -162,14 +140,14 @@
 			);
 			dependencies = (
 			);
-			name = BumbleBoogey;
+			name = BumbleBoogie;
 			productName = "Conditional Rendering";
-			productReference = B8F847CC2C8F30E300F905FE /* BumbleBoogey.app */;
+			productReference = B8F847CC2C8F30E300F905FE /* BumbleBoogie.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B8F847DB2C8F30E800F905FE /* BumbleBoogeyTests */ = {
+		B8F847DB2C8F30E800F905FE /* BumbleBoogieTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8F847F32C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogeyTests" */;
+			buildConfigurationList = B8F847F32C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogieTests" */;
 			buildPhases = (
 				B8F847D82C8F30E800F905FE /* Sources */,
 				B8F847D92C8F30E800F905FE /* Frameworks */,
@@ -180,14 +158,14 @@
 			dependencies = (
 				B8F847DE2C8F30E800F905FE /* PBXTargetDependency */,
 			);
-			name = BumbleBoogeyTests;
+			name = BumbleBoogieTests;
 			productName = "Conditional RenderingTests";
-			productReference = B8F847DC2C8F30E800F905FE /* BumbleBoogeyTests.xctest */;
+			productReference = B8F847DC2C8F30E800F905FE /* BumbleBoogieTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B8F847E52C8F30E800F905FE /* BumbleBoogeyUITests */ = {
+		B8F847E52C8F30E800F905FE /* BumbleBoogieUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8F847F62C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogeyUITests" */;
+			buildConfigurationList = B8F847F62C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogieUITests" */;
 			buildPhases = (
 				B8F847E22C8F30E800F905FE /* Sources */,
 				B8F847E32C8F30E800F905FE /* Frameworks */,
@@ -198,9 +176,9 @@
 			dependencies = (
 				B8F847E82C8F30E800F905FE /* PBXTargetDependency */,
 			);
-			name = BumbleBoogeyUITests;
+			name = BumbleBoogieUITests;
 			productName = "Conditional RenderingUITests";
-			productReference = B8F847E62C8F30E800F905FE /* BumbleBoogeyUITests.xctest */;
+			productReference = B8F847E62C8F30E800F905FE /* BumbleBoogieUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -226,7 +204,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B8F847C72C8F30E300F905FE /* Build configuration list for PBXProject "BumbleBoogey" */;
+			buildConfigurationList = B8F847C72C8F30E300F905FE /* Build configuration list for PBXProject "BumbleBoogie" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -239,9 +217,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B8F847CB2C8F30E300F905FE /* BumbleBoogey */,
-				B8F847DB2C8F30E800F905FE /* BumbleBoogeyTests */,
-				B8F847E52C8F30E800F905FE /* BumbleBoogeyUITests */,
+				B8F847CB2C8F30E300F905FE /* BumbleBoogie */,
+				B8F847DB2C8F30E800F905FE /* BumbleBoogieTests */,
+				B8F847E52C8F30E800F905FE /* BumbleBoogieUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -251,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8F848032C9312BF00F905FE /* LaunchScreen.storyboard in Resources */,
 				B8F847D72C8F30E800F905FE /* Preview Assets.xcassets in Resources */,
 				B8F847D42C8F30E800F905FE /* Assets.xcassets in Resources */,
 			);
@@ -280,7 +259,7 @@
 				B8F847D22C8F30E300F905FE /* ContentView.swift in Sources */,
 				B8F847FC2C8F5C2800F905FE /* GameState.swift in Sources */,
 				B8F847FA2C8F314D00F905FE /* CookieBtn.swift in Sources */,
-				B8F847D02C8F30E300F905FE /* Conditional_RenderingApp.swift in Sources */,
+				B8F847D02C8F30E300F905FE /* BumbleBoogie.swift in Sources */,
 				B8F848012C919C3500F905FE /* ResetBtn.swift in Sources */,
 				B8F847FE2C918E1500F905FE /* GameStats.swift in Sources */,
 			);
@@ -290,7 +269,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8F847E12C8F30E800F905FE /* Conditional_RenderingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,8 +276,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8F847ED2C8F30E900F905FE /* Conditional_RenderingUITestsLaunchTests.swift in Sources */,
-				B8F847EB2C8F30E800F905FE /* Conditional_RenderingUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,12 +284,12 @@
 /* Begin PBXTargetDependency section */
 		B8F847DE2C8F30E800F905FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B8F847CB2C8F30E300F905FE /* BumbleBoogey */;
+			target = B8F847CB2C8F30E300F905FE /* BumbleBoogie */;
 			targetProxy = B8F847DD2C8F30E800F905FE /* PBXContainerItemProxy */;
 		};
 		B8F847E82C8F30E800F905FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B8F847CB2C8F30E300F905FE /* BumbleBoogey */;
+			target = B8F847CB2C8F30E300F905FE /* BumbleBoogie */;
 			targetProxy = B8F847E72C8F30E800F905FE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -445,13 +421,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Conditional Rendering/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = K5Z7TM9J83;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -474,13 +452,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Conditional Rendering/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = K5Z7TM9J83;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -512,7 +492,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BumbleBoogey.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BumbleBoogey";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BumbleBoogie.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BumbleBoogie";
 			};
 			name = Debug;
 		};
@@ -532,7 +512,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BumbleBoogey.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BumbleBoogey";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BumbleBoogie.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BumbleBoogie";
 			};
 			name = Release;
 		};
@@ -575,7 +555,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B8F847C72C8F30E300F905FE /* Build configuration list for PBXProject "BumbleBoogey" */ = {
+		B8F847C72C8F30E300F905FE /* Build configuration list for PBXProject "BumbleBoogie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8F847EE2C8F30E900F905FE /* Debug */,
@@ -584,7 +564,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8F847F02C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogey" */ = {
+		B8F847F02C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8F847F12C8F30E900F905FE /* Debug */,
@@ -593,7 +573,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8F847F32C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogeyTests" */ = {
+		B8F847F32C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogieTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8F847F42C8F30E900F905FE /* Debug */,
@@ -602,7 +582,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8F847F62C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogeyUITests" */ = {
+		B8F847F62C8F30E900F905FE /* Build configuration list for PBXNativeTarget "BumbleBoogieUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8F847F72C8F30E900F905FE /* Debug */,

@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8F847CB2C8F30E300F905FE"
-               BuildableName = "BumbleBoogey.app"
-               BlueprintName = "BumbleBoogey"
-               ReferencedContainer = "container:BumbleBoogey.xcodeproj">
+               BuildableName = "BumbleBoogie.app"
+               BlueprintName = "BumbleBoogie"
+               ReferencedContainer = "container:BumbleBoogie.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,30 +29,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8F847DB2C8F30E800F905FE"
-               BuildableName = "BumbleBoogeyTests.xctest"
-               BlueprintName = "BumbleBoogeyTests"
-               ReferencedContainer = "container:BumbleBoogey.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8F847E52C8F30E800F905FE"
-               BuildableName = "BumbleBoogeyUITests.xctest"
-               BlueprintName = "BumbleBoogeyUITests"
-               ReferencedContainer = "container:BumbleBoogey.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -69,18 +45,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B8F847CB2C8F30E300F905FE"
-            BuildableName = "BumbleBoogey.app"
-            BlueprintName = "BumbleBoogey"
-            ReferencedContainer = "container:BumbleBoogey.xcodeproj">
+            BuildableName = "BumbleBoogie.app"
+            BlueprintName = "BumbleBoogie"
+            ReferencedContainer = "container:BumbleBoogie.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "IDEPreferLogStreaming"
-            value = "YES"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -93,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B8F847CB2C8F30E300F905FE"
-            BuildableName = "BumbleBoogey.app"
-            BlueprintName = "BumbleBoogey"
-            ReferencedContainer = "container:BumbleBoogey.xcodeproj">
+            BuildableName = "BumbleBoogie.app"
+            BlueprintName = "BumbleBoogie"
+            ReferencedContainer = "container:BumbleBoogie.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

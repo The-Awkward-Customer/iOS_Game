@@ -14,15 +14,15 @@ struct CookieButton: View {
     var body: some View {
         VStack {
             Button(action: {
-                gameState.buyCookies()
+                gameState.BuyABee()
 
             }) {
-                Text("buy a cookie")
+                Text("buy a 🐝")
                     .font(.title)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 12)
-                    .foregroundColor(.white)
-                    .background(Color.blue)
+                    .foregroundColor(Color.black)
+                    .background(Color("PrimaryYellow"))
                     .cornerRadius(10)
             }
         }
