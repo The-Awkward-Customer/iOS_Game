@@ -12,6 +12,7 @@ struct Conditional_RenderingApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(gameState: GameState())
+                .preferredColorScheme(.light)
         }
     }
 }
