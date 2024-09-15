@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B87683982C959ABF00F3E94E /* CustomButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87683972C959ABF00F3E94E /* CustomButtonStyles.swift */; };
 		B8F847D02C8F30E300F905FE /* BumbleBoogie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */; };
 		B8F847D22C8F30E300F905FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847D12C8F30E300F905FE /* ContentView.swift */; };
 		B8F847D42C8F30E800F905FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8F847D32C8F30E800F905FE /* Assets.xcassets */; };
 		B8F847D72C8F30E800F905FE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8F847D62C8F30E800F905FE /* Preview Assets.xcassets */; };
-		B8F847FA2C8F314D00F905FE /* CookieBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847F92C8F314D00F905FE /* CookieBtn.swift */; };
+		B8F847FA2C8F314D00F905FE /* BuyBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847F92C8F314D00F905FE /* BuyBtn.swift */; };
 		B8F847FC2C8F5C2800F905FE /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847FB2C8F5C2800F905FE /* GameState.swift */; };
 		B8F847FE2C918E1500F905FE /* GameStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847FD2C918E1500F905FE /* GameStats.swift */; };
 		B8F848012C919C3500F905FE /* ResetBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F848002C919C3500F905FE /* ResetBtn.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B87683972C959ABF00F3E94E /* CustomButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyles.swift; sourceTree = "<group>"; };
 		B8F847CC2C8F30E300F905FE /* BumbleBoogie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumbleBoogie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumbleBoogie.swift; sourceTree = "<group>"; };
 		B8F847D12C8F30E300F905FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,7 +45,7 @@
 		B8F847D62C8F30E800F905FE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B8F847DC2C8F30E800F905FE /* BumbleBoogieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847E62C8F30E800F905FE /* BumbleBoogieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8F847F92C8F314D00F905FE /* CookieBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieBtn.swift; sourceTree = "<group>"; };
+		B8F847F92C8F314D00F905FE /* BuyBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyBtn.swift; sourceTree = "<group>"; };
 		B8F847FB2C8F5C2800F905FE /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		B8F847FD2C918E1500F905FE /* GameStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStats.swift; sourceTree = "<group>"; };
 		B8F848002C919C3500F905FE /* ResetBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetBtn.swift; sourceTree = "<group>"; };
@@ -100,7 +102,8 @@
 				B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */,
 				B8F847D12C8F30E300F905FE /* ContentView.swift */,
 				B8F848022C9312BF00F905FE /* LaunchScreen.storyboard */,
-				B8F847F92C8F314D00F905FE /* CookieBtn.swift */,
+				B8F847F92C8F314D00F905FE /* BuyBtn.swift */,
+				B87683972C959ABF00F3E94E /* CustomButtonStyles.swift */,
 				B8F848002C919C3500F905FE /* ResetBtn.swift */,
 				B8F847FF2C918E2F00F905FE /* Model */,
 				B8F847FD2C918E1500F905FE /* GameStats.swift */,
@@ -256,9 +259,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B87683982C959ABF00F3E94E /* CustomButtonStyles.swift in Sources */,
 				B8F847D22C8F30E300F905FE /* ContentView.swift in Sources */,
 				B8F847FC2C8F5C2800F905FE /* GameState.swift in Sources */,
-				B8F847FA2C8F314D00F905FE /* CookieBtn.swift in Sources */,
+				B8F847FA2C8F314D00F905FE /* BuyBtn.swift in Sources */,
 				B8F847D02C8F30E300F905FE /* BumbleBoogie.swift in Sources */,
 				B8F848012C919C3500F905FE /* ResetBtn.swift in Sources */,
 				B8F847FE2C918E1500F905FE /* GameStats.swift in Sources */,

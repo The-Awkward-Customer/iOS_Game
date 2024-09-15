@@ -25,7 +25,7 @@ struct ContentView: View {
                     .multilineTextAlignment(.center)
                 Text("Buy a bee to start collecting Honey")
                     .multilineTextAlignment(.center)
-                CookieButton(gameState: gameState)
+                BuyBtn(gameState: gameState)
                 GameStats(gameState: gameState)
                 ResetBtn(gameState: gameState)
             }
