@@ -15,8 +15,8 @@ struct ContentView: View {
         ZStack {
             BeeGenerator()
         VStack(spacing: 20) {
-            ResetBtn(gameState: gameState)
-            IntroText()
+//            ResetBtn(gameState: gameState)
+//            IntroText()
             
             Spacer()
             

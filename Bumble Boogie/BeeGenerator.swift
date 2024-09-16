@@ -21,7 +21,7 @@ struct BeeGenerator: View {
                 ForEach(beeObjects) { bee in
                     Image("beeImage")  // Replace with actual bee image
                         .resizable()
-                        .frame(width: 40 , height: 40)
+                        .frame(width: 30, height: 30)
                         .position(x: bee.xPosition, y: bee.yPosition)  // Dynamic position
                         .onAppear {
                             moveBeeUpwards(bee: bee)
@@ -52,8 +52,10 @@ struct BeeGenerator: View {
             }
             beeObjects.append(contentsOf: newBees)
         } else if newBeeCount < currentBeeCount {
-            // Remove excess bees if the count decreased
-            beeObjects.removeLast(currentBeeCount - newBeeCount)
+            // Safely remove excess bees using DispatchQueue to avoid index out of range
+            DispatchQueue.main.async {
+                beeObjects.removeLast(currentBeeCount - newBeeCount)
+            }
         }
     }
     
@@ -64,7 +66,7 @@ struct BeeGenerator: View {
     
     // Function to randomly generate a speed for bees
     func randomSpeed() -> Double {
-        Double.random(in: 3...6)  // Random speed between 3 to 6 seconds
+        Double.random(in: 3...12)  // Random speed between 3 to 6 seconds
     }
     
     // Function to animate the bee moving upwards off the screen, then reset its position
