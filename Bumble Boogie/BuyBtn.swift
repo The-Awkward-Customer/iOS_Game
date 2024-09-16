@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct CookieButton: View {
+struct BuyBtn: View {
     
     @ObservedObject var gameState: GameState  // Reference the game state
+    
     
     var body: some View {
         VStack {
@@ -18,17 +19,15 @@ struct CookieButton: View {
 
             }) {
                 Text("buy a 🐝")
-                    .font(.title)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 12)
-                    .foregroundColor(Color.black)
-                    .background(Color("PrimaryYellow"))
-                    .cornerRadius(10)
+                    .frame(maxWidth: .infinity)
+
             }
+            .buttonStyle(CustomButtonStyles(isEnabled: gameState.canBuyBee))  // Apply custom style
+            .disabled(!gameState.canBuyBee)  // Disable button when needed
         }
     }
 }
 
 #Preview {
-    CookieButton(gameState: GameState())
+    BuyBtn(gameState: GameState())
 }

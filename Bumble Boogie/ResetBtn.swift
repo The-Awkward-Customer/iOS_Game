@@ -17,9 +17,11 @@ struct ResetBtn: View {
         Button (action: {
             gameState.resetCookies()
         }) {
-            Text("reset")
-                .foregroundColor(Color.red)
+            Text("reset game")
+                .foregroundColor(Color.gray)
+                .fontWeight(.bold)
         }
+        
     }
 }
 
