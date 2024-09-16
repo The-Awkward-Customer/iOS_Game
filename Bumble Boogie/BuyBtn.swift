@@ -19,6 +19,8 @@ struct BuyBtn: View {
 
             }) {
                 Text("buy a 🐝")
+                    .frame(maxWidth: .infinity)
+
             }
             .buttonStyle(CustomButtonStyles(isEnabled: gameState.canBuyBee))  // Apply custom style
             .disabled(!gameState.canBuyBee)  // Disable button when needed

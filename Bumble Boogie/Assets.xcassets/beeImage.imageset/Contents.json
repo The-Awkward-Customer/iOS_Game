@@ -1,12 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "Iphone.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Universal.png",
+      "filename" : "BeeImage.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

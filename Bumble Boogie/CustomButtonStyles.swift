@@ -16,9 +16,10 @@ struct CustomButtonStyles: ButtonStyle {
         configuration.label
             .padding()
             .background(isEnabled ? Color("PrimaryYellow") : Color.gray)  // Change background
-            .foregroundColor(.white)
-            .cornerRadius(10)
+            .foregroundColor(.black)
+            .cornerRadius(100)
             .opacity(isEnabled ? 1 : 0.5)  // Change opacity
             .scaleEffect(configuration.isPressed ? 0.95 : 1)  // Button press effect
+            .padding(.horizontal, 24)
     }
 }

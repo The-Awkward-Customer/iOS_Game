@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B87683982C959ABF00F3E94E /* CustomButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87683972C959ABF00F3E94E /* CustomButtonStyles.swift */; };
+		B876839A2C96EC8300F3E94E /* IntroText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87683992C96EC8300F3E94E /* IntroText.swift */; };
+		B876839C2C98852900F3E94E /* BeeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B876839B2C98852900F3E94E /* BeeGenerator.swift */; };
 		B8F847D02C8F30E300F905FE /* BumbleBoogie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */; };
 		B8F847D22C8F30E300F905FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847D12C8F30E300F905FE /* ContentView.swift */; };
 		B8F847D42C8F30E800F905FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8F847D32C8F30E800F905FE /* Assets.xcassets */; };
@@ -16,7 +18,6 @@
 		B8F847FC2C8F5C2800F905FE /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847FB2C8F5C2800F905FE /* GameState.swift */; };
 		B8F847FE2C918E1500F905FE /* GameStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847FD2C918E1500F905FE /* GameStats.swift */; };
 		B8F848012C919C3500F905FE /* ResetBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F848002C919C3500F905FE /* ResetBtn.swift */; };
-		B8F848032C9312BF00F905FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8F848022C9312BF00F905FE /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		B87683972C959ABF00F3E94E /* CustomButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyles.swift; sourceTree = "<group>"; };
+		B87683992C96EC8300F3E94E /* IntroText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroText.swift; sourceTree = "<group>"; };
+		B876839B2C98852900F3E94E /* BeeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeGenerator.swift; sourceTree = "<group>"; };
 		B8F847CC2C8F30E300F905FE /* BumbleBoogie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumbleBoogie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumbleBoogie.swift; sourceTree = "<group>"; };
 		B8F847D12C8F30E300F905FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,7 +52,6 @@
 		B8F847FB2C8F5C2800F905FE /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		B8F847FD2C918E1500F905FE /* GameStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStats.swift; sourceTree = "<group>"; };
 		B8F848002C919C3500F905FE /* ResetBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetBtn.swift; sourceTree = "<group>"; };
-		B8F848022C9312BF00F905FE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +103,8 @@
 				B8F847D52C8F30E800F905FE /* Preview Content */,
 				B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */,
 				B8F847D12C8F30E300F905FE /* ContentView.swift */,
-				B8F848022C9312BF00F905FE /* LaunchScreen.storyboard */,
+				B876839B2C98852900F3E94E /* BeeGenerator.swift */,
+				B87683992C96EC8300F3E94E /* IntroText.swift */,
 				B8F847F92C8F314D00F905FE /* BuyBtn.swift */,
 				B87683972C959ABF00F3E94E /* CustomButtonStyles.swift */,
 				B8F848002C919C3500F905FE /* ResetBtn.swift */,
@@ -232,7 +235,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8F848032C9312BF00F905FE /* LaunchScreen.storyboard in Resources */,
 				B8F847D72C8F30E800F905FE /* Preview Assets.xcassets in Resources */,
 				B8F847D42C8F30E800F905FE /* Assets.xcassets in Resources */,
 			);
@@ -262,10 +264,12 @@
 				B87683982C959ABF00F3E94E /* CustomButtonStyles.swift in Sources */,
 				B8F847D22C8F30E300F905FE /* ContentView.swift in Sources */,
 				B8F847FC2C8F5C2800F905FE /* GameState.swift in Sources */,
+				B876839A2C96EC8300F3E94E /* IntroText.swift in Sources */,
 				B8F847FA2C8F314D00F905FE /* BuyBtn.swift in Sources */,
 				B8F847D02C8F30E300F905FE /* BumbleBoogie.swift in Sources */,
 				B8F848012C919C3500F905FE /* ResetBtn.swift in Sources */,
 				B8F847FE2C918E1500F905FE /* GameStats.swift in Sources */,
+				B876839C2C98852900F3E94E /* BeeGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
