@@ -6,6 +6,7 @@ struct Bee: Identifiable {
     var xPosition: CGFloat  // X position (randomized)
     var yPosition: CGFloat  // Y position (starts at screen bottom)
     var speed: Double  // Speed of animation
+    var inView: Bool = true
 }
 
 struct BeeGenerator: View {
@@ -13,6 +14,8 @@ struct BeeGenerator: View {
     
     @State private var beeObjects: [Bee] = []  // Bee objects for animation
     @State private var screenHeight: CGFloat = 0  // Screen height for animation
+    
+    private var runway: CGFloat = 100
     
     var body: some View {
         GeometryReader { geometry in
@@ -32,6 +35,7 @@ struct BeeGenerator: View {
                 screenHeight = geometry.size.height  // Get screen height on appear
                 updateBees()  // Initialize the bees based on game state
             }
+            .ignoresSafeArea()
             .onChange(of: gameState.Bees) { newBeeCount in
                 updateBees()  // Adjust bees when the number changes
             }
@@ -52,10 +56,17 @@ struct BeeGenerator: View {
             }
             beeObjects.append(contentsOf: newBees)
         } else if newBeeCount < currentBeeCount {
-            // Safely remove excess bees using DispatchQueue to avoid index out of range
-            DispatchQueue.main.async {
-                beeObjects.removeLast(currentBeeCount - newBeeCount)
+            // Set inView to false for excess bees rather than directly removing them
+            let beesToRemove = currentBeeCount - newBeeCount
+            var count = 0
+            for i in 0..<beeObjects.count where count < beesToRemove {
+                if beeObjects[i].inView {
+                    beeObjects[i].inView = false
+                    count += 1
+                }
             }
+            // Remove bees after they've flagged as not in view
+            beeObjects.removeAll { !$0.inView }
         }
     }
     
@@ -71,21 +82,31 @@ struct BeeGenerator: View {
     
     // Function to animate the bee moving upwards off the screen, then reset its position
     func moveBeeUpwards(bee: Bee) {
-        if let index = beeObjects.firstIndex(where: { $0.id == bee.id }) {
-            // Animate the bee to the top of the screen
-            withAnimation(.linear(duration: bee.speed)) {
-                beeObjects[index].yPosition = 0  // Move to the top
-            }
+        // Find the index safely
+        guard let index = beeObjects.firstIndex(where: { $0.id == bee.id }) else {
+            return  // Exit if the index is not found
+        }
+        
+        // Animate the bee to the top of the screen
+        withAnimation(.linear(duration: bee.speed)) {
+            beeObjects[index].yPosition = -runway  // Move to the top
+        }
+        
+        // After the bee reaches the top, reset its Y position to the bottom
+        DispatchQueue.main.asyncAfter(deadline: .now() + bee.speed) {
+            // Double-check the index again in case the beeObjects array changed
+            guard index < beeObjects.count else { return }
             
-            // After the bee reaches the top, reset its Y position to the bottom
-            DispatchQueue.main.asyncAfter(deadline: .now() + bee.speed) {
-                beeObjects[index].yPosition = screenHeight  // Reset to bottom
-                beeObjects[index].xPosition = randomXPosition()  // Reset to a new random X position
-                moveBeeUpwards(bee: beeObjects[index])  // Recursive call to animate the bee again
-            }
+            // Reset position and inView state safely
+            beeObjects[index].yPosition = screenHeight + runway  // Reset to bottom
+            beeObjects[index].xPosition = randomXPosition()  // Reset to a new random X position
+            
+            // Recursively move the bee again
+            moveBeeUpwards(bee: beeObjects[index])
         }
     }
 }
+
 
 #Preview {
     BeeGenerator()
