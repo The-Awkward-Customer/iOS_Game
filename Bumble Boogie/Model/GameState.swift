@@ -31,7 +31,7 @@ class GameState: ObservableObject {
         let newBee = BeeGameObject(
             id: UUID(),
             xPosition: CGFloat.random(in: 0...UIScreen.main.bounds.width),
-            yPosition: 0,
+            yPosition: 1200,
             speed: Double.random(in: 4...8)
         )
         beeGameObjects.append(newBee)

@@ -20,7 +20,7 @@ struct BeeView: View {
                     BeeButton(bee: bee, onRemove: gameState.removeBee)
                 }
             }
-            .background(Color.red.opacity(0.2))
+            
             .onAppear(){
                 gameState.loadBeeGameObjects()
             }
