@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B80AB3F42C9B085500CFAC8D /* BeeAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80AB3F32C9B085500CFAC8D /* BeeAnimationView.swift */; };
+		B80AB3F62C9B2E1F00CFAC8D /* HoneyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80AB3F52C9B2E1F00CFAC8D /* HoneyHandler.swift */; };
+		B80AB3F82C9B3B3D00CFAC8D /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80AB3F72C9B3B3D00CFAC8D /* Badge.swift */; };
 		B87683982C959ABF00F3E94E /* CustomButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87683972C959ABF00F3E94E /* CustomButtonStyles.swift */; };
 		B876839A2C96EC8300F3E94E /* IntroText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87683992C96EC8300F3E94E /* IntroText.swift */; };
 		B876839C2C98852900F3E94E /* BeeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B876839B2C98852900F3E94E /* BeeGenerator.swift */; };
+		B89ED3352C99A6EE000B7B00 /* BasicBeeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89ED3342C99A6EE000B7B00 /* BasicBeeButton.swift */; };
+		B89ED3372C99C29B000B7B00 /* BeeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89ED3362C99C29B000B7B00 /* BeeHandler.swift */; };
+		B89ED33C2C9AE788000B7B00 /* BeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89ED33B2C9AE788000B7B00 /* BeeView.swift */; };
+		B89ED33E2C9AE88C000B7B00 /* BeeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89ED33D2C9AE88C000B7B00 /* BeeButton.swift */; };
 		B8F847D02C8F30E300F905FE /* BumbleBoogie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */; };
 		B8F847D22C8F30E300F905FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847D12C8F30E300F905FE /* ContentView.swift */; };
 		B8F847D42C8F30E800F905FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8F847D32C8F30E800F905FE /* Assets.xcassets */; };
@@ -38,9 +45,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B80AB3F32C9B085500CFAC8D /* BeeAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeAnimationView.swift; sourceTree = "<group>"; };
+		B80AB3F52C9B2E1F00CFAC8D /* HoneyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneyHandler.swift; sourceTree = "<group>"; };
+		B80AB3F72C9B3B3D00CFAC8D /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		B87683972C959ABF00F3E94E /* CustomButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyles.swift; sourceTree = "<group>"; };
 		B87683992C96EC8300F3E94E /* IntroText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroText.swift; sourceTree = "<group>"; };
 		B876839B2C98852900F3E94E /* BeeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeGenerator.swift; sourceTree = "<group>"; };
+		B89ED3342C99A6EE000B7B00 /* BasicBeeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicBeeButton.swift; sourceTree = "<group>"; };
+		B89ED3362C99C29B000B7B00 /* BeeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeHandler.swift; sourceTree = "<group>"; };
+		B89ED33B2C9AE788000B7B00 /* BeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeView.swift; sourceTree = "<group>"; };
+		B89ED33D2C9AE88C000B7B00 /* BeeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeButton.swift; sourceTree = "<group>"; };
 		B8F847CC2C8F30E300F905FE /* BumbleBoogie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumbleBoogie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumbleBoogie.swift; sourceTree = "<group>"; };
 		B8F847D12C8F30E300F905FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,6 +93,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B89ED3382C9AE297000B7B00 /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				B89ED3342C99A6EE000B7B00 /* BasicBeeButton.swift */,
+				B87683992C96EC8300F3E94E /* IntroText.swift */,
+				B89ED3362C99C29B000B7B00 /* BeeHandler.swift */,
+				B876839B2C98852900F3E94E /* BeeGenerator.swift */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
+		B89ED3392C9AE2B9000B7B00 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B8F848002C919C3500F905FE /* ResetBtn.swift */,
+				B8F847F92C8F314D00F905FE /* BuyBtn.swift */,
+				B87683972C959ABF00F3E94E /* CustomButtonStyles.swift */,
+				B89ED33D2C9AE88C000B7B00 /* BeeButton.swift */,
+				B80AB3F52C9B2E1F00CFAC8D /* HoneyHandler.swift */,
+				B80AB3F72C9B3B3D00CFAC8D /* Badge.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		B89ED33A2C9AE2F1000B7B00 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B8F847FD2C918E1500F905FE /* GameStats.swift */,
+				B89ED33B2C9AE788000B7B00 /* BeeView.swift */,
+				B80AB3F32C9B085500CFAC8D /* BeeAnimationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B8F847C32C8F30E300F905FE = {
 			isa = PBXGroup;
 			children = (
@@ -103,13 +151,10 @@
 				B8F847D52C8F30E800F905FE /* Preview Content */,
 				B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */,
 				B8F847D12C8F30E300F905FE /* ContentView.swift */,
-				B876839B2C98852900F3E94E /* BeeGenerator.swift */,
-				B87683992C96EC8300F3E94E /* IntroText.swift */,
-				B8F847F92C8F314D00F905FE /* BuyBtn.swift */,
-				B87683972C959ABF00F3E94E /* CustomButtonStyles.swift */,
-				B8F848002C919C3500F905FE /* ResetBtn.swift */,
+				B89ED33A2C9AE2F1000B7B00 /* Views */,
+				B89ED3382C9AE297000B7B00 /* Legacy */,
+				B89ED3392C9AE2B9000B7B00 /* Components */,
 				B8F847FF2C918E2F00F905FE /* Model */,
-				B8F847FD2C918E1500F905FE /* GameStats.swift */,
 				B8F847D32C8F30E800F905FE /* Assets.xcassets */,
 			);
 			path = "Bumble Boogie";
@@ -264,12 +309,19 @@
 				B87683982C959ABF00F3E94E /* CustomButtonStyles.swift in Sources */,
 				B8F847D22C8F30E300F905FE /* ContentView.swift in Sources */,
 				B8F847FC2C8F5C2800F905FE /* GameState.swift in Sources */,
+				B89ED33E2C9AE88C000B7B00 /* BeeButton.swift in Sources */,
 				B876839A2C96EC8300F3E94E /* IntroText.swift in Sources */,
 				B8F847FA2C8F314D00F905FE /* BuyBtn.swift in Sources */,
 				B8F847D02C8F30E300F905FE /* BumbleBoogie.swift in Sources */,
+				B80AB3F62C9B2E1F00CFAC8D /* HoneyHandler.swift in Sources */,
 				B8F848012C919C3500F905FE /* ResetBtn.swift in Sources */,
+				B80AB3F82C9B3B3D00CFAC8D /* Badge.swift in Sources */,
+				B89ED3352C99A6EE000B7B00 /* BasicBeeButton.swift in Sources */,
 				B8F847FE2C918E1500F905FE /* GameStats.swift in Sources */,
+				B89ED3372C99C29B000B7B00 /* BeeHandler.swift in Sources */,
 				B876839C2C98852900F3E94E /* BeeGenerator.swift in Sources */,
+				B80AB3F42C9B085500CFAC8D /* BeeAnimationView.swift in Sources */,
+				B89ED33C2C9AE788000B7B00 /* BeeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

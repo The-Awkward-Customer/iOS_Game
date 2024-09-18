@@ -15,7 +15,7 @@ struct ResetBtn: View {
     
     var body: some View {
         Button (action: {
-            gameState.resetCookies()
+            print("attempted reset")
         }) {
             Text("reset game")
                 .foregroundColor(Color.gray)
