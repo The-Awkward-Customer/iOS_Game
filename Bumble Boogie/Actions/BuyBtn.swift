@@ -15,7 +15,7 @@ struct BuyBtn: View {
     var body: some View {
         VStack {
             Button(action: {
-                gameState.BuyABee()
+                gameState.addBee()
 
             }) {
                 Text("buy a 🐝")
