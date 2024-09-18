@@ -7,8 +7,13 @@
 
 import SwiftUI
 struct BeeButton: View {
+    
+    @ObservedObject var gameState = GameState()
+    
     var bee: GameState.BeeGameObject
     var onRemove: (GameState.BeeGameObject) -> Void
+    
+
     
     var body: some View {
         Button(action: {
@@ -17,8 +22,14 @@ struct BeeButton: View {
             Image("beeImage")
                 .resizable()
                 .frame(width: 44, height: 44)
+                
         }
         .position(x: bee.xPosition, y: bee.yPosition)
+        .onAppear {
+            gameState.startPositionUpdate(for:bee)  // Start manual position update when the view appears
+        }
+        .onDisappear {
+            gameState.stopPositionUpdate(for:bee)  // Stop the timer when the view disappears
+        }
     }
 }
-
