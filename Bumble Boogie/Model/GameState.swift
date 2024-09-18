@@ -31,7 +31,7 @@ class GameState: ObservableObject {
         let newBee = BeeGameObject(
             id: UUID(),
             xPosition: CGFloat.random(in: 0...UIScreen.main.bounds.width),
-            yPosition: 800,
+            yPosition: 0,
             speed: Double.random(in: 4...8)
         )
         beeGameObjects.append(newBee)
@@ -62,7 +62,7 @@ class GameState: ObservableObject {
         let duration = bee.speed
         let stepSize = 0.016  // Approximately 60 FPS
         let totalSteps = duration / stepSize
-        let yStep = 600 / totalSteps  // Amount to move per step
+        let yStep = 1200 / totalSteps  // Amount to move per step
         
         timers[bee.id] = Timer.scheduledTimer(withTimeInterval: stepSize, repeats: true) { [weak self] _ in
             guard let self = self else { return }
@@ -74,10 +74,10 @@ class GameState: ObservableObject {
             }
             
             // Update the yPosition of the bee
-            if self.beeGameObjects[beeIndex].yPosition > 0 {
+            if self.beeGameObjects[beeIndex].yPosition > -100 {
                 self.beeGameObjects[beeIndex].yPosition -= yStep  // Move upward gradually
             } else {
-                self.stopPositionUpdate(for: bee)  // Stop when it reaches y = 0
+                self.beeGameObjects[beeIndex].yPosition = 1200
             }
         }
     }

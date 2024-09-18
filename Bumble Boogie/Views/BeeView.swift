@@ -12,18 +12,23 @@ struct BeeView: View {
     @ObservedObject var gameState = GameState()
     
     var body: some View {
-        ZStack {
-            
-            // Render a BeeButton for each BeeGame object
-            ForEach(gameState.beeGameObjects) { bee in
-                BeeButton(bee: bee, onRemove: gameState.removeBee)
+        GeometryReader { geometry in
+            ZStack {
+                
+                // Render a BeeButton for each BeeGame object
+                ForEach(gameState.beeGameObjects) { bee in
+                    BeeButton(bee: bee, onRemove: gameState.removeBee)
+                }
             }
+            .background(Color.red.opacity(0.2))
+            .onAppear(){
+                gameState.loadBeeGameObjects()
+            }
+            .frame(height: geometry.size.height + 100 )
+            .ignoresSafeArea(.all)
+            
+            
         }
-        .onAppear(){
-            gameState.loadBeeGameObjects()
-        }
-        
-        
     }
 }
 
