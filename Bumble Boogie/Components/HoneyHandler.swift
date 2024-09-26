@@ -5,31 +5,32 @@
 //  Created by Peter Abbott on 18/09/2024.
 //
 
-import SwiftUI
-
-struct HoneyHandler: View {
-    
-    @ObservedObject var gameState = GameState()
-    
-    var body: some View {
-        
-        VStack {
-            VStack{
-                Badge(text: gameState.RandomHoney)
-            }
-            .offset(y: gameState.yOffset)
-            .opacity(gameState.badgeOpacity)
-            .animation(.easeInOut(duration: 1), value: gameState.yOffset)  // Smooth animation for y position change
-            .animation(.easeInOut(duration: 1), value: gameState.badgeOpacity)
-            Text("\(gameState.Honey)")
-                .foregroundColor(.blue)
-            Button(action: {
-                gameState.GenerateHoney() // calls localAddHoney function -> move to gameState functions
-            }, label: {
-                Text("add one")
-            })
-        }
-    }
+//import SwiftUI
+//
+//struct HoneyHandler: View {
+//    
+//    @ObservedObject var gameState = GameState()
+//    
+//    var body: some View {
+//        
+//        VStack {
+//            VStack{
+//                
+//                Badge(text: gameState.RandomHoney)
+//            }
+//            .offset(y: gameState.yOffset)
+//            .opacity(gameState.badgeOpacity)
+//            .animation(.easeInOut(duration: 1), value: gameState.yOffset)  // Smooth animation for y position change
+//            .animation(.easeInOut(duration: 1), value: gameState.badgeOpacity)
+//            Text("\(gameState.Honey)")
+//                .foregroundColor(.blue)
+//            Button(action: {
+//                gameState.GenerateHoney() // calls localAddHoney function -> move to gameState functions
+//            }, label: {
+//                Text("add one")
+//            })
+//        }
+//    }
     
     
 //    func localAddHoney(){
@@ -59,9 +60,9 @@ struct HoneyHandler: View {
 //        }
 //        
 //    }
-}
-
-
-#Preview {
-    HoneyHandler()
-}
+//}
+//
+//
+//#Preview {
+//    HoneyHandler()
+//}

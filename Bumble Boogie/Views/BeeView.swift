@@ -14,20 +14,18 @@ struct BeeView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                
                 // Render a BeeButton for each BeeGame object
                 ForEach(gameState.beeGameObjects) { bee in
-                    BeeButton(bee: bee, onRemove: gameState.removeBee)
+                    BeeButton(bee: bee, onRemove: { bee in
+                        gameState.removeBee(bee: bee, delay: 1.0)  // Use the delay here
+                    })
                 }
             }
-            
             .onAppear(){
                 gameState.loadBeeGameObjects()
             }
-            .frame(height: geometry.size.height + 100 )
+            .frame(height: geometry.size.height + 100)
             .ignoresSafeArea(.all)
-            
-            
         }
     }
 }

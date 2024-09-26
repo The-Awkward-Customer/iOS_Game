@@ -4,10 +4,10 @@ import UIKit
 
 class GameState: ObservableObject {
     
-    @AppStorage ("Honey") var Honey: Int = 0
-    @AppStorage ("HoneyPerTap") var HoneyPerTap: Int = 1
-    @AppStorage ("HoneyPerSecond") var HoneyPerSecond: Int = 1
-    @AppStorage ("RandomHoney") var RandomHoney: Int = 0
+    @AppStorage("Honey") var Honey: Int = 0
+    @AppStorage("HoneyPerTap") var HoneyPerTap: Int = 1
+    @AppStorage("HoneyPerSecond") var HoneyPerSecond: Int = 1
+    @AppStorage("RandomHoney") var RandomHoney: Int = 0
     @Published var canBuyBee: Bool = true
     
     // Timer for bee position updates
@@ -43,16 +43,19 @@ class GameState: ObservableObject {
         startPositionUpdate(for: newBee)  // Start animating the new bee
     }
     // Removes bee from the array
-    func removeBee(bee: BeeGameObject) {
+    func removeBee(bee: BeeGameObject, delay: TimeInterval = 0.5) {
         // Stop the bee's timer before removing it
         stopPositionUpdate(for: bee)
         
-        // Remove the bee from the array
-        beeGameObjects.removeAll { $0.id == bee.id }
-        saveBeeGameObjects()  // Save to AppStorage after removing
-        print("Bees removed")
-        print("Bees in beeGameObjects = \(beeGameObjects.count)")
-        GenerateHoney()
+        // Delay the removal of the bee
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            // Remove the bee from the array
+            self.beeGameObjects.removeAll { $0.id == bee.id }
+            self.saveBeeGameObjects()  // Save to AppStorage after removing
+            print("Bees removed")
+            print("Bees in beeGameObjects = \(self.beeGameObjects.count)")
+            self.GenerateHoney()
+        }
     }
     
     
@@ -68,12 +71,13 @@ class GameState: ObservableObject {
         // Update the total honey
         Honey += RandomHoney
         
-        // Trigger the animation in the next run loop to avoid batching
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.runAnimation() // applies a 0.1ms delay to give the
-        }
+        
+//        // Trigger the animation in the next run loop to avoid batching
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//            self.runAnimation() // applies a 0.1ms delay to give the
+//        }
     }
-
+    
     
     // ! This section handles the animation of the bees
     
@@ -85,7 +89,7 @@ class GameState: ObservableObject {
         
         timers[bee.id] = Timer.scheduledTimer(withTimeInterval: stepSize, repeats: true) { [weak self] _ in
             guard let self = self else { return }
-
+            
             // Find the bee by its ID instead of relying on the index
             guard let beeIndex = self.beeGameObjects.firstIndex(where: { $0.id == bee.id }) else {
                 self.stopPositionUpdate(for: bee)
@@ -101,7 +105,7 @@ class GameState: ObservableObject {
         }
     }
     
-
+    
     
     // Stop the position update (animation) for a specific bee
     func stopPositionUpdate(for bee: BeeGameObject) {
@@ -109,22 +113,7 @@ class GameState: ObservableObject {
         timers.removeValue(forKey: bee.id)
     }
     
-    //    animates the badge (probably should not be in gameState object)
-    @State var yOffset: CGFloat = 0  // Track the yOffset for the animation
-    @State var badgeOpacity: Double = 0 // sets the initial opacity for the imported badge element
     
-    func runAnimation(){
-        yOffset = -50
-        badgeOpacity = 1
-        
-        // After a delay, end the animation (simulating a rolling effect)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.yOffset = 0
-            self.badgeOpacity = 0
-            
-        }
-        
-    }
     
     
     
