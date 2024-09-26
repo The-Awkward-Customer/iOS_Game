@@ -11,7 +11,6 @@ struct ContentView: View {
     
     @ObservedObject var gameState: GameState  // Reference the game state
     
-    @State private var isShopPresented: Bool = false  // Control the visibility of the sheet
     
     var body: some View {
         ZStack {
@@ -20,8 +19,10 @@ struct ContentView: View {
             VStack(spacing: 20) {
                 HStack {
                     ResetBtn(gameState: gameState)
-                    IconButton(iconName: "bolt.fill", action: SummonShop  )
+                    Spacer()
+                    IconButton(iconName: "bolt.fill", action: gameState.SummonShop  )
                 }
+                .padding(24)
                 
                 
                 Spacer()
@@ -39,35 +40,14 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
         )
         // Present a sheet when isShopPresented is true
-                .sheet(isPresented: $isShopPresented) {
-                    ShopView()  // The view that will appear in the sheet
+        .sheet(isPresented: $gameState.isShopPresented) {
+            ShopSheet(gameState: gameState)  // The view that will appear in the sheet
                 }
     }
     
-    func SummonShop(){
-        print("Open shop")
-        
-        isShopPresented = true
-    }
     
 }
 
-struct ShopView: View {
-    var body: some View {
-        VStack {
-            Text("Welcome to the Shop!")
-                .font(.largeTitle)
-                .padding()
-
-            // Add your shop items or content here
-
-            Button("Close Shop") {
-                // Dismiss the shop by swiping down or programmatically if needed
-            }
-            .padding()
-        }
-    }
-}
 
 
 #Preview {

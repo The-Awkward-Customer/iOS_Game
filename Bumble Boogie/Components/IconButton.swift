@@ -19,8 +19,8 @@ struct IconButton: View {
             Image(systemName: iconName)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 44 , height: 44)  // Size of the icon
-                .padding()  // Padding inside the button
+                .frame(width: 24 , height: 24)  // Size of the icon
+                .padding(8)  // Padding inside the button
                 .background(Circle().fill(Color("PrimaryYellow")))
                 .foregroundColor(.white)  // Color of the icon
                 
