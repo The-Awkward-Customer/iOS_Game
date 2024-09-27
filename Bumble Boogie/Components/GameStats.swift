@@ -17,17 +17,19 @@ struct GameStats: View {
                 .font(.subheadline)
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity)
-            .padding()
+                .padding(.horizontal, 4)
             Text("🍯 Honey: \(gameState.Honey)")  // Display the count value
                 .font(.subheadline)
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity)
-            .padding()
+                .padding(.horizontal, 4)
         }
+        .frame(height: 40)
         .background(Color.white)
         .cornerRadius(100)
         .shadow(color: Color.gray.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-        .padding(.horizontal, 24)
+        
+
     }
 }
 

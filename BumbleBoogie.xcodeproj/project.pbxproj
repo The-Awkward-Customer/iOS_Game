@@ -104,6 +104,7 @@
 				B87683992C96EC8300F3E94E /* IntroText.swift */,
 				B89ED3362C99C29B000B7B00 /* BeeHandler.swift */,
 				B876839B2C98852900F3E94E /* BeeGenerator.swift */,
+				B80AB3F52C9B2E1F00CFAC8D /* HoneyHandler.swift */,
 			);
 			path = Legacy;
 			sourceTree = "<group>";
@@ -111,11 +112,11 @@
 		B89ED3392C9AE2B9000B7B00 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B8F847FD2C918E1500F905FE /* GameStats.swift */,
 				B8F848002C919C3500F905FE /* ResetBtn.swift */,
 				B8F847F92C8F314D00F905FE /* BuyBtn.swift */,
 				B87683972C959ABF00F3E94E /* CustomButtonStyles.swift */,
 				B89ED33D2C9AE88C000B7B00 /* BeeButton.swift */,
-				B80AB3F52C9B2E1F00CFAC8D /* HoneyHandler.swift */,
 				B80AB3F72C9B3B3D00CFAC8D /* Badge.swift */,
 				B80DE7E92CA596530028CD97 /* IconButton.swift */,
 				B80DE7EB2CA59E990028CD97 /* ShopSheet.swift */,
@@ -126,7 +127,6 @@
 		B89ED33A2C9AE2F1000B7B00 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B8F847FD2C918E1500F905FE /* GameStats.swift */,
 				B89ED33B2C9AE788000B7B00 /* BeeView.swift */,
 				B80AB3F32C9B085500CFAC8D /* BeeAnimationView.swift */,
 			);
