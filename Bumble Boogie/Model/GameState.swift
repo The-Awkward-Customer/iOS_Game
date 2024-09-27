@@ -4,6 +4,10 @@ import UIKit
 
 class GameState: ObservableObject {
     
+    // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+    // ! This section handles the in-app memory storage
+    // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+    
     @AppStorage("Honey") var Honey: Int = 0
     @AppStorage("HoneyPerTap") var HoneyPerTap: Int = 1
     @AppStorage("HoneyPerSecond") var HoneyPerSecond: Int = 1
@@ -24,7 +28,9 @@ class GameState: ObservableObject {
     // Use @AppStorage with a String to store encoded BeeGame objects
     @AppStorage("beeGameObjects") private var beeGameObjectsData: String = ""
     
+    // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     // ! This section handles the management of game objects
+    // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     
     // In-memory array of BeeGame objects
     @Published var beeGameObjects: [BeeGameObject] = []
@@ -58,10 +64,9 @@ class GameState: ObservableObject {
         }
     }
     
-    
-    
-    
+    // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     // ! This section handles the generation of honey and rewards.
+    // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     
     func GenerateHoney(){
         // Update addedHoney first before starting the animation
@@ -78,8 +83,9 @@ class GameState: ObservableObject {
 //        }
     }
     
-    
+    // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     // ! This section handles the animation of the bees
+    // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     
     func startPositionUpdate(for bee: BeeGameObject) {
         let duration = bee.speed
@@ -106,19 +112,15 @@ class GameState: ObservableObject {
     }
     
     
-    
     // Stop the position update (animation) for a specific bee
     func stopPositionUpdate(for bee: BeeGameObject) {
         timers[bee.id]?.invalidate()
         timers.removeValue(forKey: bee.id)
     }
-    
-    
-    
-    
-    
-    
+
+    // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     // ! This Section handles the saving and loading of gamestate variables.
+    // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     
     // Save the beeGameObjects array to @AppStorage as a JSON string
     func saveBeeGameObjects() {
@@ -141,5 +143,42 @@ class GameState: ObservableObject {
                 }
             }
         }
+    }
+    
+    
+    // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+    // ! This section is for handling the shop and rewards
+    // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+    
+    @Published var isShopPresented: Bool = false  // Control the visibility of the sheet
+    
+    func SummonShop(){
+        
+        isShopPresented.toggle()
+        
+        print("the value of shop is \(isShopPresented)")
+    }
+    
+    
+    
+    // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+    // ! This section is for development testing functions
+    // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+    
+    func hardReset(delay: TimeInterval = 0.2){
+        // Stop all timers for bees
+            for bee in beeGameObjects {
+                stopPositionUpdate(for: bee)
+            }
+            
+            // Delay the removal of all bees
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                // Clear the array
+                self.beeGameObjects.removeAll()
+                self.saveBeeGameObjects()  // Save to AppStorage after removing
+                print("All bees removed")
+                print("Bees in beeGameObjects = \(self.beeGameObjects.count)")
+                self.Honey = 0
+            }
     }
 }

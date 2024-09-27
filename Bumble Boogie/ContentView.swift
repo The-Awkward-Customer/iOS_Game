@@ -11,12 +11,18 @@ struct ContentView: View {
     
     @ObservedObject var gameState: GameState  // Reference the game state
     
+    
     var body: some View {
         ZStack {
             
             BeeView(gameState: gameState)
             VStack(spacing: 20) {
-                ResetBtn(gameState: gameState)
+                HStack {
+                    ResetBtn(gameState: gameState)
+                    Spacer()
+                    IconButton(iconName: "bolt.fill", action: gameState.SummonShop  )
+                }
+                .padding(24)
                 
                 
                 Spacer()
@@ -33,9 +39,15 @@ struct ContentView: View {
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
         )
+        // Present a sheet when isShopPresented is true
+        .sheet(isPresented: $gameState.isShopPresented) {
+            ShopSheet(gameState: gameState)  // The view that will appear in the sheet
+                }
     }
     
+    
 }
+
 
 
 #Preview {

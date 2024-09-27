@@ -15,7 +15,7 @@ struct ResetBtn: View {
     
     var body: some View {
         Button (action: {
-            print("attempted reset")
+            gameState.hardReset()
         }) {
             Text("reset game")
                 .foregroundColor(Color.gray)
