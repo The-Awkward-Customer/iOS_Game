@@ -17,6 +17,7 @@ struct ShopSheet: View {
                 Image("beeImage")
                     .resizable()
                     .frame(width: 44 , height: 44)
+                ResetBtn(gameState: gameState)
             
                 
                 Spacer()

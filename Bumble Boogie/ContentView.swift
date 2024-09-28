@@ -18,18 +18,11 @@ struct ContentView: View {
             BeeView(gameState: gameState)
             VStack(spacing: 20) {
                 HStack {
-                    ResetBtn(gameState: gameState)
-                    Spacer()
+                    GameStats(gameState: gameState)
                     IconButton(iconName: "bolt.fill", action: gameState.SummonShop  )
-                }
-                .padding(24)
-                
-                
+            }
+                .padding(.horizontal, 24)
                 Spacer()
-                
-                
-                GameStats(gameState: gameState)
-                BuyBtn(gameState: gameState)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
@@ -42,8 +35,12 @@ struct ContentView: View {
         // Present a sheet when isShopPresented is true
         .sheet(isPresented: $gameState.isShopPresented) {
             ShopSheet(gameState: gameState)  // The view that will appear in the sheet
-                }
+        }
+        .onAppear{
+            gameState.startSpawningBees()
+        }
     }
+    
     
     
 }

@@ -17,6 +17,9 @@ class GameState: ObservableObject {
     // Timer for bee position updates
     var timers: [UUID: Timer] = [:]
     
+    var spawnTimer: Timer?
+    var baseSpawnTime: Double = 0.5  // Base spawn time is 0.5 seconds
+    
     //  BeeGameObject
     struct BeeGameObject: Identifiable, Codable {
         let id: UUID
@@ -36,18 +39,86 @@ class GameState: ObservableObject {
     @Published var beeGameObjects: [BeeGameObject] = []
     
     // Add a new bee
+    
+    @AppStorage("spawnTime") var spawnTime: Double = 2.5
+    @AppStorage("basicHives") var basicHives: Int = 1
+    
+    
+    
     func addBee() {
+        
+        let minX: CGFloat = 24
+        let maxX: CGFloat = UIScreen.main.bounds.width - 24
+        
         let newBee = BeeGameObject(
             id: UUID(),
-            xPosition: CGFloat.random(in: 0...UIScreen.main.bounds.width),
+            xPosition: CGFloat.random(in: minX...maxX),
             yPosition: 1200,
-            speed: Double.random(in: 4...8)
+            speed: Double.random(in: 3...10)
         )
         beeGameObjects.append(newBee)
         saveBeeGameObjects()  // Save to AppStorage after adding
         print("bees in beeGameObject = \(beeGameObjects.count)")
         startPositionUpdate(for: newBee)  // Start animating the new bee
     }
+    
+    // Function to dynamically calculate spawnTime based on number of bees
+    func calculateSpawnTime() -> Double {
+        // Dynamic spawn time increases by 0.5 seconds per bee
+        return baseSpawnTime + (Double(beeGameObjects.count) * 0.5)
+    }
+    
+    // Function to start spawning bees
+    func startSpawningBees() {
+        
+        // If there's an active timer, stop it to restart
+        stopSpawningBees()
+        
+        let maxBees = basicHives * 10
+        let spawnTime = calculateSpawnTime()  // Calculate the new spawn time based on the number of bees
+        
+        
+        // Check if the number of bees is already equal to the available hives
+        guard beeGameObjects.count < maxBees else {
+            print("Max bees reached. Stopping timer.")
+            stopSpawningBees()  // Stop the timer if we reach the maximum
+            return
+        }
+        
+        
+        print("Starting bee spawning with a spawn time of \(spawnTime) seconds...")
+        spawnTimer = Timer.scheduledTimer(withTimeInterval: spawnTime, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            
+            // If the number of bees is less than available hives, add a new bee
+            if self.beeGameObjects.count < maxBees {
+                self.addBee()
+            } else {
+                // Stop the timer when the maximum number of bees is reached
+                self.stopSpawningBees()
+            }
+        }
+    }
+    
+    // Function to stop the timer completely
+    func stopSpawningBees() {
+        spawnTimer?.invalidate()  // Invalidate the current timer
+        spawnTimer = nil
+        print("Stopped the spawn timer.")
+    }
+    
+    // Check if we need to restart the timer when a bee is removed
+    func checkForRestartSpawningBees() {
+        let maxBees = basicHives * 10
+        
+        if beeGameObjects.count < maxBees {
+            print("Bee count below max, restarting spawn timer.")
+            startSpawningBees()  // Restart the spawning process
+        }
+    }
+    
+    
+    
     // Removes bee from the array
     func removeBee(bee: BeeGameObject, delay: TimeInterval = 0.5) {
         // Stop the bee's timer before removing it
@@ -61,6 +132,9 @@ class GameState: ObservableObject {
             print("Bees removed")
             print("Bees in beeGameObjects = \(self.beeGameObjects.count)")
             self.GenerateHoney()
+            
+            // Check if we need to resume spawning bees
+            self.checkForRestartSpawningBees()
         }
     }
     
@@ -77,10 +151,10 @@ class GameState: ObservableObject {
         Honey += RandomHoney
         
         
-//        // Trigger the animation in the next run loop to avoid batching
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//            self.runAnimation() // applies a 0.1ms delay to give the
-//        }
+        //        // Trigger the animation in the next run loop to avoid batching
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        //            self.runAnimation() // applies a 0.1ms delay to give the
+        //        }
     }
     
     // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -117,7 +191,7 @@ class GameState: ObservableObject {
         timers[bee.id]?.invalidate()
         timers.removeValue(forKey: bee.id)
     }
-
+    
     // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     // ! This Section handles the saving and loading of gamestate variables.
     // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -167,18 +241,22 @@ class GameState: ObservableObject {
     
     func hardReset(delay: TimeInterval = 0.2){
         // Stop all timers for bees
-            for bee in beeGameObjects {
-                stopPositionUpdate(for: bee)
-            }
+        for bee in beeGameObjects {
+            stopPositionUpdate(for: bee)
             
-            // Delay the removal of all bees
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                // Clear the array
-                self.beeGameObjects.removeAll()
-                self.saveBeeGameObjects()  // Save to AppStorage after removing
-                print("All bees removed")
-                print("Bees in beeGameObjects = \(self.beeGameObjects.count)")
-                self.Honey = 0
-            }
+        }
+        
+        // Delay the removal of all bees
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            // Clear the array
+            self.beeGameObjects.removeAll()
+            self.saveBeeGameObjects()  // Save to AppStorage after removing
+            print("All bees removed")
+            print("Bees in beeGameObjects = \(self.beeGameObjects.count)")
+            self.Honey = 0
+            
+            // Check if we need to restart the spawning bees process
+            self.checkForRestartSpawningBees()
+        }
     }
 }
