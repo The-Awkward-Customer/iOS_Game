@@ -18,7 +18,7 @@ struct ShopSheet: View {
                     .resizable()
                     .frame(width: 44 , height: 44)
                 ResetBtn(gameState: gameState)
-            
+                RewardsButton(gameState: gameState)
                 
                 Spacer()
                 // Add your shop items or content here
@@ -26,7 +26,8 @@ struct ShopSheet: View {
                 IconButton(iconName: "xmark.circle.fill", action: {
                     gameState.isShopPresented = false  // Directly close the shop
                     print("the value of isShopPresented is: \(gameState.isShopPresented)")
-                })
+                },
+                           showBadge: false)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)  // Ensure full width and height
             .padding(24)

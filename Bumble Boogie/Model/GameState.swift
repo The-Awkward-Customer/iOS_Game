@@ -18,7 +18,7 @@ class GameState: ObservableObject {
     var timers: [UUID: Timer] = [:]
     
     var spawnTimer: Timer?
-    var baseSpawnTime: Double = 0.5  // Base spawn time is 0.5 seconds
+    var baseSpawnTime: Double = 0.2  // Base spawn time is 0.5 seconds
     
     //  BeeGameObject
     struct BeeGameObject: Identifiable, Codable {
@@ -54,7 +54,7 @@ class GameState: ObservableObject {
             id: UUID(),
             xPosition: CGFloat.random(in: minX...maxX),
             yPosition: 1200,
-            speed: Double.random(in: 3...10)
+            speed: Double.random(in: 2...5)
         )
         beeGameObjects.append(newBee)
         saveBeeGameObjects()  // Save to AppStorage after adding
@@ -65,7 +65,7 @@ class GameState: ObservableObject {
     // Function to dynamically calculate spawnTime based on number of bees
     func calculateSpawnTime() -> Double {
         // Dynamic spawn time increases by 0.5 seconds per bee
-        return baseSpawnTime + (Double(beeGameObjects.count) * 0.5)
+        return baseSpawnTime + (Double(beeGameObjects.count) * 0.05)
     }
     
     // Function to start spawning bees
@@ -74,7 +74,7 @@ class GameState: ObservableObject {
         // If there's an active timer, stop it to restart
         stopSpawningBees()
         
-        let maxBees = basicHives * 10
+        let maxBees = basicHives * 5
         let spawnTime = calculateSpawnTime()  // Calculate the new spawn time based on the number of bees
         
         
@@ -109,7 +109,7 @@ class GameState: ObservableObject {
     
     // Check if we need to restart the timer when a bee is removed
     func checkForRestartSpawningBees() {
-        let maxBees = basicHives * 10
+        let maxBees = basicHives * 5
         
         if beeGameObjects.count < maxBees {
             print("Bee count below max, restarting spawn timer.")
@@ -144,18 +144,39 @@ class GameState: ObservableObject {
     
     func GenerateHoney(){
         // Update addedHoney first before starting the animation
-        let randomHoney = Int.random(in: 1...100)
+        let randomHoney = Int.random(in: 1...10)
         RandomHoney = randomHoney
         
         // Update the total honey
         Honey += RandomHoney
         
+        enableBasicHivePurchase()  // Check if the purchase button should be enabled after honey is generated
         
-        //        // Trigger the animation in the next run loop to avoid batching
-        //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-        //            self.runAnimation() // applies a 0.1ms delay to give the
-        //        }
     }
+    
+    // a basic function to check the value of honey
+    // if the value of honey is >= BasicHiveCost
+    // set buyBasicHivebButton = true
+    // if the value of honey basicHiveCost < set buyBasicHivebButton = true
+    
+    var basicHiveCost: Int = 100 // cost of a basic hive
+    @Published var buyBasicHiveButton: Bool = false // controls button state
+    
+    // Enable or disable the hive purchase button
+        func enableBasicHivePurchase() {
+            buyBasicHiveButton = Honey >= basicHiveCost
+        }
+        
+        // Handle the purchase of a basic hive
+        func purchaseBasicHive() {
+            if buyBasicHiveButton {
+                Honey -= basicHiveCost
+                basicHives += 1
+                enableBasicHivePurchase()  // Re-check if further purchases are allowed after purchase
+            }
+            checkForRestartSpawningBees()
+        }
+    
     
     // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     // ! This section handles the animation of the bees
@@ -254,6 +275,7 @@ class GameState: ObservableObject {
             print("All bees removed")
             print("Bees in beeGameObjects = \(self.beeGameObjects.count)")
             self.Honey = 0
+            self.basicHives = 1
             
             // Check if we need to restart the spawning bees process
             self.checkForRestartSpawningBees()
