@@ -19,9 +19,13 @@ struct ContentView: View {
             VStack(spacing: 20) {
                 HStack {
                     GameStats(gameState: gameState)
-                    IconButton(iconName: "bolt.fill", action: gameState.SummonShop  )
-            }
+                    IconButton(iconName: "bolt.fill", action: gameState.SummonShop, showBadge: gameState.buyBasicHiveButton  )
+                    
+                }
                 .padding(.horizontal, 24)
+                .onAppear {
+                    gameState.enableBasicHivePurchase()  // Check if the button should be enabled when the view appears
+                }
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
