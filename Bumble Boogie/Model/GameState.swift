@@ -54,7 +54,7 @@ class GameState: ObservableObject {
             id: UUID(),
             xPosition: CGFloat.random(in: minX...maxX),
             yPosition: 1200,
-            speed: Double.random(in: 2...5)
+            speed: Double.random(in: 3...5)
         )
         beeGameObjects.append(newBee)
         saveBeeGameObjects()  // Save to AppStorage after adding
