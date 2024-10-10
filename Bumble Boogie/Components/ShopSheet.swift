@@ -22,6 +22,7 @@ struct ShopSheet: View {
                 
                 Spacer()
                 // Add your shop items or content here
+                MusicToggle()
                 
                 IconButton(iconName: "xmark.circle.fill", action: {
                     gameState.isShopPresented = false  // Directly close the shop

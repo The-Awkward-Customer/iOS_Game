@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
     
     @ObservedObject var gameState: GameState  // Reference the game state
-    
     
     var body: some View {
         ZStack {
@@ -19,7 +19,6 @@ struct ContentView: View {
             VStack(spacing: 20) {
                 HStack {
                     GameStats(gameState: gameState)
-                    IconButton(iconName: "bolt.fill", action: gameState.SummonShop, showBadge: gameState.buyBasicHiveButton  )
                     
                 }
                 .padding(.horizontal, 24)
@@ -27,6 +26,16 @@ struct ContentView: View {
                     gameState.enableBasicHivePurchase()  // Check if the button should be enabled when the view appears
                 }
                 Spacer()
+                
+                
+                HStack{
+                    Spacer()
+                    VStack(spacing: 24) {
+                        MusicToggle()
+                        IconButton(iconName: "bolt.fill", action: gameState.SummonShop, showBadge: gameState.buyBasicHiveButton  )
+                    }
+                }
+                .padding(.horizontal, 24)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }

@@ -19,6 +19,9 @@
 		B89ED3372C99C29B000B7B00 /* BeeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89ED3362C99C29B000B7B00 /* BeeHandler.swift */; };
 		B89ED33C2C9AE788000B7B00 /* BeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89ED33B2C9AE788000B7B00 /* BeeView.swift */; };
 		B89ED33E2C9AE88C000B7B00 /* BeeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89ED33D2C9AE88C000B7B00 /* BeeButton.swift */; };
+		B8A20C4F2CB7EFA400F758CD /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A20C4E2CB7EFA400F758CD /* MusicManager.swift */; };
+		B8A20C512CB7F1A000F758CD /* MusicToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A20C502CB7F1A000F758CD /* MusicToggle.swift */; };
+		B8A20C532CB7F33600F758CD /* backingTrack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8A20C522CB7F33600F758CD /* backingTrack.mp3 */; };
 		B8C3D8E52CA9606A005087D4 /* RewardsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C3D8E42CA9606A005087D4 /* RewardsButton.swift */; };
 		B8F847D02C8F30E300F905FE /* BumbleBoogie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */; };
 		B8F847D22C8F30E300F905FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847D12C8F30E300F905FE /* ContentView.swift */; };
@@ -60,6 +63,9 @@
 		B89ED3362C99C29B000B7B00 /* BeeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeHandler.swift; sourceTree = "<group>"; };
 		B89ED33B2C9AE788000B7B00 /* BeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeView.swift; sourceTree = "<group>"; };
 		B89ED33D2C9AE88C000B7B00 /* BeeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeButton.swift; sourceTree = "<group>"; };
+		B8A20C4E2CB7EFA400F758CD /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
+		B8A20C502CB7F1A000F758CD /* MusicToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MusicToggle.swift; path = "Bumble Boogie/Components/MusicToggle.swift"; sourceTree = SOURCE_ROOT; };
+		B8A20C522CB7F33600F758CD /* backingTrack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backingTrack.mp3; sourceTree = "<group>"; };
 		B8C3D8E42CA9606A005087D4 /* RewardsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsButton.swift; sourceTree = "<group>"; };
 		B8F847CC2C8F30E300F905FE /* BumbleBoogie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumbleBoogie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumbleBoogie.swift; sourceTree = "<group>"; };
@@ -114,6 +120,7 @@
 		B89ED3392C9AE2B9000B7B00 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B8A20C502CB7F1A000F758CD /* MusicToggle.swift */,
 				B8F847FD2C918E1500F905FE /* GameStats.swift */,
 				B8F848002C919C3500F905FE /* ResetBtn.swift */,
 				B8F847F92C8F314D00F905FE /* BuyBtn.swift */,
@@ -165,6 +172,7 @@
 				B89ED3392C9AE2B9000B7B00 /* Components */,
 				B8F847FF2C918E2F00F905FE /* Model */,
 				B8F847D32C8F30E800F905FE /* Assets.xcassets */,
+				B8A20C522CB7F33600F758CD /* backingTrack.mp3 */,
 			);
 			path = "Bumble Boogie";
 			sourceTree = "<group>";
@@ -180,6 +188,7 @@
 		B8F847FF2C918E2F00F905FE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B8A20C4E2CB7EFA400F758CD /* MusicManager.swift */,
 				B8F847FB2C8F5C2800F905FE /* GameState.swift */,
 			);
 			path = Model;
@@ -290,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F847D72C8F30E800F905FE /* Preview Assets.xcassets in Resources */,
+				B8A20C532CB7F33600F758CD /* backingTrack.mp3 in Resources */,
 				B8F847D42C8F30E800F905FE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,11 +334,13 @@
 				B8F847D02C8F30E300F905FE /* BumbleBoogie.swift in Sources */,
 				B80AB3F62C9B2E1F00CFAC8D /* HoneyHandler.swift in Sources */,
 				B8F848012C919C3500F905FE /* ResetBtn.swift in Sources */,
+				B8A20C4F2CB7EFA400F758CD /* MusicManager.swift in Sources */,
 				B80AB3F82C9B3B3D00CFAC8D /* Badge.swift in Sources */,
 				B89ED3352C99A6EE000B7B00 /* BasicBeeButton.swift in Sources */,
 				B80DE7EA2CA596530028CD97 /* IconButton.swift in Sources */,
 				B8C3D8E52CA9606A005087D4 /* RewardsButton.swift in Sources */,
 				B80DE7EC2CA59E990028CD97 /* ShopSheet.swift in Sources */,
+				B8A20C512CB7F1A000F758CD /* MusicToggle.swift in Sources */,
 				B8F847FE2C918E1500F905FE /* GameStats.swift in Sources */,
 				B89ED3372C99C29B000B7B00 /* BeeHandler.swift in Sources */,
 				B876839C2C98852900F3E94E /* BeeGenerator.swift in Sources */,
