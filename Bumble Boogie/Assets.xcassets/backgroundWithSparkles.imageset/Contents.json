@@ -1,12 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "Iphone.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Universal.png",
+      "filename" : "placeholder-bg.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
