@@ -22,6 +22,7 @@
 		B8A20C4F2CB7EFA400F758CD /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A20C4E2CB7EFA400F758CD /* MusicManager.swift */; };
 		B8A20C512CB7F1A000F758CD /* MusicToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A20C502CB7F1A000F758CD /* MusicToggle.swift */; };
 		B8A20C532CB7F33600F758CD /* backingTrack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8A20C522CB7F33600F758CD /* backingTrack.mp3 */; };
+		B8A20C552CB80DCC00F758CD /* UpgradeBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A20C542CB80DCC00F758CD /* UpgradeBtn.swift */; };
 		B8C3D8E52CA9606A005087D4 /* RewardsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C3D8E42CA9606A005087D4 /* RewardsButton.swift */; };
 		B8F847D02C8F30E300F905FE /* BumbleBoogie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */; };
 		B8F847D22C8F30E300F905FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847D12C8F30E300F905FE /* ContentView.swift */; };
@@ -66,6 +67,7 @@
 		B8A20C4E2CB7EFA400F758CD /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
 		B8A20C502CB7F1A000F758CD /* MusicToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MusicToggle.swift; path = "Bumble Boogie/Components/MusicToggle.swift"; sourceTree = SOURCE_ROOT; };
 		B8A20C522CB7F33600F758CD /* backingTrack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backingTrack.mp3; sourceTree = "<group>"; };
+		B8A20C542CB80DCC00F758CD /* UpgradeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeBtn.swift; sourceTree = "<group>"; };
 		B8C3D8E42CA9606A005087D4 /* RewardsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsButton.swift; sourceTree = "<group>"; };
 		B8F847CC2C8F30E300F905FE /* BumbleBoogie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumbleBoogie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumbleBoogie.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				B89ED3362C99C29B000B7B00 /* BeeHandler.swift */,
 				B876839B2C98852900F3E94E /* BeeGenerator.swift */,
 				B80AB3F52C9B2E1F00CFAC8D /* HoneyHandler.swift */,
+				B8C3D8E42CA9606A005087D4 /* RewardsButton.swift */,
 			);
 			path = Legacy;
 			sourceTree = "<group>";
@@ -129,7 +132,7 @@
 				B80AB3F72C9B3B3D00CFAC8D /* Badge.swift */,
 				B80DE7E92CA596530028CD97 /* IconButton.swift */,
 				B80DE7EB2CA59E990028CD97 /* ShopSheet.swift */,
-				B8C3D8E42CA9606A005087D4 /* RewardsButton.swift */,
+				B8A20C542CB80DCC00F758CD /* UpgradeBtn.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				B8F847D02C8F30E300F905FE /* BumbleBoogie.swift in Sources */,
 				B80AB3F62C9B2E1F00CFAC8D /* HoneyHandler.swift in Sources */,
 				B8F848012C919C3500F905FE /* ResetBtn.swift in Sources */,
+				B8A20C552CB80DCC00F758CD /* UpgradeBtn.swift in Sources */,
 				B8A20C4F2CB7EFA400F758CD /* MusicManager.swift in Sources */,
 				B80AB3F82C9B3B3D00CFAC8D /* Badge.swift in Sources */,
 				B89ED3352C99A6EE000B7B00 /* BasicBeeButton.swift in Sources */,

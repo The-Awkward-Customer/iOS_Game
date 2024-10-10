@@ -54,7 +54,7 @@ class GameState: ObservableObject {
             id: UUID(),
             xPosition: CGFloat.random(in: minX...maxX),
             yPosition: 1200,
-            speed: Double.random(in: 3...5)
+            speed: Double.random(in: 4...6)
         )
         beeGameObjects.append(newBee)
         saveBeeGameObjects()  // Save to AppStorage after adding
@@ -109,7 +109,7 @@ class GameState: ObservableObject {
     
     // Check if we need to restart the timer when a bee is removed
     func checkForRestartSpawningBees() {
-        let maxBees = basicHives * 5
+        let maxBees = basicHives
         
         if beeGameObjects.count < maxBees {
             print("Bee count below max, restarting spawn timer.")
@@ -144,7 +144,7 @@ class GameState: ObservableObject {
     
     func GenerateHoney(){
         // Update addedHoney first before starting the animation
-        let randomHoney = Int.random(in: 1...10)
+        let randomHoney = Int.random(in: 1...20)
         RandomHoney = randomHoney
         
         // Update the total honey
