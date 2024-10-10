@@ -18,7 +18,7 @@ struct ShopSheet: View {
                     .resizable()
                     .frame(width: 44 , height: 44)
                 ResetBtn(gameState: gameState)
-            UpgradeBtn(iconName: "bolt.fill", upgradeTitle: "Buy a hive", upgradeDescription: "Increases number of total bees by 5" , action: gameState.purchaseBasicHive, showBadge: false, onAppear:{ gameState.enableBasicHivePurchase() }, isDiabled: !gameState.buyBasicHiveButton)
+            UpgradeBtn(iconName: "bolt.fill", upgradeTitle: "Buy a hive", upgradeDescription: "Increases number of total bees by 1" , action: gameState.purchaseBasicHive, showBadge: false, onAppear:{ gameState.enableBasicHivePurchase() }, isDisabled: !gameState.buyBasicHiveButton)
                 
                 Spacer()
                 // Add your shop items or content here

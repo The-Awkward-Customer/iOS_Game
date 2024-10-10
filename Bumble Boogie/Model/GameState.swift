@@ -144,7 +144,7 @@ class GameState: ObservableObject {
     
     func GenerateHoney(){
         // Update addedHoney first before starting the animation
-        let randomHoney = Int.random(in: 1...10)
+        let randomHoney = Int.random(in: 1...20)
         RandomHoney = randomHoney
         
         // Update the total honey
