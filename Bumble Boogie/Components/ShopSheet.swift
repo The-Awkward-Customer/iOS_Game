@@ -13,16 +13,15 @@ struct ShopSheet: View {
     
     
     var body: some View {
-            VStack {
+        VStack(alignment: .leading, spacing: 16) {
                 Image("beeImage")
                     .resizable()
                     .frame(width: 44 , height: 44)
                 ResetBtn(gameState: gameState)
-                RewardsButton(gameState: gameState)
+            UpgradeBtn(iconName: "bolt.fill", upgradeTitle: "Buy a hive", upgradeDescription: "Increases number of total bees by 5" , action: gameState.purchaseBasicHive, showBadge: false, onAppear:{ gameState.enableBasicHivePurchase() }, isDiabled: !gameState.buyBasicHiveButton)
                 
                 Spacer()
                 // Add your shop items or content here
-                MusicToggle()
                 
                 IconButton(iconName: "xmark.circle.fill", action: {
                     gameState.isShopPresented = false  // Directly close the shop

@@ -14,7 +14,7 @@ struct BeeButton: View {
     var onRemove: (GameState.BeeGameObject) -> Void
     
     //    State for Bee Animation
-    @State private var beeSize: CGFloat = 44  // Track the yOffset for the animation
+    @State private var beeSize: CGFloat = 56  // Track the yOffset for the animation
     @State private var beeOpacity: Double = 0 // sets the initial opacity for the imported badge element
     
     
