@@ -115,6 +115,7 @@
 				B89ED3362C99C29B000B7B00 /* BeeHandler.swift */,
 				B876839B2C98852900F3E94E /* BeeGenerator.swift */,
 				B80AB3F52C9B2E1F00CFAC8D /* HoneyHandler.swift */,
+				B8C3D8E42CA9606A005087D4 /* RewardsButton.swift */,
 			);
 			path = Legacy;
 			sourceTree = "<group>";
@@ -131,7 +132,6 @@
 				B80AB3F72C9B3B3D00CFAC8D /* Badge.swift */,
 				B80DE7E92CA596530028CD97 /* IconButton.swift */,
 				B80DE7EB2CA59E990028CD97 /* ShopSheet.swift */,
-				B8C3D8E42CA9606A005087D4 /* RewardsButton.swift */,
 				B8A20C542CB80DCC00F758CD /* UpgradeBtn.swift */,
 			);
 			path = Components;

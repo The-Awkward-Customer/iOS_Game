@@ -19,9 +19,11 @@ struct UpgradeBtn: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(upgradeTitle)
                         .font(.title3)
-                        .fontWeight(.bold)
+                        .fontWeight(.heavy)
+                        .foregroundColor(!isDiabled ? .primaryForeground : .gray)
                     Text(upgradeDescription)
                         .font(.subheadline)
+                        .foregroundColor(!isDiabled ? .primaryForeground : .gray)
                 }
                 Spacer()
                 
@@ -30,14 +32,23 @@ struct UpgradeBtn: View {
                     .scaledToFit()
                     .frame(width: 24, height: 24)  // Size of the icon
                     .padding(8)  // Padding inside the button
-                    .background(Circle().stroke(Color(.blue)))
-                    .foregroundColor(.blue)
+                    .background(Circle().stroke(Color((!isDiabled ? .black : .gray))))
+                    .foregroundColor((!isDiabled ? .primaryYellow : .gray))
             }
-            .padding(24)
+          
+            
         }
         .frame(maxWidth: .infinity, alignment: .leading)  // This makes the button fill the horizontal space
-        .background(isDiabled ? Color.gray.opacity(0.2) : Color.blue.opacity(0.2) )
-        .cornerRadius(24)
+        
+//        .background(Color.white)
+        .padding(24)
+        .background(.white)
+        .cornerRadius(10)
+        .overlay(
+        RoundedRectangle(cornerRadius: 10)
+        .inset(by: 1)
+        .stroke(.black, lineWidth: 2)
+        )
         
         //disabled state
         .disabled(isDiabled)

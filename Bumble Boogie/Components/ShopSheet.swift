@@ -31,7 +31,7 @@ struct ShopSheet: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)  // Ensure full width and height
             .padding(24)
-                   .background(Color.white)  // Add a background color
+            .background(Color.primaryYellow)  // Add a background color
                    .cornerRadius(30)  // Custom corner radius
                    .ignoresSafeArea()  // Remove the default padding in the sheet
         
