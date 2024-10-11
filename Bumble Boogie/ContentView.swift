@@ -32,7 +32,7 @@ struct ContentView: View {
                     Spacer()
                     VStack(spacing: 24) {
                         MusicToggle()
-                        IconButton(iconName: "bolt.fill", action: gameState.SummonShop, showBadge: gameState.buyBasicHiveButton  )
+                        IconButton(iconName: "bolt.fill", action: gameState.summonShop, showBadge: gameState.buyBasicHiveButton  )
                     }
                 }
                 .padding(.horizontal, 24)

@@ -16,13 +16,13 @@ struct BeeView: View {
             ZStack {
                 // Render a BeeButton for each BeeGame object
                 ForEach(gameState.beeGameObjects) { bee in
-                    BeeButton(bee: bee, onRemove: { bee in
-                        gameState.removeBee(bee: bee, delay: 1.0)  // Use the delay here
+                    BeeButton(bee: bee, onRemove: { beeToRemove in
+                        gameState.removeBee(bee: beeToRemove)
                     })
                 }
             }
             .onAppear(){
-                gameState.loadBeeGameObjects()
+                gameState.loadGameState()
             }
             .frame(height: geometry.size.height + 100)
             .ignoresSafeArea(.all)

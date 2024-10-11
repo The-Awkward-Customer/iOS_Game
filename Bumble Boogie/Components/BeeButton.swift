@@ -9,9 +9,10 @@ import SwiftUI
 struct BeeButton: View {
     
     @ObservedObject var gameState = GameState()
+    @ObservedObject var bee: BeeGameObject
     
-    var bee: GameState.BeeGameObject
-    var onRemove: (GameState.BeeGameObject) -> Void
+    
+    var onRemove: (BeeGameObject) -> Void
     
     //    State for Bee Animation
     @State private var beeSize: CGFloat = 56  // Track the yOffset for the animation
@@ -24,7 +25,7 @@ struct BeeButton: View {
         ZStack{
             Button(action: {
                 onRemove(bee)  // Call the remove action
-                gameState.GenerateHoney()
+                gameState.generateHoney()
                 TappedAnimation()
             }) {
                 Image("beeImage")
@@ -40,7 +41,7 @@ struct BeeButton: View {
                 gameState.startPositionUpdates()  // Start manual position update when the view appears
             }
             .onDisappear {
-                gameState.stopPositionUpdate(for:bee)  // Stop the timer when the view disappears
+                gameState.stopPositionUpdates()  // Stop the timer when the view disappears
             }
         }
     }
@@ -72,7 +73,7 @@ struct BeeButton: View {
 #Preview {
     // Create a mock GameState instance and a sample bee
     let mockGameState = GameState()
-    let mockBee = GameState.BeeGameObject(
+    let mockBee = BeeGameObject(
         id: UUID(),
         xPosition: 150,  // Example x position
         yPosition: 300,  // Example y position
@@ -83,7 +84,7 @@ struct BeeButton: View {
         
     )
     
-    return BeeButton(
+    BeeButton(
         gameState: mockGameState,
         bee: mockBee,
         onRemove: { bee in
