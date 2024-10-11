@@ -25,6 +25,8 @@
 		B8A20C552CB80DCC00F758CD /* UpgradeBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A20C542CB80DCC00F758CD /* UpgradeBtn.swift */; };
 		B8C3D8E52CA9606A005087D4 /* RewardsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C3D8E42CA9606A005087D4 /* RewardsButton.swift */; };
 		B8CE35D52CB94F9000A78E8F /* BeeGameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE35D42CB94F9000A78E8F /* BeeGameObject.swift */; };
+		B8CE35D72CB9526600A78E8F /* BeeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE35D62CB9526600A78E8F /* BeeScene.swift */; };
+		B8CE35D92CB952D000A78E8F /* BeeGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE35D82CB952D000A78E8F /* BeeGameView.swift */; };
 		B8F847D02C8F30E300F905FE /* BumbleBoogie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */; };
 		B8F847D22C8F30E300F905FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847D12C8F30E300F905FE /* ContentView.swift */; };
 		B8F847D42C8F30E800F905FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8F847D32C8F30E800F905FE /* Assets.xcassets */; };
@@ -71,6 +73,8 @@
 		B8A20C542CB80DCC00F758CD /* UpgradeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeBtn.swift; sourceTree = "<group>"; };
 		B8C3D8E42CA9606A005087D4 /* RewardsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsButton.swift; sourceTree = "<group>"; };
 		B8CE35D42CB94F9000A78E8F /* BeeGameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeGameObject.swift; sourceTree = "<group>"; };
+		B8CE35D62CB9526600A78E8F /* BeeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeScene.swift; sourceTree = "<group>"; };
+		B8CE35D82CB952D000A78E8F /* BeeGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeGameView.swift; sourceTree = "<group>"; };
 		B8F847CC2C8F30E300F905FE /* BumbleBoogie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumbleBoogie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumbleBoogie.swift; sourceTree = "<group>"; };
 		B8F847D12C8F30E300F905FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +122,11 @@
 				B876839B2C98852900F3E94E /* BeeGenerator.swift */,
 				B80AB3F52C9B2E1F00CFAC8D /* HoneyHandler.swift */,
 				B8C3D8E42CA9606A005087D4 /* RewardsButton.swift */,
+				B89ED33B2C9AE788000B7B00 /* BeeView.swift */,
+				B80AB3F32C9B085500CFAC8D /* BeeAnimationView.swift */,
+				B8F847F92C8F314D00F905FE /* BuyBtn.swift */,
+				B89ED33D2C9AE88C000B7B00 /* BeeButton.swift */,
+				B8CE35D42CB94F9000A78E8F /* BeeGameObject.swift */,
 			);
 			path = Legacy;
 			sourceTree = "<group>";
@@ -128,9 +137,7 @@
 				B8A20C502CB7F1A000F758CD /* MusicToggle.swift */,
 				B8F847FD2C918E1500F905FE /* GameStats.swift */,
 				B8F848002C919C3500F905FE /* ResetBtn.swift */,
-				B8F847F92C8F314D00F905FE /* BuyBtn.swift */,
 				B87683972C959ABF00F3E94E /* CustomButtonStyles.swift */,
-				B89ED33D2C9AE88C000B7B00 /* BeeButton.swift */,
 				B80AB3F72C9B3B3D00CFAC8D /* Badge.swift */,
 				B80DE7E92CA596530028CD97 /* IconButton.swift */,
 				B80DE7EB2CA59E990028CD97 /* ShopSheet.swift */,
@@ -142,8 +149,8 @@
 		B89ED33A2C9AE2F1000B7B00 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B89ED33B2C9AE788000B7B00 /* BeeView.swift */,
-				B80AB3F32C9B085500CFAC8D /* BeeAnimationView.swift */,
+				B8CE35D62CB9526600A78E8F /* BeeScene.swift */,
+				B8CE35D82CB952D000A78E8F /* BeeGameView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -195,7 +202,6 @@
 			children = (
 				B8A20C4E2CB7EFA400F758CD /* MusicManager.swift */,
 				B8F847FB2C8F5C2800F905FE /* GameState.swift */,
-				B8CE35D42CB94F9000A78E8F /* BeeGameObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -340,8 +346,10 @@
 				B8F847D02C8F30E300F905FE /* BumbleBoogie.swift in Sources */,
 				B80AB3F62C9B2E1F00CFAC8D /* HoneyHandler.swift in Sources */,
 				B8F848012C919C3500F905FE /* ResetBtn.swift in Sources */,
+				B8CE35D92CB952D000A78E8F /* BeeGameView.swift in Sources */,
 				B8A20C552CB80DCC00F758CD /* UpgradeBtn.swift in Sources */,
 				B8A20C4F2CB7EFA400F758CD /* MusicManager.swift in Sources */,
+				B8CE35D72CB9526600A78E8F /* BeeScene.swift in Sources */,
 				B80AB3F82C9B3B3D00CFAC8D /* Badge.swift in Sources */,
 				B89ED3352C99A6EE000B7B00 /* BasicBeeButton.swift in Sources */,
 				B80DE7EA2CA596530028CD97 /* IconButton.swift in Sources */,
