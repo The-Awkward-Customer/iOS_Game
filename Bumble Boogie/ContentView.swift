@@ -6,16 +6,28 @@
 //
 
 import SwiftUI
+import SpriteKit
 import AVFoundation
 
 struct ContentView: View {
     
     @ObservedObject var gameState: GameState  // Reference the game state
+    @State private var scene: BeeScene
+    
+    init(gameState: GameState) {
+        self.gameState = gameState
+        let beeScene = BeeScene()
+        beeScene.size = UIScreen.main.bounds.size
+        beeScene.scaleMode = .resizeFill
+        beeScene.gameDelegate = gameState
+        _scene = State(initialValue: beeScene)
+    }
     
     var body: some View {
         ZStack {
             
-            BeeView(gameState: gameState)
+            SpriteView(scene: scene)
+                .ignoresSafeArea()
             VStack(spacing: 20) {
                 HStack {
                     GameStats(gameState: gameState)
@@ -39,19 +51,12 @@ struct ContentView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .background(
-            Image("backgroundWithSparkles")
-                .resizable()
-                .scaledToFill()
-                .edgesIgnoringSafeArea(.all)
-        )
+        
         // Present a sheet when isShopPresented is true
         .sheet(isPresented: $gameState.isShopPresented) {
             ShopSheet(gameState: gameState)  // The view that will appear in the sheet
         }
-        .onAppear{
-            gameState.startSpawningBees()
-        }
+        
     }
     
     
