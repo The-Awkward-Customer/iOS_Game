@@ -26,6 +26,9 @@ class GameState: ObservableObject {
         var xPosition: CGFloat
         var yPosition: CGFloat
         var speed: Double
+        var oscillationPhase: Double  // Keeps track of where in the sine wave we are
+        var amplitude: CGFloat  // Unique amplitude for each bee
+        var frequency: CGFloat  // Unique frequency for each bee
     }
     
     // Use @AppStorage with a String to store encoded BeeGame objects
@@ -54,7 +57,10 @@ class GameState: ObservableObject {
             id: UUID(),
             xPosition: CGFloat.random(in: minX...maxX),
             yPosition: 1200,
-            speed: Double.random(in: 4...6)
+            speed: Double.random(in: 4...6),
+            oscillationPhase: 0,  // Start with a zero phase for the sine wave
+            amplitude: CGFloat.random(in: 0.05...2.0),  // Random amplitude for each bee
+            frequency: CGFloat.random(in: 0.01...0.05)  // Random frequency for each bee
         )
         beeGameObjects.append(newBee)
         saveBeeGameObjects()  // Save to AppStorage after adding
@@ -109,7 +115,7 @@ class GameState: ObservableObject {
     
     // Check if we need to restart the timer when a bee is removed
     func checkForRestartSpawningBees() {
-        let maxBees = basicHives
+        let maxBees = basicHives + 5
         
         if beeGameObjects.count < maxBees {
             print("Bee count below max, restarting spawn timer.")
@@ -120,7 +126,7 @@ class GameState: ObservableObject {
     
     
     // Removes bee from the array
-    func removeBee(bee: BeeGameObject, delay: TimeInterval = 0.5) {
+    func removeBee(bee: BeeGameObject, delay: TimeInterval = 0.1) {
         // Stop the bee's timer before removing it
         stopPositionUpdate(for: bee)
         
@@ -163,47 +169,65 @@ class GameState: ObservableObject {
     @Published var buyBasicHiveButton: Bool = false // controls button state
     
     // Enable or disable the hive purchase button
-        func enableBasicHivePurchase() {
-            buyBasicHiveButton = Honey >= basicHiveCost
+    func enableBasicHivePurchase() {
+        buyBasicHiveButton = Honey >= basicHiveCost
+    }
+    
+    // Handle the purchase of a basic hive
+    func purchaseBasicHive() {
+        if buyBasicHiveButton {
+            Honey -= basicHiveCost
+            basicHives += 1
+            enableBasicHivePurchase()  // Re-check if further purchases are allowed after purchase
         }
-        
-        // Handle the purchase of a basic hive
-        func purchaseBasicHive() {
-            if buyBasicHiveButton {
-                Honey -= basicHiveCost
-                basicHives += 1
-                enableBasicHivePurchase()  // Re-check if further purchases are allowed after purchase
-            }
-            checkForRestartSpawningBees()
-        }
+        checkForRestartSpawningBees()
+    }
     
     
     // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     // ! This section handles the animation of the bees
     // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     
+    // Function to start updating bee positions with sine wave-like movement
     func startPositionUpdate(for bee: BeeGameObject) {
         let duration = bee.speed
         let stepSize = 0.016  // Approximately 60 FPS
         let totalSteps = duration / stepSize
-        let yStep = 1200 / totalSteps  // Amount to move per step
+        let yStep = 1200 / totalSteps  // Vertical movement step size
         
         timers[bee.id] = Timer.scheduledTimer(withTimeInterval: stepSize, repeats: true) { [weak self] _ in
             guard let self = self else { return }
             
-            // Find the bee by its ID instead of relying on the index
+            // Find the bee by its ID
             guard let beeIndex = self.beeGameObjects.firstIndex(where: { $0.id == bee.id }) else {
                 self.stopPositionUpdate(for: bee)
                 return
             }
             
-            // Update the yPosition of the bee
-            if self.beeGameObjects[beeIndex].yPosition > -100 {
-                self.beeGameObjects[beeIndex].yPosition -= yStep  // Move upward gradually
-            } else {
-                self.beeGameObjects[beeIndex].yPosition = 1200
-            }
+            // Update the bee's position
+            self.updateBeePosition(index: beeIndex, yStep: yStep)
         }
+    }
+    
+    // Function to update the position with sine wave logic
+    func updateBeePosition(index beeIndex: Int, yStep: CGFloat) {
+        var bee = beeGameObjects[beeIndex]
+        
+        // Move the bee upward along the y-axis
+        bee.yPosition -= yStep
+        
+        // Oscillate the bee's xPosition using the bee's unique amplitude and frequency
+        bee.xPosition += bee.amplitude * sin(bee.oscillationPhase)
+        bee.oscillationPhase += bee.frequency
+        
+        
+        // If bee reaches the top, loop back
+        if bee.yPosition <= -100 {
+            bee.yPosition = 1200
+        }
+        
+        // Save the updated bee position
+        beeGameObjects[beeIndex] = bee
     }
     
     
