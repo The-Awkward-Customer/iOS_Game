@@ -18,6 +18,12 @@ class GameState: ObservableObject, GameDelegate {
     @Published var RandomHoney: Int = 0
     @Published var canBuyBee: Bool = true
     
+    @Published var baseSpawnMultiplier: CGFloat = 0.05 // 0.2% chance
+    // Conform to GameDelegate
+        var spawnMultiplier: CGFloat {
+            return baseSpawnMultiplier
+        }
+    
     
     
     @Published var spawnTime: Double = 2.5
@@ -110,6 +116,13 @@ class GameState: ObservableObject, GameDelegate {
             
             enableBasicHivePurchase()  // Re-check if further purchases are allowed
         }
+    }
+    
+    
+    func increaseSpawnMultiplier(by amount: CGFloat) {
+        baseSpawnMultiplier += 0.05
+        // Ensure it doesn't exceed a maximum value
+//        baseSpawnMultiplier = min(baseSpawnMultiplier, 1.0)
     }
     
     
