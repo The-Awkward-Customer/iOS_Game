@@ -18,6 +18,9 @@ class GameState: ObservableObject, GameDelegate {
     @Published var RandomHoney: Int = 0
     @Published var canBuyBee: Bool = true
     
+    
+    @Published var canBuyQueenBee = false
+    var queenBeeCost = 200
     @Published var baseSpawnMultiplier: CGFloat = 0.05 // 0.2% chance
     // Conform to GameDelegate
         var spawnMultiplier: CGFloat {
@@ -118,11 +121,21 @@ class GameState: ObservableObject, GameDelegate {
         }
     }
     
+    // Enable or disable the QueenBees purchase button
+    func enableQueenBeePurchase() {
+        canBuyQueenBee = Honey >= queenBeeCost
+    }
     
-    func increaseSpawnMultiplier(by amount: CGFloat) {
-        baseSpawnMultiplier += 0.05
-        // Ensure it doesn't exceed a maximum value
-//        baseSpawnMultiplier = min(baseSpawnMultiplier, 1.0)
+    func increaseSpawnMultiplier() {
+        if canBuyQueenBee {
+            Honey -= queenBeeCost
+            baseSpawnMultiplier += 0.05
+            // Ensure it doesn't exceed a maximum value
+            //        baseSpawnMultiplier = min(baseSpawnMultiplier, 1.0)
+            print("The odds of an extra bee is \(baseSpawnMultiplier)")
+            saveGameState()
+            enableQueenBeePurchase()
+        }
     }
     
     
