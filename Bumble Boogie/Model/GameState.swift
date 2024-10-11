@@ -59,13 +59,13 @@ class GameState: ObservableObject {
             yPosition: 1200,
             speed: Double.random(in: 4...6),
             oscillationPhase: 0,  // Start with a zero phase for the sine wave
-            amplitude: CGFloat.random(in: 0.05...2.0),  // Random amplitude for each bee
+            amplitude: CGFloat.random(in: -2.0...2.0),  // Random amplitude for each bee
             frequency: CGFloat.random(in: 0.01...0.05)  // Random frequency for each bee
         )
         beeGameObjects.append(newBee)
         saveBeeGameObjects()  // Save to AppStorage after adding
         print("bees in beeGameObject = \(beeGameObjects.count)")
-        startPositionUpdate(for: newBee)  // Start animating the new bee
+        startPositionUpdates()  // Start animating the new bee
     }
     
     // Function to dynamically calculate spawnTime based on number of bees
@@ -76,32 +76,16 @@ class GameState: ObservableObject {
     
     // Function to start spawning bees
     func startSpawningBees() {
-        
-        // If there's an active timer, stop it to restart
-        stopSpawningBees()
-        
         let maxBees = basicHives * 5
-        let spawnTime = calculateSpawnTime()  // Calculate the new spawn time based on the number of bees
-        
-        
-        // Check if the number of bees is already equal to the available hives
-        guard beeGameObjects.count < maxBees else {
-            print("Max bees reached. Stopping timer.")
-            stopSpawningBees()  // Stop the timer if we reach the maximum
-            return
-        }
-        
-        
-        print("Starting bee spawning with a spawn time of \(spawnTime) seconds...")
-        spawnTimer = Timer.scheduledTimer(withTimeInterval: spawnTime, repeats: true) { [weak self] _ in
+        guard beeGameObjects.count < maxBees else { return }
+
+        spawnTimer?.invalidate()
+        spawnTimer = Timer.scheduledTimer(withTimeInterval: baseSpawnTime, repeats: true) { [weak self] _ in
             guard let self = self else { return }
-            
-            // If the number of bees is less than available hives, add a new bee
             if self.beeGameObjects.count < maxBees {
                 self.addBee()
             } else {
-                // Stop the timer when the maximum number of bees is reached
-                self.stopSpawningBees()
+                self.spawnTimer?.invalidate()
             }
         }
     }
@@ -188,46 +172,45 @@ class GameState: ObservableObject {
     // ! This section handles the animation of the bees
     // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     
-    // Function to start updating bee positions with sine wave-like movement
-    func startPositionUpdate(for bee: BeeGameObject) {
-        let duration = bee.speed
-        let stepSize = 0.016  // Approximately 60 FPS
-        let totalSteps = duration / stepSize
-        let yStep = 1200 / totalSteps  // Vertical movement step size
-        
-        timers[bee.id] = Timer.scheduledTimer(withTimeInterval: stepSize, repeats: true) { [weak self] _ in
-            guard let self = self else { return }
-            
-            // Find the bee by its ID
-            guard let beeIndex = self.beeGameObjects.firstIndex(where: { $0.id == bee.id }) else {
-                self.stopPositionUpdate(for: bee)
-                return
-            }
-            
-            // Update the bee's position
-            self.updateBeePosition(index: beeIndex, yStep: yStep)
+    var positionUpdateTimer: Timer?
+    
+    // Start the single timer for updating positions
+    func startPositionUpdates() {
+        positionUpdateTimer?.invalidate() // Invalidate any existing timer
+        positionUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.016, repeats: true) { [weak self] _ in
+            self?.updateAllBeePositions()
         }
     }
     
-    // Function to update the position with sine wave logic
-    func updateBeePosition(index beeIndex: Int, yStep: CGFloat) {
-        var bee = beeGameObjects[beeIndex]
+    // Stop the position update timer
+    func stopPositionUpdates() {
+        positionUpdateTimer?.invalidate()
+        positionUpdateTimer = nil
+    }
+    
+    // Update positions for all bees
+    func updateAllBeePositions() {
         
-        // Move the bee upward along the y-axis
-        bee.yPosition -= yStep
-        
-        // Oscillate the bee's xPosition using the bee's unique amplitude and frequency
-        bee.xPosition += bee.amplitude * sin(bee.oscillationPhase)
-        bee.oscillationPhase += bee.frequency
-        
-        
-        // If bee reaches the top, loop back
-        if bee.yPosition <= -100 {
-            bee.yPosition = 1200
+        // Notify SwiftUI of the changes
+        DispatchQueue.main.async {
+            self.objectWillChange.send()
+            let yStep = 1200 / (60 * 5.0) // Assuming 5 seconds duration
+            
+            for index in self.beeGameObjects.indices {
+                var bee = self.beeGameObjects[index]
+                bee.yPosition -= yStep
+                bee.xPosition += bee.amplitude * sin(bee.oscillationPhase)
+                bee.oscillationPhase += bee.frequency
+                
+                // Loop back if bee reaches the top
+                if bee.yPosition <= -100 {
+                    bee.yPosition = 1200
+                }
+                
+                self.beeGameObjects[index] = bee
+            }
+            
         }
-        
-        // Save the updated bee position
-        beeGameObjects[beeIndex] = bee
     }
     
     
@@ -258,7 +241,7 @@ class GameState: ObservableObject {
                 
                 // Restart position updates for existing bees
                 for bee in beeGameObjects {
-                    startPositionUpdate(for: bee)
+                    startPositionUpdates()
                 }
             }
         }

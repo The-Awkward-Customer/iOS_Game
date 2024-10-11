@@ -37,7 +37,7 @@ struct BeeButton: View {
             
             .position(x: bee.xPosition, y: bee.yPosition)
             .onAppear {
-                gameState.startPositionUpdate(for:bee)  // Start manual position update when the view appears
+                gameState.startPositionUpdates()  // Start manual position update when the view appears
             }
             .onDisappear {
                 gameState.stopPositionUpdate(for:bee)  // Stop the timer when the view disappears
