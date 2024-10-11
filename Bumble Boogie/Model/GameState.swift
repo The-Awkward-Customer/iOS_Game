@@ -27,9 +27,9 @@ class GameState: ObservableObject, GameDelegate {
     @Published var isShopPresented: Bool = false  // Control the visibility of the sheet
     
     init() {
-            loadGameState()
-            enableBasicHivePurchase()
-        }
+        loadGameState()
+        enableBasicHivePurchase()
+    }
     
     
     // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -39,19 +39,19 @@ class GameState: ObservableObject, GameDelegate {
     
     // Load the beeGameObjects array from @AppStorage (JSON string)
     // Methods for saving and loading game state
-        func loadGameState() {
-            let defaults = UserDefaults.standard
-            Honey = defaults.integer(forKey: "Honey")
-            HoneyPerTap = defaults.integer(forKey: "HoneyPerTap")
-            if HoneyPerTap == 0 { HoneyPerTap = 1 }
-
-            HoneyPerSecond = defaults.integer(forKey: "HoneyPerSecond")
-            if HoneyPerSecond == 0 { HoneyPerSecond = 1 }
-
-            RandomHoney = defaults.integer(forKey: "RandomHoney")
-            basicHives = defaults.integer(forKey: "basicHives")
-            if basicHives == 0 { basicHives = 1 }
-        }
+    func loadGameState() {
+        let defaults = UserDefaults.standard
+        Honey = defaults.integer(forKey: "Honey")
+        HoneyPerTap = defaults.integer(forKey: "HoneyPerTap")
+        if HoneyPerTap == 0 { HoneyPerTap = 1 }
+        
+        HoneyPerSecond = defaults.integer(forKey: "HoneyPerSecond")
+        if HoneyPerSecond == 0 { HoneyPerSecond = 1 }
+        
+        RandomHoney = defaults.integer(forKey: "RandomHoney")
+        basicHives = defaults.integer(forKey: "basicHives")
+        if basicHives == 0 { basicHives = 1 }
+    }
     
     func saveGameState() {
         let defaults = UserDefaults.standard
@@ -70,6 +70,10 @@ class GameState: ObservableObject, GameDelegate {
     // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     
     func beeTapped() {
+        // Trigger light impact haptic feedback
+        let impactLight = UIImpactFeedbackGenerator(style: .light)
+        impactLight.impactOccurred()
+        
         generateHoney()
     }
     

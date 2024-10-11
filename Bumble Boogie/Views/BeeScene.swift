@@ -16,7 +16,7 @@ class BeeScene: SKScene {
     
     
     weak var gameDelegate: GameDelegate?
-    var spawnInterval: TimeInterval = 2.0
+    var spawnInterval: TimeInterval = 1.0
     
     
     
@@ -68,7 +68,7 @@ class BeeScene: SKScene {
     
     @objc func hiveCountChanged(_ notification: Notification) {
         if let basicHives = notification.userInfo?["basicHives"] as? Int {
-            spawnInterval = max(0.5, 2.0 / Double(basicHives))
+            spawnInterval = max(0.1, 1.0 / Double(basicHives))
             startSpawningBees()
         }
     }

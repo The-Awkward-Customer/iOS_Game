@@ -18,6 +18,11 @@ struct GameStats: View {
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal, 4)
+            Text("🏡 Hives: \(gameState.basicHives)")  // Display the count value
+                .font(.subheadline)
+                .fontWeight(.bold)
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 4)
         }
         .frame(height: 40)
         .background(Color.white)
