@@ -76,7 +76,11 @@ struct BeeButton: View {
         id: UUID(),
         xPosition: 150,  // Example x position
         yPosition: 300,  // Example y position
-        speed: 5.0       // Example speed
+        speed: 5.0,       // Example speed
+        oscillationPhase: 0,  // Start with a zero phase for the sine wave
+        amplitude: CGFloat.random(in: 0.1...0.5),  // Random amplitude for each bee
+        frequency: CGFloat.random(in: 0.1...0.2)  // Random frequency for each bee
+        
     )
     
     return BeeButton(
