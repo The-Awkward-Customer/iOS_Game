@@ -103,6 +103,8 @@ class GameState: ObservableObject, GameDelegate {
         enableBasicHivePurchase()  // Check if the purchase button should be enabled
     }
     
+    
+    //BasicHive
     // Enable or disable the hive purchase button
     func enableBasicHivePurchase() {
         buyBasicHiveButton = Honey >= basicHiveCost
@@ -121,6 +123,8 @@ class GameState: ObservableObject, GameDelegate {
         }
     }
     
+    
+    //QueenBee
     // Enable or disable the QueenBees purchase button
     func enableQueenBeePurchase() {
         canBuyQueenBee = Honey >= queenBeeCost
