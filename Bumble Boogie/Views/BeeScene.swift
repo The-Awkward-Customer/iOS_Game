@@ -128,9 +128,12 @@ class BeeScene: SKScene {
     
     // Function to create and add a bee sprite to the scene
     func addBee() {
-        // Create an SKSpriteNode using the bee image asset
-        let bee = SKSpriteNode(imageNamed: "beeImage") // Replace with your image name
-        bee.name = "bee" // Assign a name to identify the bee node
+        
+        // Assign a random value
+        let assignedValue = Int.random(in: 1...3)
+        
+        // Create a BeeNode with the assigned value
+        let bee = BeeNode(assignedValue: assignedValue)
         
         // Set the starting position of the bee at a random x-coordinate just below the screen
         bee.position = CGPoint(
@@ -208,7 +211,13 @@ class BeeScene: SKScene {
         // Iterate through the nodes to check for bees
         for node in nodesAtPoint {
             // Check if the node is a bee by comparing its name
-            if node.name == "bee" {
+            if node.name == "bee", let beeNode = node as? BeeNode {
+                // Retrieve the assigned value
+                let assignedValue = beeNode.assignedValue
+                
+                // For now print the assigned value
+                print("bee tapped with assigned value: \(assignedValue)")
+                
                 // Remove the bee from the scene
                 node.removeFromParent()
                 
