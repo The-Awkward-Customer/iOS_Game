@@ -212,6 +212,9 @@ class BeeScene: SKScene {
         for node in nodesAtPoint {
             // Check if the node is a bee by comparing its name
             if node.name == "bee", let beeNode = node as? BeeNode {
+                //call the bee's handleTap() method
+                beeNode.handleTap()
+                
                 // Retrieve the assigned value
                 let assignedValue = beeNode.assignedValue
                 

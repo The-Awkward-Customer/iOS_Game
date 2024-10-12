@@ -20,9 +20,21 @@ import SpriteKit
 
 class BeeNode: SKSpriteNode {
     
-    //Property to store assigned value
+    // MARK: - Properties
+    
+    // Property to store assigned value
     var assignedValue: Int
     
+    // indicates if the bee has any unique behaviours for future use <UwU>
+    var isSpecialBee: Bool = false
+    
+    // Placeholder for future properties
+    var specialEffect: String?
+    
+    // MARK: - Initialization
+    
+    /// Initializes a new BeeNode with a given assigned value
+    /// -parameter assignedValue: The value assigned to the bee, used to determine its apparence and matching logic
     init(assignedValue: Int) {
         self.assignedValue = assignedValue
         
@@ -41,5 +53,12 @@ class BeeNode: SKSpriteNode {
     //required init for decoding (if using archiving)
     required init?(coder aDecoder: NSCoder){
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // Mark: - Methods
+    
+    /// Handles the bees behavior when tapped
+    func handleTap(){
+        /// placeholder
     }
 }
