@@ -6,7 +6,7 @@ class MusicManager {
 
     private init() {
         // Load the audio file
-        if let url = Bundle.main.url(forResource: "backingTrack", withExtension: "mp3") {
+        if let url = Bundle.main.url(forResource: "Boogie-Bee", withExtension: "mp3") {
             do {
                 audioPlayer = try AVAudioPlayer(contentsOf: url)
                 audioPlayer?.numberOfLoops = -1 // Loop indefinitely

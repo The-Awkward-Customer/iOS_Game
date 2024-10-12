@@ -27,6 +27,7 @@
 		B8CE35D52CB94F9000A78E8F /* BeeGameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE35D42CB94F9000A78E8F /* BeeGameObject.swift */; };
 		B8CE35D72CB9526600A78E8F /* BeeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE35D62CB9526600A78E8F /* BeeScene.swift */; };
 		B8CE35D92CB952D000A78E8F /* BeeGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE35D82CB952D000A78E8F /* BeeGameView.swift */; };
+		B8CE35DB2CB97AD200A78E8F /* Boogie-Bee.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8CE35DA2CB97AD200A78E8F /* Boogie-Bee.mp3 */; };
 		B8F847D02C8F30E300F905FE /* BumbleBoogie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */; };
 		B8F847D22C8F30E300F905FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F847D12C8F30E300F905FE /* ContentView.swift */; };
 		B8F847D42C8F30E800F905FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8F847D32C8F30E800F905FE /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 		B8CE35D42CB94F9000A78E8F /* BeeGameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeGameObject.swift; sourceTree = "<group>"; };
 		B8CE35D62CB9526600A78E8F /* BeeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeScene.swift; sourceTree = "<group>"; };
 		B8CE35D82CB952D000A78E8F /* BeeGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeGameView.swift; sourceTree = "<group>"; };
+		B8CE35DA2CB97AD200A78E8F /* Boogie-Bee.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Boogie-Bee.mp3"; sourceTree = "<group>"; };
 		B8F847CC2C8F30E300F905FE /* BumbleBoogie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumbleBoogie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847CF2C8F30E300F905FE /* BumbleBoogie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumbleBoogie.swift; sourceTree = "<group>"; };
 		B8F847D12C8F30E300F905FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				B8F847FF2C918E2F00F905FE /* Model */,
 				B8F847D32C8F30E800F905FE /* Assets.xcassets */,
 				B8A20C522CB7F33600F758CD /* backingTrack.mp3 */,
+				B8CE35DA2CB97AD200A78E8F /* Boogie-Bee.mp3 */,
 			);
 			path = "Bumble Boogie";
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F847D72C8F30E800F905FE /* Preview Assets.xcassets in Resources */,
+				B8CE35DB2CB97AD200A78E8F /* Boogie-Bee.mp3 in Resources */,
 				B8A20C532CB7F33600F758CD /* backingTrack.mp3 in Resources */,
 				B8F847D42C8F30E800F905FE /* Assets.xcassets in Resources */,
 			);
