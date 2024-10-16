@@ -17,6 +17,7 @@ class GameState: ObservableObject, GameDelegate {
     @Published var HoneyPerSecond: Int = 1
     @Published var RandomHoney: Int = 0
     @Published var canBuyBee: Bool = true
+    @Published var sequenceProgress: Int = 0
     
     
     @Published var canBuyQueenBee = false
@@ -84,6 +85,12 @@ class GameState: ObservableObject, GameDelegate {
         impactLight.impactOccurred()
         
         generateHoney()
+    }
+    
+    func sequenceProgressUpdated(to progress: Int){
+        DispatchQueue.main.async {
+            self.sequenceProgress = progress
+        }
     }
     
     

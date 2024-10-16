@@ -6,11 +6,13 @@
 //
 
 import SpriteKit
+import SwiftUI
 
 // Protocol to communicate events from BeeScene to another class (e.g., GameState)
 protocol GameDelegate: AnyObject {
     func beeTapped() // Method to handle when a bee is tapped
     var spawnMultiplier: CGFloat { get } // Gets the value from gameState
+    func sequenceProgressUpdated(to progress: Int)
 }
 
 // BeeScene class inherits from SKScene and manages the game's visual elements
@@ -26,6 +28,10 @@ class BeeScene: SKScene {
     
     // Bees per spawn
     var beesPerSpawn: Int = 1
+    
+    var tappedBeesValue: [Int] = []
+    var sequenceProgress: Int = 0
+    var powerUpActive: Bool = false // For future PowerUps <UwU>
     
     // Called when the scene is first presented by the view
     override func didMove(to view: SKView) {
@@ -128,9 +134,12 @@ class BeeScene: SKScene {
     
     // Function to create and add a bee sprite to the scene
     func addBee() {
-        // Create an SKSpriteNode using the bee image asset
-        let bee = SKSpriteNode(imageNamed: "beeImage") // Replace with your image name
-        bee.name = "bee" // Assign a name to identify the bee node
+        
+        // Assign a random value
+        let assignedValue = Int.random(in: 1...3)
+        
+        // Create a BeeNode with the assigned value
+        let bee = BeeNode(assignedValue: assignedValue)
         
         // Set the starting position of the bee at a random x-coordinate just below the screen
         bee.position = CGPoint(
@@ -194,6 +203,95 @@ class BeeScene: SKScene {
         bee.run(SKAction.sequence([moveUp, remove]))
     }
     
+    func updateTappedSequence(with value:Int) {
+        // Append the value to the sequence
+        tappedBeesValue.append(value)
+        
+        // Limit the sequence array to the last 5 entries
+        if tappedBeesValue.count > 5 {
+            tappedBeesValue.removeFirst()
+        }
+        
+        print("The value of tappedBeesValue is: \(tappedBeesValue)")
+        
+        checkForMatchingSequence()
+    }
+    
+    func checkForMatchingSequence(){
+        // Ensure there are at least two entries to compare
+        guard tappedBeesValue.count > 2 else {
+            sequenceProgress = 1
+            provideHapticFeedback(for: sequenceProgress)
+            return
+        }
+        
+        // Get the last value and initialize match count
+        let lastValue = tappedBeesValue.last!
+        var matchCount = 1
+        
+        // Iterate backwards through the sequence to count the matches
+        for i in stride(from: tappedBeesValue.count - 2, through: 0, by: -1){
+            if powerUpActive {
+                // During power-up, allow any value to contribute
+                matchCount += 1
+            }else {
+                // Regular matching logic
+                if tappedBeesValue[i] == lastValue {
+                    matchCount += 1
+                }else{
+                    break
+                }
+            }
+        }
+        
+        // Update sequence progress
+        sequenceProgress = matchCount
+        
+        // Provide haptic feedback based on progress
+        provideHapticFeedback(for: sequenceProgress)
+        
+        // Notify the game delegate about the sequence progress
+        gameDelegate?.sequenceProgressUpdated(to: sequenceProgress)
+        
+        // Check if the match count is 3 or more
+        if matchCount >= 3 {
+            //trigger the boost function
+            boost()
+            
+            // Reset the sequence
+            tappedBeesValue.removeAll()
+            sequenceProgress = 0
+            
+            // Notify the game delegate about the reset
+            gameDelegate?.sequenceProgressUpdated(to: sequenceProgress)
+            
+        }
+    }
+    
+    func provideHapticFeedback(for progress: Int){
+        let impactStyle: UIImpactFeedbackGenerator.FeedbackStyle
+        
+        switch progress {
+        case 1:
+            impactStyle = .light
+        case 2:
+            impactStyle = .medium
+        case 3:
+            impactStyle = .heavy
+        default:
+            impactStyle = .light
+        }
+        
+        let generator = UIImpactFeedbackGenerator(style: impactStyle)
+        generator.prepare()
+        generator.impactOccurred()
+    }
+    
+    func boost() {
+        print("boost activated!")
+        // Logic for later
+    }
+    
     // Function to handle touch events in the scene
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Safely unwrap the first touch in the set
@@ -208,12 +306,30 @@ class BeeScene: SKScene {
         // Iterate through the nodes to check for bees
         for node in nodesAtPoint {
             // Check if the node is a bee by comparing its name
-            if node.name == "bee" {
+            if node.name == "bee", let beeNode = node as? BeeNode {
+                
+                // Retrieve the assigned value
+                let assignedValue = beeNode.assignedValue
+                // For now print the assigned value
+                print("bee tapped with assigned value: \(assignedValue)")
+                
+                
+                // Call the bee's handleTap() method
+                beeNode.handleTap()
+                
+                // Remove the Bee after a short delay to allow animation to complete
+                let removeAction = SKAction.sequence([
+                    SKAction.wait(forDuration: 0.2),
+                    SKAction.removeFromParent()
+                ])
                 // Remove the bee from the scene
-                node.removeFromParent()
+                beeNode.run(removeAction)
                 
                 // Notify the game delegate that a bee has been tapped
                 gameDelegate?.beeTapped()
+                
+                // Update the tapped sequence
+                updateTappedSequence(with: assignedValue)
             }
         }
     }
