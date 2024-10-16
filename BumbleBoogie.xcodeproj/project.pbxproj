@@ -16,6 +16,9 @@
 		B87683982C959ABF00F3E94E /* CustomButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87683972C959ABF00F3E94E /* CustomButtonStyles.swift */; };
 		B876839A2C96EC8300F3E94E /* IntroText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87683992C96EC8300F3E94E /* IntroText.swift */; };
 		B876839C2C98852900F3E94E /* BeeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B876839B2C98852900F3E94E /* BeeGenerator.swift */; };
+		B886F1262CC008E500D2AA30 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886F1252CC008E500D2AA30 /* ProgressBarView.swift */; };
+		B886F12B2CC00F4D00D2AA30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B886F1292CC00F4D00D2AA30 /* Assets.xcassets */; };
+		B886F12E2CC00FCE00D2AA30 /* BeeTap.sks in Resources */ = {isa = PBXBuildFile; fileRef = B886F12D2CC00FCE00D2AA30 /* BeeTap.sks */; };
 		B89ED3352C99A6EE000B7B00 /* BasicBeeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89ED3342C99A6EE000B7B00 /* BasicBeeButton.swift */; };
 		B89ED3372C99C29B000B7B00 /* BeeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89ED3362C99C29B000B7B00 /* BeeHandler.swift */; };
 		B89ED33C2C9AE788000B7B00 /* BeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89ED33B2C9AE788000B7B00 /* BeeView.swift */; };
@@ -66,6 +69,9 @@
 		B87683972C959ABF00F3E94E /* CustomButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyles.swift; sourceTree = "<group>"; };
 		B87683992C96EC8300F3E94E /* IntroText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroText.swift; sourceTree = "<group>"; };
 		B876839B2C98852900F3E94E /* BeeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeGenerator.swift; sourceTree = "<group>"; };
+		B886F1252CC008E500D2AA30 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		B886F1292CC00F4D00D2AA30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B886F12D2CC00FCE00D2AA30 /* BeeTap.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BeeTap.sks; sourceTree = "<group>"; };
 		B89ED3342C99A6EE000B7B00 /* BasicBeeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicBeeButton.swift; sourceTree = "<group>"; };
 		B89ED3362C99C29B000B7B00 /* BeeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeHandler.swift; sourceTree = "<group>"; };
 		B89ED33B2C9AE788000B7B00 /* BeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeView.swift; sourceTree = "<group>"; };
@@ -154,6 +160,7 @@
 				B80DE7E92CA596530028CD97 /* IconButton.swift */,
 				B80DE7EB2CA59E990028CD97 /* ShopSheet.swift */,
 				B8A20C542CB80DCC00F758CD /* UpgradeBtn.swift */,
+				B886F1252CC008E500D2AA30 /* ProgressBarView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -207,6 +214,8 @@
 			isa = PBXGroup;
 			children = (
 				B8F847D62C8F30E800F905FE /* Preview Assets.xcassets */,
+				B886F1292CC00F4D00D2AA30 /* Assets.xcassets */,
+				B886F12D2CC00FCE00D2AA30 /* BeeTap.sks */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -328,6 +337,8 @@
 				B8CE35DB2CB97AD200A78E8F /* Boogie-Bee.mp3 in Resources */,
 				B8A20C532CB7F33600F758CD /* backingTrack.mp3 in Resources */,
 				B8F847D42C8F30E800F905FE /* Assets.xcassets in Resources */,
+				B886F12E2CC00FCE00D2AA30 /* BeeTap.sks in Resources */,
+				B886F12B2CC00F4D00D2AA30 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +373,7 @@
 				B80AB3F62C9B2E1F00CFAC8D /* HoneyHandler.swift in Sources */,
 				B8F848012C919C3500F905FE /* ResetBtn.swift in Sources */,
 				B8CE35D92CB952D000A78E8F /* BeeGameView.swift in Sources */,
+				B886F1262CC008E500D2AA30 /* ProgressBarView.swift in Sources */,
 				B8A20C552CB80DCC00F758CD /* UpgradeBtn.swift in Sources */,
 				B8A20C4F2CB7EFA400F758CD /* MusicManager.swift in Sources */,
 				B8CE35D72CB9526600A78E8F /* BeeScene.swift in Sources */,

@@ -59,6 +59,23 @@ class BeeNode: SKSpriteNode {
     
     /// Handles the bees behavior when tapped
     func handleTap(){
-        /// placeholder
+        // Adds a tap animation: scales up then back down
+        let scaleUp = SKAction.scale(to: 1.2, duration: 0.1)
+        let scaleDown = SKAction.scale(to: 1.0, duration: 0.1)
+        let scaleSequence = SKAction.sequence([scaleUp,scaleDown])
+        self.run(scaleSequence)
+        
+        // Add particle effect
+        if let tapEffect = SKEmitterNode(fileNamed: "BeeTap") {
+            tapEffect.position = CGPoint.zero
+            tapEffect.zPosition = 1
+            self.addChild(tapEffect)
+            
+            // Remove the particle effect after it completes
+            let wait = SKAction.wait(forDuration: 3.0)
+            let remove = SKAction.removeFromParent()
+            tapEffect.run(SKAction.sequence([wait,remove]))
+            
+        }
     }
 }

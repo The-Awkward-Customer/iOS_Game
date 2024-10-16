@@ -12,6 +12,7 @@ import SwiftUI
 protocol GameDelegate: AnyObject {
     func beeTapped() // Method to handle when a bee is tapped
     var spawnMultiplier: CGFloat { get } // Gets the value from gameState
+    func sequenceProgressUpdated(to progress: Int)
 }
 
 // BeeScene class inherits from SKScene and manages the game's visual elements
@@ -249,6 +250,9 @@ class BeeScene: SKScene {
         // Provide haptic feedback based on progress
         provideHapticFeedback(for: sequenceProgress)
         
+        // Notify the game delegate about the sequence progress
+        gameDelegate?.sequenceProgressUpdated(to: sequenceProgress)
+        
         // Check if the match count is 3 or more
         if matchCount >= 3 {
             //trigger the boost function
@@ -257,6 +261,10 @@ class BeeScene: SKScene {
             // Reset the sequence
             tappedBeesValue.removeAll()
             sequenceProgress = 0
+            
+            // Notify the game delegate about the reset
+            gameDelegate?.sequenceProgressUpdated(to: sequenceProgress)
+            
         }
     }
     
@@ -299,17 +307,23 @@ class BeeScene: SKScene {
         for node in nodesAtPoint {
             // Check if the node is a bee by comparing its name
             if node.name == "bee", let beeNode = node as? BeeNode {
-                //call the bee's handleTap() method
-                beeNode.handleTap()
                 
                 // Retrieve the assigned value
                 let assignedValue = beeNode.assignedValue
-                
                 // For now print the assigned value
                 print("bee tapped with assigned value: \(assignedValue)")
                 
+                
+                // Call the bee's handleTap() method
+                beeNode.handleTap()
+                
+                // Remove the Bee after a short delay to allow animation to complete
+                let removeAction = SKAction.sequence([
+                    SKAction.wait(forDuration: 0.2),
+                    SKAction.removeFromParent()
+                ])
                 // Remove the bee from the scene
-                node.removeFromParent()
+                beeNode.run(removeAction)
                 
                 // Notify the game delegate that a bee has been tapped
                 gameDelegate?.beeTapped()
