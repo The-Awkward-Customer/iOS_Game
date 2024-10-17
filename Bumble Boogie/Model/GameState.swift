@@ -28,6 +28,10 @@ class GameState: ObservableObject, GameDelegate {
             return baseSpawnMultiplier
         }
     
+    @Published var isBoostActive: Bool = false // boolean state of boost
+    var boostDuration: TimeInterval = 10.0 // sets boost duration
+    var boostTimer: Timer? // tracks boost duration
+    
     
     
     @Published var spawnTime: Double = 2.5
@@ -93,16 +97,49 @@ class GameState: ObservableObject, GameDelegate {
         }
     }
     
+    func activateBoost(){
+        self.startBoost()
+    }
+    
+    
+    func startBoost(){
+        if isBoostActive {
+            boostTimer?.invalidate() // invalidates timer if boost is false
+        }else {
+            isBoostActive = true
+        }
+        
+        // Notify SwiftUI views (if needed)
+        DispatchQueue.main.async {
+            self.isBoostActive = true
+        }
+        
+        // Start Boost Timer
+        boostTimer = Timer.scheduledTimer(withTimeInterval: boostDuration, repeats: false) { [weak self] _ in self?.deactivateBoost()}
+    }
+    
+    func deactivateBoost(){
+        isBoostActive = false
+        
+        print("Boost Deactivated")
+        // Invalidate and "Nil out" the timer
+        boostTimer?.invalidate()
+        boostTimer = nil
+    }
+    
     
     func generateHoney() {
-        print("generating honey")
+        print("Generating honey")
         
         // Generate a random amount of honey
         let randomHoney = Int.random(in: 1...20)
         RandomHoney = randomHoney
         
+        // hold the value of honey to add
+        let honeyToAdd = isBoostActive ? randomHoney * 2 : randomHoney
+        
         // Update the total honey
-        Honey += RandomHoney
+        Honey += honeyToAdd
         
         // Save the updated values to UserDefaults
         saveGameState()
