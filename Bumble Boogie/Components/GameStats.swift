@@ -12,22 +12,38 @@ struct GameStats: View {
     @ObservedObject var gameState: GameState  // Reference the game state
     
     var body: some View {
-        HStack {
-            Text("🍯 Honey: \(gameState.Honey)")  // Display the count value
-                .font(.subheadline)
-                .fontWeight(.bold)
-                .frame(maxWidth: .infinity)
-                .padding(.horizontal, 4)
-            Text("🏡 Hives: \(gameState.basicHives)")  // Display the count value
-                .font(.subheadline)
-                .fontWeight(.bold)
-                .frame(maxWidth: .infinity)
-                .padding(.horizontal, 4)
+        HStack(alignment: .center) {
+            Spacer()
+            HStack (alignment: .center)  {
+                Image("icon-honey")
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                Spacer()
+                    .frame(width:4)
+                Text("Honey: \(gameState.Honey)")  // Display the count value
+                    .font(.subheadline)
+                    .fontWeight(.bold)
+            }
+            Spacer()
+            HStack (alignment: .center)  {
+                Image("icon-honey")
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                Spacer()
+                    .frame(width:4)
+                Text("Honey: \(gameState.Honey)")  // Display the count value
+                    .font(.subheadline)
+                    .fontWeight(.bold)
+            }
+            Spacer()
         }
         .frame(height: 40)
-        .background(Color.white)
+        .background(Color("bg-basic"))
         .cornerRadius(100)
-        .shadow(color: Color.gray.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+        .overlay(
+            RoundedRectangle(cornerRadius: 100)
+                .stroke(Color("bdr-primary"), lineWidth: 1)
+        )
         
 
     }

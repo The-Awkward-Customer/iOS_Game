@@ -20,10 +20,10 @@ struct UpgradeBtn: View {
                     Text(upgradeTitle)
                         .font(.title3)
                         .fontWeight(.heavy)
-                        .foregroundColor(!isDisabled ? .primaryForeground : .gray)
+                        .foregroundColor(!isDisabled ? Color("fg-primary") : .gray)
                     Text(upgradeDescription)
                         .font(.subheadline)
-                        .foregroundColor(!isDisabled ? .primaryForeground : .gray)
+                        .foregroundColor(!isDisabled ? Color("fg-primary") : .gray)
                 }
                 Spacer()
                 
