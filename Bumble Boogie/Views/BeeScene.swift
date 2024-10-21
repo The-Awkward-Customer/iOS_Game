@@ -304,17 +304,70 @@ class BeeScene: SKScene {
     }
     
     func showBoostEffect() {
-        let flash = SKSpriteNode(color: .yellow, size: self.size)
-        flash.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
-        flash.zPosition = 100
-        flash.alpha = 0.0
-        addChild(flash)
-
-        let fadeIn = SKAction.fadeAlpha(to: 0.5, duration: 0.2)
-        let fadeOut = SKAction.fadeAlpha(to: 0.0, duration: 0.2)
+        
+        // Create the color Overlay
+        let colorOverlay = SKSpriteNode(color: .clear, size: self.size)
+        colorOverlay.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+        colorOverlay.zPosition = 100
+        addChild(colorOverlay)
+        
+        
+        // Defines the array of colors
+        let colorArray: [SKColor] = [
+            SKColor.primaryYellow,
+            SKColor.primaryPink,
+        ]
+        
+        // Function the change the color and opacity
+        func changeOverlayColor() {
+            let randomColor = colorArray.randomElement()!
+            let changeColor = SKAction.colorize(with: randomColor, colorBlendFactor: 1.0, duration: 0.2)
+            let changeOpacity = SKAction.fadeAlpha(to: CGFloat.random(in: 0.1...0.2), duration: 0.2)
+            
+            // Run both action simultaneously
+            let group = SKAction.group([changeColor,changeOpacity])
+            colorOverlay.run(group) {
+                /// After completing the color change, recursively call again for continuous cycling
+                changeOverlayColor()
+            }
+        }
+        //start color cycling
+        changeOverlayColor()
+        
+        // Trigger the Particle effects
+        triggerParticleEffects()
+        
+        //remove the overlay after X seconds
+        let wait = SKAction.wait(forDuration: 5.0)
         let remove = SKAction.removeFromParent()
-        let sequence = SKAction.sequence([fadeIn, fadeOut, remove])
-        flash.run(sequence)
+        colorOverlay.run(SKAction.sequence([wait,remove]))
+        
+        func triggerParticleEffects() {
+            // Defines four postions
+            let positions: [CGPoint] = [
+                CGPoint(x: size.width / 2, y: size.height),
+            ]
+            
+            // Loop through the positions and trigger a particle effect at each
+            for position in positions {
+                let particle = SKEmitterNode(fileNamed: "particleEffect")
+                particle?.position = position
+                particle?.zPosition = 101
+                
+                // Add the particle effect to the scene
+                if let particle = particle {
+                    addChild(particle)
+                    
+                    // Remove the particle after 5 seconds
+                    let wait = SKAction.wait(forDuration: 5.0)
+                    let remove = SKAction.removeFromParent()
+                    particle.run(SKAction.sequence([wait, remove]))
+                }
+                
+            }
+        }
+        
+        
     }
     
     // Function to handle touch events in the scene
@@ -344,7 +397,7 @@ class BeeScene: SKScene {
                 
                 // Remove the Bee after a short delay to allow animation to complete
                 let removeAction = SKAction.sequence([
-                    SKAction.wait(forDuration: 0.2),
+                    SKAction.wait(forDuration: 0.3),
                     SKAction.removeFromParent()
                 ])
                 // Remove the bee from the scene

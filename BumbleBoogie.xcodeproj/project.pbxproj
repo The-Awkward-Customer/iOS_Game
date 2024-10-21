@@ -27,6 +27,8 @@
 		B8A20C512CB7F1A000F758CD /* MusicToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A20C502CB7F1A000F758CD /* MusicToggle.swift */; };
 		B8A20C532CB7F33600F758CD /* backingTrack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8A20C522CB7F33600F758CD /* backingTrack.mp3 */; };
 		B8A20C552CB80DCC00F758CD /* UpgradeBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A20C542CB80DCC00F758CD /* UpgradeBtn.swift */; };
+		B8A55E562CC69BC200CB3A7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A55E542CC69BC200CB3A7C /* Assets.xcassets */; };
+		B8A55E572CC69BC200CB3A7C /* particleEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = B8A55E552CC69BC200CB3A7C /* particleEffect.sks */; };
 		B8C3D8E52CA9606A005087D4 /* RewardsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C3D8E42CA9606A005087D4 /* RewardsButton.swift */; };
 		B8CE35D52CB94F9000A78E8F /* BeeGameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE35D42CB94F9000A78E8F /* BeeGameObject.swift */; };
 		B8CE35D72CB9526600A78E8F /* BeeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE35D62CB9526600A78E8F /* BeeScene.swift */; };
@@ -80,6 +82,8 @@
 		B8A20C502CB7F1A000F758CD /* MusicToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MusicToggle.swift; path = "Bumble Boogie/Components/MusicToggle.swift"; sourceTree = SOURCE_ROOT; };
 		B8A20C522CB7F33600F758CD /* backingTrack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backingTrack.mp3; sourceTree = "<group>"; };
 		B8A20C542CB80DCC00F758CD /* UpgradeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeBtn.swift; sourceTree = "<group>"; };
+		B8A55E542CC69BC200CB3A7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B8A55E552CC69BC200CB3A7C /* particleEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = particleEffect.sks; sourceTree = "<group>"; };
 		B8C3D8E42CA9606A005087D4 /* RewardsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsButton.swift; sourceTree = "<group>"; };
 		B8CE35D42CB94F9000A78E8F /* BeeGameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeGameObject.swift; sourceTree = "<group>"; };
 		B8CE35D62CB9526600A78E8F /* BeeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeScene.swift; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				B8CE35D62CB9526600A78E8F /* BeeScene.swift */,
+				B8A55E542CC69BC200CB3A7C /* Assets.xcassets */,
+				B8A55E552CC69BC200CB3A7C /* particleEffect.sks */,
 				B8CE35D82CB952D000A78E8F /* BeeGameView.swift */,
 			);
 			path = Views;
@@ -333,6 +339,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8A55E562CC69BC200CB3A7C /* Assets.xcassets in Resources */,
+				B8A55E572CC69BC200CB3A7C /* particleEffect.sks in Resources */,
 				B8F847D72C8F30E800F905FE /* Preview Assets.xcassets in Resources */,
 				B8CE35DB2CB97AD200A78E8F /* Boogie-Bee.mp3 in Resources */,
 				B8A20C532CB7F33600F758CD /* backingTrack.mp3 in Resources */,

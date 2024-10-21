@@ -62,7 +62,8 @@ class BeeNode: SKSpriteNode {
         // Adds a tap animation: scales up then back down
         let scaleUp = SKAction.scale(to: 1.5, duration: 0.1)
         let scaleDown = SKAction.scale(to: 1.0, duration: 0.1)
-        let scaleSequence = SKAction.sequence([scaleUp,scaleDown])
+        let fadeOut = SKAction.fadeOut(withDuration: 0.1)
+        let scaleSequence = SKAction.sequence([scaleUp,scaleDown,fadeOut])
         self.run(scaleSequence)
         
         // Add particle effect
