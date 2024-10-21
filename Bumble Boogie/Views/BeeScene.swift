@@ -136,11 +136,16 @@ class BeeScene: SKScene {
     // Function to create and add a bee sprite to the scene
     func addBee() {
         
+        //Assigns a random value for the bee's size
+        let beeSize = CGFloat.random(in: 44...64)
+        
         // Assign a random value
         let assignedValue = Int.random(in: 1...3)
         
         // Create a BeeNode with the assigned value
         let bee = BeeNode(assignedValue: assignedValue)
+        
+        bee.size = CGSize(width: beeSize, height: beeSize)
         
         // Set the starting position of the bee at a random x-coordinate just below the screen
         bee.position = CGPoint(

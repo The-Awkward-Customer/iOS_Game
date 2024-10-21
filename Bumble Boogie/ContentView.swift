@@ -30,6 +30,7 @@ struct ContentView: View {
                 .ignoresSafeArea()
             VStack(spacing: 20) {
                 HStack {
+                    Spacer()
                     GameStats(gameState: gameState)
                     
                 }
