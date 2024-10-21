@@ -10,9 +10,10 @@ import SwiftUI
 
 // Protocol to communicate events from BeeScene to another class (e.g., GameState)
 protocol GameDelegate: AnyObject {
-    func beeTapped() // Method to handle when a bee is tapped
     var spawnMultiplier: CGFloat { get } // Gets the value from gameState
+    func beeTapped() // Method to handle when a bee is tapped
     func sequenceProgressUpdated(to progress: Int)
+    func activateBoost()
 }
 
 // BeeScene class inherits from SKScene and manages the game's visual elements
@@ -289,7 +290,26 @@ class BeeScene: SKScene {
     
     func boost() {
         print("boost activated!")
-        // Logic for later
+        
+        // Trigger boost in GameState
+        gameDelegate?.activateBoost()
+        
+        // Provide visual feedback
+        showBoostEffect()
+    }
+    
+    func showBoostEffect() {
+        let flash = SKSpriteNode(color: .yellow, size: self.size)
+        flash.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+        flash.zPosition = 100
+        flash.alpha = 0.0
+        addChild(flash)
+
+        let fadeIn = SKAction.fadeAlpha(to: 0.5, duration: 0.2)
+        let fadeOut = SKAction.fadeAlpha(to: 0.0, duration: 0.2)
+        let remove = SKAction.removeFromParent()
+        let sequence = SKAction.sequence([fadeIn, fadeOut, remove])
+        flash.run(sequence)
     }
     
     // Function to handle touch events in the scene
