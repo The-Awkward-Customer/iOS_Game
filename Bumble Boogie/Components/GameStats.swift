@@ -13,36 +13,25 @@ struct GameStats: View {
     
     var body: some View {
         HStack(alignment: .center) {
-            Spacer()
             HStack (alignment: .center)  {
                 Image("icon-honey")
                     .resizable()
                     .frame(width: 24, height: 24)
                 Spacer()
                     .frame(width:4)
-                Text("Honey: \(gameState.Honey)")  // Display the count value
+                Text("\(gameState.Honey)")  // Display the count value
                     .font(.subheadline)
                     .fontWeight(.bold)
             }
-            Spacer()
-            HStack (alignment: .center)  {
-                Image("icon-honey")
-                    .resizable()
-                    .frame(width: 24, height: 24)
-                Spacer()
-                    .frame(width:4)
-                Text("Honey: \(gameState.Honey)")  // Display the count value
-                    .font(.subheadline)
-                    .fontWeight(.bold)
-            }
-            Spacer()
+            .padding(.leading, 12)
+            .padding(.trailing, 16)
         }
         .frame(height: 40)
         .background(Color("bg-basic"))
         .cornerRadius(100)
         .overlay(
             RoundedRectangle(cornerRadius: 100)
-                .stroke(Color("bdr-primary"), lineWidth: 1)
+                .stroke(Color("bdr-primary"), lineWidth: 2)
         )
         
 
