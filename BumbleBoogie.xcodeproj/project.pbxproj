@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -71,6 +71,7 @@
 		B87683972C959ABF00F3E94E /* CustomButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyles.swift; sourceTree = "<group>"; };
 		B87683992C96EC8300F3E94E /* IntroText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroText.swift; sourceTree = "<group>"; };
 		B876839B2C98852900F3E94E /* BeeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeGenerator.swift; sourceTree = "<group>"; };
+		B87D307E2D109A6900186B18 /* BumbleBoogie-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BumbleBoogie-Info.plist"; sourceTree = "<group>"; };
 		B886F1252CC008E500D2AA30 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		B886F1292CC00F4D00D2AA30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B886F12D2CC00FCE00D2AA30 /* BeeTap.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BeeTap.sks; sourceTree = "<group>"; };
@@ -101,6 +102,27 @@
 		B8F847FD2C918E1500F905FE /* GameStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStats.swift; sourceTree = "<group>"; };
 		B8F848002C919C3500F905FE /* ResetBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetBtn.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B87D307C2D105AC600186B18 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Bloxic.otf,
+			);
+			target = B8F847DB2C8F30E800F905FE /* BumbleBoogieTests */;
+		};
+		B87D307D2D105AC600186B18 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Bloxic.otf,
+			);
+			target = B8F847E52C8F30E800F905FE /* BumbleBoogieUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B87D30772D105AB000186B18 /* Fonts */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B87D307C2D105AC600186B18 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, B87D307D2D105AC600186B18 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Fonts; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B8F847C92C8F30E300F905FE /* Frameworks */ = {
@@ -183,6 +205,7 @@
 		B8F847C32C8F30E300F905FE = {
 			isa = PBXGroup;
 			children = (
+				B87D307E2D109A6900186B18 /* BumbleBoogie-Info.plist */,
 				B8F847CE2C8F30E300F905FE /* Bumble Boogie */,
 				B8F847CD2C8F30E300F905FE /* Products */,
 			);
@@ -219,6 +242,7 @@
 		B8F847D52C8F30E800F905FE /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				B87D30772D105AB000186B18 /* Fonts */,
 				B8F847D62C8F30E800F905FE /* Preview Assets.xcassets */,
 				B886F1292CC00F4D00D2AA30 /* Assets.xcassets */,
 				B886F12D2CC00FCE00D2AA30 /* BeeTap.sks */,
@@ -249,6 +273,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B87D30772D105AB000186B18 /* Fonts */,
 			);
 			name = BumbleBoogie;
 			productName = "Conditional Rendering";
@@ -562,6 +589,7 @@
 				DEVELOPMENT_TEAM = K5Z7TM9J83;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BumbleBoogie-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -595,6 +623,7 @@
 				DEVELOPMENT_TEAM = K5Z7TM9J83;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BumbleBoogie-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
