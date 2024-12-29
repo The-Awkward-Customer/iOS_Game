@@ -15,7 +15,7 @@ struct Badge: View {
     var body: some View {
         HStack {
             Text("\(text)")
-                .font(.footnote)
+                .font(.custom("Bloxic", size: 64))
                 .fontWeight(.bold)
                 .padding(.horizontal, 12)  // Horizontal padding to create the pill shape
                 .padding(.vertical, 6)     // Vertical padding to control height
@@ -29,5 +29,5 @@ struct Badge: View {
 }
 
 #Preview {
-    Badge(text: "+3")
+    Badge(text: "+3 \u{0049} \u{2639} \u{1F642}")
 }
