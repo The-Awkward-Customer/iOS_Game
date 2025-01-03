@@ -52,6 +52,17 @@
                ReferencedContainer = "container:BumbleBoogie.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B8ACB44B2D28904400FFE4AE"
+               BuildableName = "BumbleBoogieUnitTests.xctest"
+               BlueprintName = "BumbleBoogieUnitTests"
+               ReferencedContainer = "container:BumbleBoogie.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

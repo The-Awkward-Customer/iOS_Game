@@ -30,7 +30,6 @@ struct ContentView: View {
             })
             
             
-            
             SpriteKitContainer(scene: MainGameScene())
                 .frame(height: 0)
         }

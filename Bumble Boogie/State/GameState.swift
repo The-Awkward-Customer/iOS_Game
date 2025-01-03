@@ -3,10 +3,34 @@ import SwiftUI
 
 class GameState: ObservableObject {
     
-    @Published var TotalHoney: Int = 0
+    // MARK: - VARIABLES
+    
+    /* All GameState variable:
+        1. Stored Vars: Stored in userDefaults memory
+        2. Runtime Vars: initalized until the app is open
+    */
+     
+    // Stored Vars
+    /// these vars always require an init
+    @Published var TotalHoney: Int = 0 {
+        didSet {
+            UserDefaultsMemoryManager.shared.set(TotalHoney, forKey: .TotalHoney)
+        }
+    }
+    
+    init() {
+        if let SavedTotalHoney: Int = UserDefaultsMemoryManager.shared.get(forKey: .TotalHoney) {
+            TotalHoney = SavedTotalHoney
+        }
+    }
+    
+    
+    
+    // Runtime Vars
     @Published var UpgradeCost: Int = 20
     
     
+    // MARK: - TBD
     
     func increaseTotalHoney (by amount: Int) {
         TotalHoney += amount
@@ -26,6 +50,30 @@ class GameState: ObservableObject {
         print("The value of TotalHoney is \(TotalHoney)")
         print("The value of UpgradeCost is \(UpgradeCost)")
     }
+    
+    
+    //MARK: - MANUAL MEMORY
+    /// Manual save function to save desired state values
+    func manuallySavedTotalHoney() {
+        print("saving TotalHoney: \(TotalHoney)")
+        UserDefaultsMemoryManager.shared.set(TotalHoney, forKey: .TotalHoney)
+    }
+    
+    
+    //MARK: - DEBUG LOGS
+    // Basic Debug logs to run prior to unit testing
+    
+    func loadTotalHoney() {
+        if let manuallySavedTotalHoney: Int = UserDefaultsMemoryManager.shared.get(forKey: .TotalHoney) {
+            print("loaded TotalHoney: \(manuallySavedTotalHoney)")
+            TotalHoney = manuallySavedTotalHoney
+        } else {
+            print("no saved TotalHoney found.")
+        }
+    }
+    
+    
+    
 }
 
 
