@@ -17,7 +17,7 @@ struct ContentView: View {
         VStack {
             Text("Currency: \(gameState.TotalHoney)")
                 .padding(24)
-                .font(.custom("Bloxic", size: 32))
+                .font(.custom("Bloxic", size: 28))
             
             Spacer()
             
