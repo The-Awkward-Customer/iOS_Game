@@ -9,17 +9,15 @@
 /* Begin PBXBuildFile section */
 		B8ACB4012D2844FE00FFE4AE /* SpriteNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3CF2D2844FE00FFE4AE /* SpriteNodeView.swift */; };
 		B8ACB4032D2844FE00FFE4AE /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3FF2D2844FE00FFE4AE /* MusicManager.swift */; };
-		B8ACB4062D2844FE00FFE4AE /* SpriteKitContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3D42D2844FE00FFE4AE /* SpriteKitContainer.swift */; };
 		B8ACB4092D2844FE00FFE4AE /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3CE2D2844FE00FFE4AE /* BasicButton.swift */; };
 		B8ACB40A2D2844FE00FFE4AE /* GameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3D12D2844FE00FFE4AE /* GameDelegate.swift */; };
-		B8ACB4172D2844FE00FFE4AE /* BeeGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3F92D2844FE00FFE4AE /* BeeGameView.swift */; };
 		B8ACB41B2D2844FE00FFE4AE /* SpriteKitContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3FD2D2844FE00FFE4AE /* SpriteKitContainer.swift */; };
 		B8ACB41E2D2844FE00FFE4AE /* MainGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3FA2D2844FE00FFE4AE /* MainGameScene.swift */; };
 		B8ACB41F2D2844FE00FFE4AE /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3FE2D2844FE00FFE4AE /* GameState.swift */; };
 		B8ACB4212D2844FE00FFE4AE /* BumbleBoogie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3C82D2844FE00FFE4AE /* BumbleBoogie.swift */; };
-		B8ACB42A2D2844FE00FFE4AE /* particleEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = B8ACB3FB2D2844FE00FFE4AE /* particleEffect.sks */; };
-		B8ACB42C2D2844FE00FFE4AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8ACB3F82D2844FE00FFE4AE /* Assets.xcassets */; };
 		B8ACB42E2D2844FE00FFE4AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8ACB3D62D2844FE00FFE4AE /* LaunchScreen.storyboard */; };
+		B8ACB4322D28487A00FFE4AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB4312D28487A00FFE4AE /* ContentView.swift */; };
+		B8ACB4362D284A0700FFE4AE /* Bloxic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B8ACB4352D284A0700FFE4AE /* Bloxic.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,15 +43,13 @@
 		B8ACB3CE2D2844FE00FFE4AE /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		B8ACB3CF2D2844FE00FFE4AE /* SpriteNodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteNodeView.swift; sourceTree = "<group>"; };
 		B8ACB3D12D2844FE00FFE4AE /* GameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDelegate.swift; sourceTree = "<group>"; };
-		B8ACB3D42D2844FE00FFE4AE /* SpriteKitContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitContainer.swift; sourceTree = "<group>"; };
 		B8ACB3D62D2844FE00FFE4AE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B8ACB3F82D2844FE00FFE4AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B8ACB3F92D2844FE00FFE4AE /* BeeGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeGameView.swift; sourceTree = "<group>"; };
 		B8ACB3FA2D2844FE00FFE4AE /* MainGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameScene.swift; sourceTree = "<group>"; };
-		B8ACB3FB2D2844FE00FFE4AE /* particleEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = particleEffect.sks; sourceTree = "<group>"; };
 		B8ACB3FD2D2844FE00FFE4AE /* SpriteKitContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitContainer.swift; sourceTree = "<group>"; };
 		B8ACB3FE2D2844FE00FFE4AE /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		B8ACB3FF2D2844FE00FFE4AE /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
+		B8ACB4312D28487A00FFE4AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B8ACB4352D284A0700FFE4AE /* Bloxic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bloxic.otf; sourceTree = "<group>"; };
 		B8F847CC2C8F30E300F905FE /* BumbleBoogie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumbleBoogie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847DC2C8F30E800F905FE /* BumbleBoogieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847E62C8F30E800F905FE /* BumbleBoogieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,7 +108,7 @@
 		B8ACB3D52D2844FE00FFE4AE /* Integrations */ = {
 			isa = PBXGroup;
 			children = (
-				B8ACB3D42D2844FE00FFE4AE /* SpriteKitContainer.swift */,
+				B8ACB3FD2D2844FE00FFE4AE /* SpriteKitContainer.swift */,
 			);
 			path = Integrations;
 			sourceTree = "<group>";
@@ -120,10 +116,7 @@
 		B8ACB3FC2D2844FE00FFE4AE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				B8ACB3F82D2844FE00FFE4AE /* Assets.xcassets */,
-				B8ACB3F92D2844FE00FFE4AE /* BeeGameView.swift */,
 				B8ACB3FA2D2844FE00FFE4AE /* MainGameScene.swift */,
-				B8ACB3FB2D2844FE00FFE4AE /* particleEffect.sks */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -135,6 +128,22 @@
 				B8ACB3FF2D2844FE00FFE4AE /* MusicManager.swift */,
 			);
 			path = State;
+			sourceTree = "<group>";
+		};
+		B8ACB4302D28485800FFE4AE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B8ACB4312D28487A00FFE4AE /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B8ACB4342D2849DC00FFE4AE /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B8ACB4352D284A0700FFE4AE /* Bloxic.otf */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		B8F847C32C8F30E300F905FE = {
@@ -159,6 +168,8 @@
 		B8F847CE2C8F30E300F905FE /* Bumble Boogie */ = {
 			isa = PBXGroup;
 			children = (
+				B8ACB4342D2849DC00FFE4AE /* Assets */,
+				B8ACB4302D28485800FFE4AE /* Views */,
 				B8ACB3C92D2844FE00FFE4AE /* App */,
 				B8ACB3FC2D2844FE00FFE4AE /* Scenes */,
 				B8ACB4002D2844FE00FFE4AE /* State */,
@@ -166,7 +177,6 @@
 				B8ACB3D22D2844FE00FFE4AE /* Delegates */,
 				B8ACB3D52D2844FE00FFE4AE /* Integrations */,
 				B8ACB3D62D2844FE00FFE4AE /* LaunchScreen.storyboard */,
-				B8ACB3FD2D2844FE00FFE4AE /* SpriteKitContainer.swift */,
 			);
 			path = "Bumble Boogie";
 			sourceTree = "<group>";
@@ -275,8 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8ACB42A2D2844FE00FFE4AE /* particleEffect.sks in Resources */,
-				B8ACB42C2D2844FE00FFE4AE /* Assets.xcassets in Resources */,
+				B8ACB4362D284A0700FFE4AE /* Bloxic.otf in Resources */,
 				B8ACB42E2D2844FE00FFE4AE /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,11 +313,10 @@
 			files = (
 				B8ACB4012D2844FE00FFE4AE /* SpriteNodeView.swift in Sources */,
 				B8ACB4032D2844FE00FFE4AE /* MusicManager.swift in Sources */,
-				B8ACB4062D2844FE00FFE4AE /* SpriteKitContainer.swift in Sources */,
 				B8ACB4092D2844FE00FFE4AE /* BasicButton.swift in Sources */,
 				B8ACB40A2D2844FE00FFE4AE /* GameDelegate.swift in Sources */,
-				B8ACB4172D2844FE00FFE4AE /* BeeGameView.swift in Sources */,
 				B8ACB41B2D2844FE00FFE4AE /* SpriteKitContainer.swift in Sources */,
+				B8ACB4322D28487A00FFE4AE /* ContentView.swift in Sources */,
 				B8ACB41E2D2844FE00FFE4AE /* MainGameScene.swift in Sources */,
 				B8ACB41F2D2844FE00FFE4AE /* GameState.swift in Sources */,
 				B8ACB4212D2844FE00FFE4AE /* BumbleBoogie.swift in Sources */,

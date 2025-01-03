@@ -4,15 +4,28 @@
 //
 //  Created by Peter Abbott on 30/12/2024.
 //
-
 import SwiftUI
+import SpriteKit
 
-struct BasicButton: View {
+struct CustomGameButton: View {
+    var title: String
+    var spriteNode: SKNode? // Optional SpriteKit element
+    var action: (() -> Void)?
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {
+            action?()
+        }) {
+            VStack {
+                if let spriteNode = spriteNode {
+                    SpriteNodeView(node: spriteNode)
+                }
+                Text(title)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+        }
     }
-}
-
-#Preview {
-    BasicButton()
 }
