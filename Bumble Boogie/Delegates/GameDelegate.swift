@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+protocol GameDelegate: AnyObject {
+    func updateCurrency(by amount: Int)
+    func handleEvent(event: String)
+}
