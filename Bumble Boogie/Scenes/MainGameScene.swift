@@ -11,7 +11,82 @@ import SpriteKit
 
 
 class MainGameScene: SKScene {
+    
+    
+    // handles connection to the GameDelegate.
     weak var gameDelegate: GameDelegate?
+    
+    
+    // MARK: - GAME TIME MANAGER (SKScene)
+    // Reference to the global time manager.
+    let timeManager = GameTimeManager()
+    
+    // Track the last frames time for calculating deltaTime.
+    private var lastUpdateTime: TimeInterval = 0.0
+    
+    // LEARN
+    /// Better undertand didMove && override functions
+    override func didMove(to view: SKView) {
+        super.didMove(to: view)
+        
+        // Start the master timer
+        timeManager.startMasterTimer()
+        
+        // Set up a callback for basic bee spawn.
+        timeManager.onBasicBeeSpawnIntervalTick = { [weak self] in self?.basicBeeSpawnEvent()
+        }
+        
+        // Example of starting at double speed.
+        timeManager.speedFactor = 0.0
+    }
+    
+    func pauseScene() {
+        self.isPaused = true      // Pauses SKActions in the scene
+        timeManager.pauseGame()   // Tells the manager to skip logic
+    }
+
+    func resumeScene() {
+        self.isPaused = false
+        timeManager.resumeGame()
+    }
+    
+//    override func update(_ currentTime: TimeInterval) {
+//        //Calculate delta time since last frame
+//        let deltaTime = currentTime - lastUpdateTime
+//        lastUpdateTime = currentTime
+//        
+//        // If deltaTime is negative or too large, clamp it.
+//        /// Sometimes happens when the app is backgrounded.
+//        _ = max(0, min(deltaTime, 1.0/30.0)) /// clamped to a max of 1/30 ofr safety
+//        
+//        // Per-frame logic that reference timerManager.globalTime
+//        updateAnimationLogic()
+//    }
+    
+    
+    // TODO
+    // MARK: - BASIC BEE
+    private func basicBeeSpawnEvent() {
+        /// Called ever time the conductorTimerAlpha ticks.
+        // TODO
+        // Spawn a bee
+        print("Basic Bee Spawned")
+    }
+    
+    // TODO
+    // MARK: - BASIC BEE ANIMATION LOGIC
+    private func updateAnimationLogic() {
+            // Example: If you have nodes that animate based on global time, you can reference `timeManager.globalTime`.
+            // Suppose you have a sprite that oscillates in X position based on a sine wave and the globalTime.
+            
+            // for node in someSpriteNodes {
+            //     let offset = sin(timeManager.globalTime) * 50
+            //     node.position.x = nodeStartX + offset
+            // }
+        }
+    
+    
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
@@ -22,8 +97,6 @@ class MainGameScene: SKScene {
         }
     }
 }
-
-
 
 
 

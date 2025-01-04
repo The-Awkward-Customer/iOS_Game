@@ -18,6 +18,7 @@
 		B8ACB4322D28487A00FFE4AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB4312D28487A00FFE4AE /* ContentView.swift */; };
 		B8ACB4362D284A0700FFE4AE /* Bloxic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B8ACB4352D284A0700FFE4AE /* Bloxic.otf */; };
 		B8ACB4442D2870A700FFE4AE /* UserDefaultsMemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */; };
+		B8ACB45D2D296C7F00FFE4AE /* GameTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB45C2D296C7F00FFE4AE /* GameTimeManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		B8ACB4352D284A0700FFE4AE /* Bloxic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bloxic.otf; sourceTree = "<group>"; };
 		B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsMemoryManager.swift; sourceTree = "<group>"; };
 		B8ACB44C2D28904400FFE4AE /* BumbleBoogieUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogieUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8ACB45C2D296C7F00FFE4AE /* GameTimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimeManager.swift; sourceTree = "<group>"; };
 		B8F847CC2C8F30E300F905FE /* BumbleBoogie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumbleBoogie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847DC2C8F30E800F905FE /* BumbleBoogieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847E62C8F30E800F905FE /* BumbleBoogieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +148,7 @@
 				B8ACB3FE2D2844FE00FFE4AE /* GameState.swift */,
 				B8ACB3FF2D2844FE00FFE4AE /* MusicManager.swift */,
 				B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */,
+				B8ACB45C2D296C7F00FFE4AE /* GameTimeManager.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8ACB45D2D296C7F00FFE4AE /* GameTimeManager.swift in Sources */,
 				B8ACB4012D2844FE00FFE4AE /* SpriteNodeView.swift in Sources */,
 				B8ACB4032D2844FE00FFE4AE /* MusicManager.swift in Sources */,
 				B8ACB4092D2844FE00FFE4AE /* BasicButton.swift in Sources */,
