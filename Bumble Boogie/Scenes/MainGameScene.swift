@@ -19,7 +19,7 @@ class MainGameScene: SKScene {
     
     // MARK: - GAME TIME MANAGER (SKScene)
     // Reference to the global time manager.
-    let timeManager = GameTimeManager()
+    @Published var timeManager = GameTimeManager()
     
     // Track the last frames time for calculating deltaTime.
     private var lastUpdateTime: TimeInterval = 0.0
@@ -28,12 +28,14 @@ class MainGameScene: SKScene {
     /// Better undertand didMove && override functions
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-        
-        // Start the master timer
-        timeManager.startMasterTimer()
+        print("didMove to called!")
         
         // Set up a callback for basic bee spawn.
         timeManager.onBasicBeeSpawnIntervalTick = { [weak self] in self?.basicBeeSpawnEvent()
+        }
+        
+        //Set ups a callback to track conductor ticks.
+        timeManager.onConductorTimerIntervalTick = { [weak self ] in self?.conductorTickEvent()
         }
         
         // Example of starting at double speed.
@@ -71,6 +73,15 @@ class MainGameScene: SKScene {
         // TODO
         // Spawn a bee
         print("Basic Bee Spawned")
+    }
+    
+    // TODO
+    // MARK: - BASIC BEE
+    private func conductorTickEvent() {
+        /// Called ever time the conductorTimerAlpha ticks.
+        // TODO
+        // Spawn a bee
+        print("tick")
     }
     
     // TODO

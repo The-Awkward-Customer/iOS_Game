@@ -24,10 +24,10 @@ class GameTimeManager: ObservableObject {
     
     // Creates the timeIntervals trackers
     @Published var conductorTimerInterval: TimeInterval = 1.0
-    var basicBeeSpawnInterval: TimeInterval = 1.0
+    @Published var basicBeeSpawnInterval: TimeInterval = 1.0
     
-    private var conductorAccumulator: TimeInterval = 0.0
-    private var basicBeeSpawnAccumulator: TimeInterval = 0.0
+    var conductorAccumulator: TimeInterval = 0.0
+    var basicBeeSpawnAccumulator: TimeInterval = 0.0
     
     // Indicated if the game is paused
     private(set) var isPaused: Bool = false
@@ -37,7 +37,11 @@ class GameTimeManager: ObservableObject {
     var speedFactor: Double = 1.0
     
     
+    
     func startMasterTimer() {
+        
+        guard masterTimer == nil else { return }
+        
         // fires every 0.1 seconds
         let timer = DispatchSource.makeTimerSource(queue: .main)
         timer.schedule(deadline: .now() + 0.1, repeating: 0.1)
@@ -47,14 +51,15 @@ class GameTimeManager: ObservableObject {
         }
         timer.resume()
         masterTimer = timer
+        print("master timer started")
     }
     
     private func update(_ deltaTime: TimeInterval) {
         guard !isPaused else { return }
         
-        // Applies speefFactor so we can do slow-mo for fast-forward
+//        // Applies speefFactor so we can do slow-mo for fast-forward
 //        let scaledDelta = deltaTime * speedFactor
-        
+//        
         conductorAccumulator += deltaTime
         if conductorAccumulator >= conductorTimerInterval {
             conductorAccumulator = 0
@@ -78,6 +83,11 @@ class GameTimeManager: ObservableObject {
         print("Resuming game…")
     }
     
+    func stopMasterTimer() {
+        masterTimer?.cancel()
+        masterTimer = nil
+        print("master timer stopping…")
+       }
     
 }
 

@@ -13,22 +13,22 @@ import SpriteKit
 struct ContentView: View {
     
     @ObservedObject var gameState = GameState()
-    @ObservedObject var gameTimeManager = GameTimeManager()
     
     @State private var scene: MainGameScene = {
         let scene = MainGameScene(size: CGSize(width: 800, height: 600))
         scene.scaleMode = .aspectFit
+        scene.timeManager.startMasterTimer()
         return scene
     }()
     
     var body: some View {
         ZStack {
             SpriteView(scene: scene)
-                .frame(maxWidth: .infinity, maxHeight: 600)
+                .frame(maxWidth: .infinity, maxHeight: 100)
             VStack {
                 Text("Currency: \(gameState.TotalHoney)")
                     .font(.custom("Bloxic", size: 28))
-                Text("spawnRate: \(gameTimeManager.basicBeeSpawnInterval)")
+                Text("spawnRate: \(scene.timeManager.basicBeeSpawnInterval)")
                     .frame(width:375)
                     .padding(24)
                     .font(.custom("Bloxic", size: 16))
@@ -44,20 +44,29 @@ struct ContentView: View {
                 })
                 
                 
-                HStack {
-                    
+                VStack {
+                    Button("+ SpawnRate"){
+                        scene.timeManager.increaseBasicBeeSpawnRate()
+                    }
                     Button("Pause") {
                         scene.pauseScene()
                     }
                     Button("Resume") {
                         scene.resumeScene()
                     }
-                  
+                    Button("- SpawnRate"){
+                        scene.timeManager.decreaseBasicBeeSpawnRate()
+                    }
+                    Button("stop"){
+                        scene.timeManager.stopMasterTimer()
+                    }
+                    Button("start"){
+                        scene.timeManager.startMasterTimer()
+                    }
                     
                     
                 }
                 .padding(.horizontal, 24.0)
-                Text("Speed Factor: \(scene.timeManager.speedFactor, specifier: "%.1f")")
                 
                 
             }
