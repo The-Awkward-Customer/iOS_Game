@@ -20,6 +20,7 @@
 		B8ACB4442D2870A700FFE4AE /* UserDefaultsMemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */; };
 		B8ACB45D2D296C7F00FFE4AE /* GameTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB45C2D296C7F00FFE4AE /* GameTimeManager.swift */; };
 		B8ACB4602D2B0E5A00FFE4AE /* SpawnRateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB45F2D2B0E5A00FFE4AE /* SpawnRateExtension.swift */; };
+		B8ACB46B2D2C36EB00FFE4AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8ACB46A2D2C36EB00FFE4AE /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		B8ACB44C2D28904400FFE4AE /* BumbleBoogieUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogieUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8ACB45C2D296C7F00FFE4AE /* GameTimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimeManager.swift; sourceTree = "<group>"; };
 		B8ACB45F2D2B0E5A00FFE4AE /* SpawnRateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnRateExtension.swift; sourceTree = "<group>"; };
+		B8ACB46A2D2C36EB00FFE4AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8F847CC2C8F30E300F905FE /* BumbleBoogie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumbleBoogie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847DC2C8F30E800F905FE /* BumbleBoogieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847E62C8F30E800F905FE /* BumbleBoogieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +168,7 @@
 		B8ACB4342D2849DC00FFE4AE /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				B8ACB46A2D2C36EB00FFE4AE /* Assets.xcassets */,
 				B8ACB4352D284A0700FFE4AE /* Bloxic.otf */,
 			);
 			path = Assets;
@@ -363,6 +366,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8ACB46B2D2C36EB00FFE4AE /* Assets.xcassets in Resources */,
 				B8ACB4362D284A0700FFE4AE /* Bloxic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -607,6 +611,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -641,6 +646,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

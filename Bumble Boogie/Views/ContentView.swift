@@ -25,7 +25,11 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             SpriteView(scene: scene)
-                .frame(maxWidth: .infinity, maxHeight: 100)
+                .frame(maxWidth: .infinity, maxHeight: 700)
+                .onAppear {
+                               // Inject the manager so the scene can set up the callback
+                    scene.gameTimeManager = gameTimeManager
+                           }
             VStack {
                 Text("Currency: \(gameState.TotalHoney)")
                     .font(.custom("Bloxic", size: 28))

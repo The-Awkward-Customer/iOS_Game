@@ -60,18 +60,41 @@ class MainGameScene: SKScene {
     // TODO
     // MARK: - BASIC BEE
     private func basicBeeSpawnEvent() {
-        /// Called ever time the conductorTimerAlpha ticks.
-        // TODO
-        // Spawn a bee
+        /// Called ever time the onBasicBeeAccumulator triggers  onBasicBeeSpawnIntervalTick "ticks".
+        
+        // Nodes initial position
+        let xPos = CGFloat.random(in:0...size.width)
+        let yPos = CGFloat.random(in:0...size.height)
+        
+        let basicBeeSprite = SKSpriteNode(imageNamed: "basicBee1")
+        basicBeeSprite.position = CGPoint(x: xPos, y: yPos)
+        addChild(basicBeeSprite)
+        
+        
+        // Animate through sprite
+//        let frames = [
+//            SKTexture(imageNamed: "basicBee1")
+//        ]
+        
+        // Run repeating animation
+        
+        //Move Bee
+        // (G.3) Optionally move or fade the bee
+        // e.g., a float upward + remove
+        let moveUp = SKAction.moveBy(x: 0, y: 100, duration: 5.0)
+        let remove = SKAction.removeFromParent()
+        let sequence = SKAction.sequence([moveUp, remove])
+        basicBeeSprite.run(sequence)
+        
         print("Basic Bee Spawned")
     }
     
     // TODO
     // MARK: - BASIC BEE
     private func conductorTickEvent() {
-        /// Called ever time the conductorTimerAlpha ticks.
-        // TODO
-        // Spawn a bee
+        /// Called ever time the onBasicBeeAccumulator ticks.
+        
+        
         print("tick")
     }
     
