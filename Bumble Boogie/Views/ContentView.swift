@@ -14,10 +14,11 @@ struct ContentView: View {
     
     @ObservedObject var gameState = GameState()
     
+    @EnvironmentObject var gameTimeManager: GameTimeManager
+    
     @State private var scene: MainGameScene = {
         let scene = MainGameScene(size: CGSize(width: 800, height: 600))
         scene.scaleMode = .aspectFit
-        scene.timeManager.startMasterTimer()
         return scene
     }()
     
@@ -28,7 +29,7 @@ struct ContentView: View {
             VStack {
                 Text("Currency: \(gameState.TotalHoney)")
                     .font(.custom("Bloxic", size: 28))
-                Text("spawnRate: \(scene.timeManager.basicBeeSpawnInterval)")
+                Text("spawnRate: \(gameTimeManager.basicBeeSpawnInterval, specifier: "%.1f")")
                     .frame(width:375)
                     .padding(24)
                     .font(.custom("Bloxic", size: 16))
@@ -46,22 +47,22 @@ struct ContentView: View {
                 
                 VStack {
                     Button("+ SpawnRate"){
-                        scene.timeManager.increaseBasicBeeSpawnRate()
+                        gameTimeManager.increaseBasicBeeSpawnRate()
                     }
                     Button("Pause") {
-                        scene.pauseScene()
+                        gameTimeManager.pauseGame()
                     }
                     Button("Resume") {
-                        scene.resumeScene()
+                        gameTimeManager.resumeGame()
                     }
                     Button("- SpawnRate"){
-                        scene.timeManager.decreaseBasicBeeSpawnRate()
+                        gameTimeManager.decreaseBasicBeeSpawnRate()
                     }
                     Button("stop"){
-                        scene.timeManager.stopMasterTimer()
+                        gameTimeManager.stopMasterTimer()
                     }
                     Button("start"){
-                        scene.timeManager.startMasterTimer()
+                        gameTimeManager.startMasterTimer()
                     }
                     
                     
@@ -73,11 +74,16 @@ struct ContentView: View {
         }
         
         .environmentObject(gameState)
+        .onAppear {
+                    // Assign the environment’s manager to the scene, so the scene can reference it
+                    scene.gameTimeManager = gameTimeManager
+                }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(gameState: GameState())
+            .environmentObject(GameTimeManager())
     }
 }

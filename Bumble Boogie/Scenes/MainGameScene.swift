@@ -17,9 +17,10 @@ class MainGameScene: SKScene {
     weak var gameDelegate: GameDelegate?
     
     
-    // MARK: - GAME TIME MANAGER (SKScene)
-    // Reference to the global time manager.
-    @Published var timeManager = GameTimeManager()
+    // MARK: - GAME TIME MANAGER
+    // We'll assign this from outside. It's not an EnvironmentObject here
+    // because SpriteKit isn't a SwiftUI view.
+    var gameTimeManager: GameTimeManager?
     
     // Track the last frames time for calculating deltaTime.
     private var lastUpdateTime: TimeInterval = 0.0
@@ -31,25 +32,15 @@ class MainGameScene: SKScene {
         print("didMove to called!")
         
         // Set up a callback for basic bee spawn.
-        timeManager.onBasicBeeSpawnIntervalTick = { [weak self] in self?.basicBeeSpawnEvent()
+        gameTimeManager?.onBasicBeeSpawnIntervalTick = { [weak self] in self?.basicBeeSpawnEvent()
         }
         
         //Set ups a callback to track conductor ticks.
-        timeManager.onConductorTimerIntervalTick = { [weak self ] in self?.conductorTickEvent()
+        gameTimeManager?.onConductorTimerIntervalTick = { [weak self ] in self?.conductorTickEvent()
         }
         
         // Example of starting at double speed.
-        timeManager.speedFactor = 0.0
-    }
-    
-    func pauseScene() {
-        self.isPaused = true      // Pauses SKActions in the scene
-        timeManager.pauseGame()   // Tells the manager to skip logic
-    }
-
-    func resumeScene() {
-        self.isPaused = false
-        timeManager.resumeGame()
+        gameTimeManager?.speedFactor = 0.0
     }
     
 //    override func update(_ currentTime: TimeInterval) {
