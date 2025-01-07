@@ -31,6 +31,15 @@ class MainGameScene: SKScene {
         super.didMove(to: view)
         print("didMove to called!")
         
+        
+        // Scene Styling
+        // Make the scene’s background transparent
+        backgroundColor = .white
+            
+        // Also allow the underlying SKView to render transparency
+        view.allowsTransparency = true
+        
+        
         // Set up a callback for basic bee spawn.
         gameTimeManager?.onBasicBeeSpawnIntervalTick = { [weak self] in self?.basicBeeSpawnEvent()
         }
@@ -43,20 +52,6 @@ class MainGameScene: SKScene {
         gameTimeManager?.speedFactor = 0.0
     }
     
-//    override func update(_ currentTime: TimeInterval) {
-//        //Calculate delta time since last frame
-//        let deltaTime = currentTime - lastUpdateTime
-//        lastUpdateTime = currentTime
-//        
-//        // If deltaTime is negative or too large, clamp it.
-//        /// Sometimes happens when the app is backgrounded.
-//        _ = max(0, min(deltaTime, 1.0/30.0)) /// clamped to a max of 1/30 ofr safety
-//        
-//        // Per-frame logic that reference timerManager.globalTime
-//        updateAnimationLogic()
-//    }
-    
-    
     // TODO
     // MARK: - BASIC BEE
     private func basicBeeSpawnEvent() {
@@ -66,26 +61,37 @@ class MainGameScene: SKScene {
         let xPos = CGFloat.random(in:0...size.width)
         let yPos = CGFloat.random(in:0...size.height)
         
-        let basicBeeSprite = SKSpriteNode(imageNamed: "basicBee1")
+        let basicBeeSprite = SKSpriteNode(imageNamed: "basicBee.00000")
         basicBeeSprite.position = CGPoint(x: xPos, y: yPos)
+        basicBeeSprite.size = CGSize(width: 64, height: 64)
         addChild(basicBeeSprite)
         
         
         // Animate through sprite
-//        let frames = [
-//            SKTexture(imageNamed: "basicBee1")
-//        ]
+        
+        let frames: [SKTexture] = (00...60).map { index in
+        // Create a zero-padded string like "00000", "00001", etc.
+        let fileName = String(format: "basicBee.%05d", index)
+        return SKTexture(imageNamed: fileName)
+        }
+
         
         // Run repeating animation
+        let animationAction = SKAction.animate(with: frames, timePerFrame: 0.01)
+        let repeatForever = SKAction.repeatForever(animationAction)
         
         //Move Bee
         // (G.3) Optionally move or fade the bee
         // e.g., a float upward + remove
         let moveUp = SKAction.moveBy(x: 0, y: 100, duration: 5.0)
         let remove = SKAction.removeFromParent()
-        let sequence = SKAction.sequence([moveUp, remove])
-        basicBeeSprite.run(sequence)
+        let moveSequence = SKAction.sequence([moveUp, remove])
         
+        // Groups actions into a single variable
+        let basicBeeGroupedActions = SKAction.group([repeatForever, moveSequence])
+        
+        // Intializes SKAction
+        basicBeeSprite.run(basicBeeGroupedActions)
         print("Basic Bee Spawned")
     }
     

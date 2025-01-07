@@ -18,14 +18,15 @@ struct ContentView: View {
     
     @State private var scene: MainGameScene = {
         let scene = MainGameScene(size: CGSize(width: 800, height: 600))
-        scene.scaleMode = .aspectFit
+        scene.scaleMode = .aspectFill
         return scene
     }()
     
     var body: some View {
         ZStack {
             SpriteView(scene: scene)
-                .frame(maxWidth: .infinity, maxHeight: 700)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.clear)
                 .onAppear {
                                // Inject the manager so the scene can set up the callback
                     scene.gameTimeManager = gameTimeManager
@@ -72,17 +73,19 @@ struct ContentView: View {
                     
                 }
                 .padding(.horizontal, 24.0)
-                
+
                 
             }
+            
         }
-        
+
         .environmentObject(gameState)
         .onAppear {
                     // Assign the environment’s manager to the scene, so the scene can reference it
                     scene.gameTimeManager = gameTimeManager
                 }
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
