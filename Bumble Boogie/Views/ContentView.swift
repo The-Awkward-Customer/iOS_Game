@@ -34,7 +34,7 @@ struct ContentView: View {
             VStack {
                 Text("Currency: \(gameState.TotalHoney)")
                     .font(.custom("Bloxic", size: 28))
-                Text("spawnRate: \(gameTimeManager.basicBeeSpawnInterval, specifier: "%.1f")")
+                Text("spawnRate: \(gameState.basicBeeSpawnInterval, specifier: "%.1f")")
                     .frame(width:375)
                     .padding(24)
                     .font(.custom("Bloxic", size: 16))
@@ -79,7 +79,7 @@ struct ContentView: View {
             
         }
 
-        .environmentObject(gameState)
+//        .environmentObject(gameState)
         .onAppear {
                     // Assign the environment’s manager to the scene, so the scene can reference it
                     scene.gameTimeManager = gameTimeManager
