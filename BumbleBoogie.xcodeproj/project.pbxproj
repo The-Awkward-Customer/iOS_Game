@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B87836D02D36961A00876137 /* BasicBee.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87836CF2D36961A00876137 /* BasicBee.swift */; };
 		B8ACB4012D2844FE00FFE4AE /* SpriteNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3CF2D2844FE00FFE4AE /* SpriteNodeView.swift */; };
 		B8ACB4032D2844FE00FFE4AE /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3FF2D2844FE00FFE4AE /* MusicManager.swift */; };
 		B8ACB4092D2844FE00FFE4AE /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3CE2D2844FE00FFE4AE /* BasicButton.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B87836CF2D36961A00876137 /* BasicBee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicBee.swift; sourceTree = "<group>"; };
 		B87D307E2D109A6900186B18 /* BumbleBoogie-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BumbleBoogie-Info.plist"; sourceTree = "<group>"; };
 		B8ACB3C82D2844FE00FFE4AE /* BumbleBoogie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumbleBoogie.swift; sourceTree = "<group>"; };
 		B8ACB3CE2D2844FE00FFE4AE /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
@@ -105,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B87836CE2D3695F900876137 /* GameObjects */ = {
+			isa = PBXGroup;
+			children = (
+				B87836CF2D36961A00876137 /* BasicBee.swift */,
+			);
+			path = GameObjects;
+			sourceTree = "<group>";
+		};
 		B8ACB3C92D2844FE00FFE4AE /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				B8ACB3FA2D2844FE00FFE4AE /* MainGameScene.swift */,
+				B87836CE2D3695F900876137 /* GameObjects */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -404,6 +415,7 @@
 				B8ACB4032D2844FE00FFE4AE /* MusicManager.swift in Sources */,
 				B8ACB4092D2844FE00FFE4AE /* BasicButton.swift in Sources */,
 				B8ACB4442D2870A700FFE4AE /* UserDefaultsMemoryManager.swift in Sources */,
+				B87836D02D36961A00876137 /* BasicBee.swift in Sources */,
 				B8ACB4602D2B0E5A00FFE4AE /* SpawnRateExtension.swift in Sources */,
 				B8ACB40A2D2844FE00FFE4AE /* GameDelegate.swift in Sources */,
 				B8ACB41B2D2844FE00FFE4AE /* SpriteKitContainer.swift in Sources */,
