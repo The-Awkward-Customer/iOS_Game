@@ -24,7 +24,7 @@ class GameState: ObservableObject {
         }
     }
     
-    
+    @Published var basicBeeSpawnInterval: TimeInterval = 1.0
     
     // Runtime Vars
     @Published var UpgradeCost: Int = 20

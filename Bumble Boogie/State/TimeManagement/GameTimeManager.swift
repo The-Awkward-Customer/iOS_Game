@@ -12,6 +12,8 @@ import Foundation
 
 class GameTimeManager: ObservableObject {
     
+    var gameState: GameState?
+    
     // TODO
     /// Implement a timer that runs and triggers events while the game is closed.
     
@@ -24,7 +26,9 @@ class GameTimeManager: ObservableObject {
     
     // Creates the timeIntervals trackers
     @Published var conductorTimerInterval: TimeInterval = 1.0
-    @Published var basicBeeSpawnInterval: TimeInterval = 1.0
+//    @Published var basicBeeSpawnInterval: TimeInterval = 1.0
+    
+
     
     var conductorAccumulator: TimeInterval = 0.0
     var basicBeeSpawnAccumulator: TimeInterval = 0.0
@@ -67,7 +71,7 @@ class GameTimeManager: ObservableObject {
         }
         
         basicBeeSpawnAccumulator += deltaTime
-        if basicBeeSpawnAccumulator >= basicBeeSpawnInterval {
+        if basicBeeSpawnAccumulator >= gameState!.basicBeeSpawnInterval { // uses force unwrapping as game state is always present
             basicBeeSpawnAccumulator = 0
             onBasicBeeSpawnIntervalTick?()
         }
