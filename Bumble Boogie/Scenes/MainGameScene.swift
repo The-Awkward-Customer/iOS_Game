@@ -12,15 +12,33 @@ import SpriteKit
 
 class MainGameScene: SKScene {
     
-    
+    // TODO maybe the deglate can be removed.
     // handles connection to the GameDelegate.
     weak var gameDelegate: GameDelegate?
+    
+    
+    
+    // MARK: - Shared GameState
+    let sharedGameState: GameState
+    
+    // Require init
+    init (size: CGSize, gameState: GameState) {
+        self.sharedGameState = gameState
+        super.init(size: size)
+    }
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     
     // MARK: - GAME TIME MANAGER
     // We'll assign this from outside. It's not an EnvironmentObject here
     // because SpriteKit isn't a SwiftUI view.
     var gameTimeManager: GameTimeManager?
+    
     
     // Track the last frames time for calculating deltaTime.
     private var lastUpdateTime: TimeInterval = 0.0
@@ -60,7 +78,7 @@ class MainGameScene: SKScene {
         // Nodes initial position
         let xPos = CGFloat.random(in:0...size.width)
         let yPos = CGFloat.random(in:0...size.height)
-        let basicBee = BasicBeeSprite()
+        let basicBee = BasicBeeSprite(gameState: sharedGameState)
         basicBee.position = CGPoint(x: xPos, y: yPos)
         addChild(basicBee)
         
@@ -76,29 +94,6 @@ class MainGameScene: SKScene {
         print("tick")
     }
     
-//    // TODO
-//    // MARK: - BASIC BEE ANIMATION LOGIC
-//    private func updateAnimationLogic() {
-//            // Example: If you have nodes that animate based on global time, you can reference `timeManager.globalTime`.
-//            // Suppose you have a sprite that oscillates in X position based on a sine wave and the globalTime.
-//            
-//            // for node in someSpriteNodes {
-//            //     let offset = sin(timeManager.globalTime) * 50
-//            //     node.position.x = nodeStartX + offset
-//            // }
-//        }
-    
-    
-    
-//    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        guard let touch = touches.first else { return }
-//        let location = touch.location(in: self)
-//        
-//        if let node = nodes(at: location).first {
-//            gameDelegate?.handleEvent(event: "Tapped node: \(node.name ?? "unknown")")
-//        }
-//    }
 }
 
 

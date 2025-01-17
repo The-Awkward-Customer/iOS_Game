@@ -6,14 +6,18 @@
 //
 
 import Foundation
+import SwiftUI
 import SpriteKit
 
 
 
 class BasicBeeSprite : SKSpriteNode{
     
+    var gameState: GameState
+    
     //MARK: - Intisalisation of BasicBeeSprite
-    init () {
+    init (gameState: GameState) {
+        self.gameState = gameState
         // Initialize with a default texture (first frame of the bee animation)
         let texture = SKTexture(imageNamed: "basicBee.00000")
         super.init(texture: texture, color: .clear, size: CGSize(width: 64, height: 64))
@@ -27,9 +31,7 @@ class BasicBeeSprite : SKSpriteNode{
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-                self.isUserInteractionEnabled = true
-                runActions()
+        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -62,17 +64,39 @@ class BasicBeeSprite : SKSpriteNode{
 
     }
     
+    
+    func animateRemoval() {
+        // Stop any ongoing actions so they won't conflict with the removal animation.
+        self.removeAllActions()
+        
+        // Create the actions:
+        // 1. Scale up slightly.
+        let scaleUpAction = SKAction.scale(to: self.xScale * 1.2, duration: 0.1)
+        
+        // 2. Scale down to 0 to simulate disappearing.
+        let scaleDownAction = SKAction.scale(to: 0.0, duration: 0.2)
+        
+        // 3. Remove the bee from its parent.
+        let removeAction = SKAction.removeFromParent()
+        
+        // Combine actions in sequence.
+        let removalSequence = SKAction.sequence([scaleUpAction, scaleDownAction, removeAction])
+        
+        // Run the sequence.
+        self.run(removalSequence)
+    }
+    
     //MARK: - For interactivity within the node
     override func touchesBegan (_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        
+        gameState.increaseTotalHoney(by: 100)
+            
         print("bee touched")
         
-        // guard let touch = touches.first else { return }
-        // let location = touch.location(in: self)
-        //
-        // if let node = nodes(at: location).first {
-            
-        // }
+        GenericHapticFeedback.heavyImpact()
+        
+        animateRemoval()
     }
     
     
