@@ -10,6 +10,7 @@
 		B87836D02D36961A00876137 /* BasicBee.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87836CF2D36961A00876137 /* BasicBee.swift */; };
 		B8A6B3F02D3A851B000FEAED /* GameStateExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6B3EF2D3A851B000FEAED /* GameStateExtenstions.swift */; };
 		B8A6B3F22D3AB226000FEAED /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6B3F12D3AB226000FEAED /* HapticFeedback.swift */; };
+		B8A6B3FD2D3AB955000FEAED /* HapticFeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6B3FC2D3AB955000FEAED /* HapticFeedbackManager.swift */; };
 		B8ACB4012D2844FE00FFE4AE /* SpriteNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3CF2D2844FE00FFE4AE /* SpriteNodeView.swift */; };
 		B8ACB4032D2844FE00FFE4AE /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3FF2D2844FE00FFE4AE /* MusicManager.swift */; };
 		B8ACB4092D2844FE00FFE4AE /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3CE2D2844FE00FFE4AE /* BasicButton.swift */; };
@@ -55,6 +56,7 @@
 		B87D307E2D109A6900186B18 /* BumbleBoogie-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BumbleBoogie-Info.plist"; sourceTree = "<group>"; };
 		B8A6B3EF2D3A851B000FEAED /* GameStateExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateExtenstions.swift; sourceTree = "<group>"; };
 		B8A6B3F12D3AB226000FEAED /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
+		B8A6B3FC2D3AB955000FEAED /* HapticFeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackManager.swift; sourceTree = "<group>"; };
 		B8ACB3C82D2844FE00FFE4AE /* BumbleBoogie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumbleBoogie.swift; sourceTree = "<group>"; };
 		B8ACB3CE2D2844FE00FFE4AE /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		B8ACB3CF2D2844FE00FFE4AE /* SpriteNodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteNodeView.swift; sourceTree = "<group>"; };
@@ -136,6 +138,15 @@
 			path = GameStateExtentions;
 			sourceTree = "<group>";
 		};
+		B8A6B3FB2D3AB92C000FEAED /* Haptics */ = {
+			isa = PBXGroup;
+			children = (
+				B8A6B3F12D3AB226000FEAED /* HapticFeedback.swift */,
+				B8A6B3FC2D3AB955000FEAED /* HapticFeedbackManager.swift */,
+			);
+			path = Haptics;
+			sourceTree = "<group>";
+		};
 		B8ACB3C92D2844FE00FFE4AE /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,9 +158,9 @@
 		B8ACB3D02D2844FE00FFE4AE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B8A6B3FB2D3AB92C000FEAED /* Haptics */,
 				B8ACB3CE2D2844FE00FFE4AE /* BasicButton.swift */,
 				B8ACB3CF2D2844FE00FFE4AE /* SpriteNodeView.swift */,
-				B8A6B3F12D3AB226000FEAED /* HapticFeedback.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -434,6 +445,7 @@
 			files = (
 				B8ACB45D2D296C7F00FFE4AE /* GameTimeManager.swift in Sources */,
 				B8ACB4012D2844FE00FFE4AE /* SpriteNodeView.swift in Sources */,
+				B8A6B3FD2D3AB955000FEAED /* HapticFeedbackManager.swift in Sources */,
 				B8A6B3F22D3AB226000FEAED /* HapticFeedback.swift in Sources */,
 				B8A6B3F02D3A851B000FEAED /* GameStateExtenstions.swift in Sources */,
 				B8ACB4032D2844FE00FFE4AE /* MusicManager.swift in Sources */,
