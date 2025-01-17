@@ -12,15 +12,16 @@ import SpriteKit
 
 struct ContentView: View {
     
-    @ObservedObject var gameState = GameState()
-    
+    @EnvironmentObject var gameState: GameState
     @EnvironmentObject var gameTimeManager: GameTimeManager
     
-    @State private var scene: MainGameScene = {
-        let scene = MainGameScene(size: CGSize(width: 800, height: 600))
+    // Computed property that creates and configures the scene using the environment objects.
+    var scene: MainGameScene {
+        let scene = MainGameScene(size: CGSize(width: 800, height: 600), gameState: gameState)
         scene.scaleMode = .aspectFill
+        scene.gameTimeManager = gameTimeManager
         return scene
-    }()
+    }
     
     var body: some View {
         ZStack {
@@ -81,8 +82,8 @@ struct ContentView: View {
 
 //        .environmentObject(gameState)
         .onAppear {
-                    // Assign the environment’s manager to the scene, so the scene can reference it
-                    scene.gameTimeManager = gameTimeManager
+                    // Assign the environment’s manager to the scene, so the scene can reference it before actions can occur…
+        
                 }
     }
     
@@ -90,7 +91,8 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(gameState: GameState())
+        ContentView()
+            .environmentObject(GameState())
             .environmentObject(GameTimeManager())
     }
 }

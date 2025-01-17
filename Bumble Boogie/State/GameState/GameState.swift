@@ -1,5 +1,6 @@
 
 import SwiftUI
+import Combine
 
 class GameState: ObservableObject {
     
@@ -29,20 +30,6 @@ class GameState: ObservableObject {
     // Runtime Vars
     @Published var UpgradeCost: Int = 20
     
-    
-    // MARK: - TBD
-    
-    func increaseTotalHoney (by amount: Int) {
-        TotalHoney += amount
-        printValues()
-    }
-    
-    func decreaseTotalHoney (by amount: Int) {
-        if TotalHoney >= amount {
-            TotalHoney -= amount
-        }
-        printValues()
-    }
     
     
     // test functions to track values in consoles

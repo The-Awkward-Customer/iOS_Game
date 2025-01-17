@@ -13,7 +13,7 @@ struct Conditional_RenderingApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(gameState: GameState())
+            ContentView()
                 .preferredColorScheme(.light)
             
                 // Provide it to the entire SwiftUI environment
