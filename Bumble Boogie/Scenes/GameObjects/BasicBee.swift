@@ -14,6 +14,7 @@ import SpriteKit
 class BasicBeeSprite : SKSpriteNode{
     
     var gameState: GameState
+
     
     //MARK: - Intisalisation of BasicBeeSprite
     init (gameState: GameState) {
@@ -94,6 +95,10 @@ class BasicBeeSprite : SKSpriteNode{
             
         print("bee touched")
         
+
+        HapticFeedbackManager.shared?.playRichHapticEnsemble()
+        
+      
         GenericHapticFeedback.heavyImpact()
         
         animateRemoval()
