@@ -37,8 +37,8 @@ class BasicBeeSprite : SKSpriteNode{
     init (gameState: GameState, parentScene: SKScene, debugMode: Bool = false) {
         self.gameState = gameState
         self.debugMode = debugMode
-        self.oscilationAmplitude = CGFloat.random(in: 20...40)
-        self.oscilationDuration = TimeInterval.random(in: 1.5...2.5)
+        self.oscilationAmplitude = CGFloat.random(in: 20...50)
+        self.oscilationDuration = TimeInterval.random(in: 1.0...2.5)
         
         // Set default init texture
         let texture = SKTexture(imageNamed: "basicBee.00000")
@@ -80,14 +80,14 @@ class BasicBeeSprite : SKSpriteNode{
     }
     
     private func setupPhysics() {
-        physicsBody = SKPhysicsBody(circleOfRadius: size.width * 0.3)
+        physicsBody = SKPhysicsBody(circleOfRadius: size.width * 0.1)
         guard let physics = physicsBody else { return }
         
         physics.isDynamic = true
         physics.affectedByGravity = false
         physics.allowsRotation = false
         physics.mass = 0.1
-        physics.linearDamping = 0.5
+        physics.linearDamping = 0.1
         
         
         physics.categoryBitMask = PhysicsCategory.bee
@@ -95,7 +95,7 @@ class BasicBeeSprite : SKSpriteNode{
         physics.contactTestBitMask = PhysicsCategory.obstacle | PhysicsCategory.powerup
         
         
-        physics.velocity = CGVector(dx: 0, dy: 100)
+        physics.velocity = CGVector(dx: 0, dy: 150)
         
         setupOscilation()
         setupBoundryCheck()
@@ -120,6 +120,7 @@ class BasicBeeSprite : SKSpriteNode{
             
             if self.position.y > scene.size.height + self.size.height {
                 self.removeFromParent()
+                print("boundry detected & bee removed")
             }
         }
         
@@ -127,6 +128,7 @@ class BasicBeeSprite : SKSpriteNode{
             SKAction.wait(forDuration: 0.01),
             check
         ])),withKey: "boundryCheck")
+        
 
     }
     
@@ -151,7 +153,7 @@ class BasicBeeSprite : SKSpriteNode{
                 emitter.particleColor = .yellow
                 emitter.particleAlpha = 0.3
                 emitter.particleAlphaRange = 0.2
-                emitter.particleScale = 0.2
+                emitter.particleScale = 0.5
                 emitter.particleScaleRange = 0.1
                 
                 emitter.particleLifetime = 0.5
@@ -171,6 +173,8 @@ class BasicBeeSprite : SKSpriteNode{
     
     
     func animateRemoval() {
+        
+            print("bee removed")
             self.removeAllActions()
             let scaleUpAction = SKAction.scale(to: self.xScale * 1.2, duration: 0.1)
             let scaleDownAction = SKAction.scale(to: 0.0, duration: 0.2)
