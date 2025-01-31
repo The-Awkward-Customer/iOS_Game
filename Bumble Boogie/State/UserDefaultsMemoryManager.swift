@@ -14,6 +14,7 @@ class UserDefaultsMemoryManager {
     
     enum Keys: String {
         case TotalHoney
+        case basicBeeSpawnInterval
         //Other values…
     }
     

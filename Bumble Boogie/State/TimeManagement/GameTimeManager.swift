@@ -13,16 +13,7 @@ import Foundation
 class GameTimeManager: ObservableObject {
     
     var gameState = GameState()
-    
-//    let basicBeeSpawnInterval: String
-//    if let unwrappedValue = gameState.variableName {
-//        variableValue = unwrappedValue
-//    } else {
-//        variableValue = "Default Value"
-//    }
-    
-    // TODO
-    /// Implement a timer that runs and triggers events while the game is closed.
+
     
     // Accumulated (global) time in seconds since the game started.
     private(set) var masterTimer: DispatchSourceTimer?
@@ -38,7 +29,22 @@ class GameTimeManager: ObservableObject {
 
     
     var conductorAccumulator: TimeInterval = 0.0
-    var basicBeeSpawnAccumulator: TimeInterval = 0.0
+    
+    @Published var basicBeeSpawnInterval: TimeInterval = 1.0{
+        didSet {
+            UserDefaultsMemoryManager.shared.set(basicBeeSpawnInterval, forKey: .basicBeeSpawnInterval)
+        }
+    }
+    
+    init() {
+        if let savedBasicBeeSpawnInterval: TimeInterval = UserDefaultsMemoryManager.shared.get(forKey: .basicBeeSpawnInterval) {
+            basicBeeSpawnInterval = savedBasicBeeSpawnInterval
+        }
+    }
+    
+    
+    
+    @Published var basicBeeSpawnAccumulator: TimeInterval = 0.0
     
     // Indicated if the game is paused
     private(set) var isPaused: Bool = false
@@ -78,9 +84,10 @@ class GameTimeManager: ObservableObject {
         }
         
         basicBeeSpawnAccumulator += deltaTime
-        if basicBeeSpawnAccumulator >= gameState.basicBeeSpawnInterval { // uses force unwrapping as game state is always present
+        if basicBeeSpawnAccumulator >= basicBeeSpawnInterval {
             basicBeeSpawnAccumulator = 0
             onBasicBeeSpawnIntervalTick?()
+        
         }
     }
     

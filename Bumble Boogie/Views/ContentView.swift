@@ -35,7 +35,7 @@ struct ContentView: View {
             VStack {
                 Text("Currency: \(gameState.TotalHoney)")
                     .font(.custom("Bloxic", size: 28))
-                Text("spawnRate: \(gameState.basicBeeSpawnInterval)")
+                Text("spawnRate: \(gameTimeManager.basicBeeSpawnInterval)")
                     .frame(width:375)
                     .padding(24)
                     .font(.custom("Bloxic", size: 16))
