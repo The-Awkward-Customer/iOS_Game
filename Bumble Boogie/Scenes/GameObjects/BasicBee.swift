@@ -9,24 +9,59 @@ import Foundation
 import SwiftUI
 import SpriteKit
 
+// MARK: - PhysicsCategories
+struct PhysicsCategory {
+    static let none      : UInt32 = 0
+    static let bee       : UInt32 = 0b1
+    static let obstacle  : UInt32 = 0b10
+    static let powerup   : UInt32 = 0b100
+    static let boundary  : UInt32 = 0b1000
+}
 
 
 class BasicBeeSprite : SKSpriteNode{
     
+    //MARK: - properties
     var gameState: GameState
-
     
-    //MARK: - Intisalisation of BasicBeeSprite
-    init (gameState: GameState) {
+    private let oscilationAmplitude: CGFloat
+    private let oscilationDuration: TimeInterval
+    private var trailEmitter: SKEmitterNode?
+    private var debugMode: Bool = false
+    
+    //MARK: - Animation properties
+    private var spriteFrames: [SKTexture] = []
+    
+    
+    //MARK: - Intisalizion
+    init (gameState: GameState, parentScene: SKScene, debugMode: Bool = false) {
         self.gameState = gameState
-        // Initialize with a default texture (first frame of the bee animation)
+        self.debugMode = debugMode
+        self.oscilationAmplitude = CGFloat.random(in: 20...40)
+        self.oscilationDuration = TimeInterval.random(in: 1.5...2.5)
+        
+        // Set default init texture
         let texture = SKTexture(imageNamed: "basicBee.00000")
-        super.init(texture: texture, color: .clear, size: CGSize(width: 64, height: 64))
+        let size = CGSize(width: 64, height: 64)
+        
+        
+        super.init(texture: texture, color: .clear, size: size)
+        
+        
+        setupSprite(in: parentScene)
+        setupPhysics()
+        setupAnimations()
+        setupParticles()
+        
+        if debugMode {
+            visualizePhysicsBody()
+        }
+        
         
         // Optionally, enable interactivity if using touch methods in the node
-        self.isUserInteractionEnabled = true
+         self.isUserInteractionEnabled = true
         
-        runActions()
+        // runActions()
         
         
     }
@@ -35,77 +70,266 @@ class BasicBeeSprite : SKSpriteNode{
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - setup methods
     
-    private func runActions() {
+    private func setupSprite(in parentScene: SKScene) {
+        name = "bee"
+        zPosition = 10
+        let xPos = CGFloat.random(in: size.width...(parentScene.size.width - size.width))
+        position = CGPoint(x: xPos, y: -size.height)
+    }
+    
+    private func setupPhysics() {
+        physicsBody = SKPhysicsBody(circleOfRadius: size.width * 0.3)
+        guard let physics = physicsBody else { return }
         
-        // Animate through sprite
-        let frames: [SKTexture] = (00...60).map { index in
-        // Create a zero-padded string like "00000", "00001", etc.
-        let fileName = String(format: "basicBee.%05d", index)
-        return SKTexture(imageNamed: fileName)
+        physics.isDynamic = true
+        physics.affectedByGravity = false
+        physics.allowsRotation = false
+        physics.mass = 0.1
+        physics.linearDamping = 0.5
+        
+        
+        physics.categoryBitMask = PhysicsCategory.bee
+        physics.collisionBitMask = PhysicsCategory.obstacle
+        physics.contactTestBitMask = PhysicsCategory.obstacle | PhysicsCategory.powerup
+        
+        
+        physics.velocity = CGVector(dx: 0, dy: 100)
+        
+        setupOscilation()
+        setupBoundryCheck()
+        
+    }
+    
+    /// ocillates bee
+    private func setupOscilation() {
+        
+        let oscillateRight = SKAction.moveBy(x: oscilationAmplitude, y: 0, duration: oscilationDuration)
+        let oscillateLeft = oscillateRight.reversed()
+        let sequence = SKAction.sequence([oscillateRight, oscillateLeft])
+        run(SKAction.repeatForever(sequence), withKey: "oscillation")
+        
+    }
+    
+    /// removes bee from scene once boundry is breached
+    private func setupBoundryCheck() {
+        let check = SKAction.run { [weak self] in
+            guard let self = self,
+                let scene = self.scene else { return }
+            
+            if self.position.y > scene.size.height + self.size.height {
+                self.removeFromParent()
+            }
         }
         
-        // Run repeating animation
-        let animationAction = SKAction.animate(with: frames, timePerFrame: 0.01)
-        let repeatForever = SKAction.repeatForever(animationAction)
-        
-        //Move Bee
-        // (G.3) Optionally move or fade the bee
-        // e.g., a float upward + remove
-        let moveUp = SKAction.moveBy(x: 0, y: 100, duration: 5.0)
-        let remove = SKAction.removeFromParent()
-        let moveSequence = SKAction.sequence([moveUp, remove])
-        
-        // Groups actions into a single variable
-        let groupedActions = SKAction.group([repeatForever, moveSequence])
-        
-        // Intializes SKAction
-        self.run(groupedActions)
-        print("running actions")
+        run(SKAction.repeatForever(SKAction.sequence([
+            SKAction.wait(forDuration: 0.01),
+            check
+        ])),withKey: "boundryCheck")
 
+    }
+    
+    
+    private func setupAnimations() {
+        spriteFrames = (0...60).map { index in
+            SKTexture(imageNamed: String(format: "basicBee.%05d", index))
+        }
+        
+        let animation = SKAction.animate(with: spriteFrames, timePerFrame: 0.1)
+        run(SKAction.repeatForever(animation), withKey: "beeAnimation")
+    }
+    
+    private func setupParticles() {
+        
+        let emitter = SKEmitterNode()
+        
+        emitter.particleTexture = SKTexture(imageNamed: "Pollen")
+                emitter.particleBirthRate = 20
+                emitter.numParticlesToEmit = 0
+                
+                emitter.particleColor = .yellow
+                emitter.particleAlpha = 0.3
+                emitter.particleAlphaRange = 0.2
+                emitter.particleScale = 0.2
+                emitter.particleScaleRange = 0.1
+                
+                emitter.particleLifetime = 0.5
+                emitter.particleLifetimeRange = 0.2
+                emitter.particleSpeed = 10
+                emitter.particleSpeedRange = 5
+                emitter.emissionAngle = .pi * 1.5
+                emitter.emissionAngleRange = .pi / 8
+                
+                emitter.targetNode = self
+                emitter.position = CGPoint(x: 0, y: -size.height/2)
+                
+                trailEmitter = emitter
+                addChild(emitter)
+        
     }
     
     
     func animateRemoval() {
-        // Stop any ongoing actions so they won't conflict with the removal animation.
-        self.removeAllActions()
+            self.removeAllActions()
+            let scaleUpAction = SKAction.scale(to: self.xScale * 1.2, duration: 0.1)
+            let scaleDownAction = SKAction.scale(to: 0.0, duration: 0.2)
+            let removeAction = SKAction.removeFromParent()
+            let removalSequence = SKAction.sequence([scaleUpAction, scaleDownAction, removeAction])
         
-        // Create the actions:
-        // 1. Scale up slightly.
-        let scaleUpAction = SKAction.scale(to: self.xScale * 1.2, duration: 0.1)
-        
-        // 2. Scale down to 0 to simulate disappearing.
-        let scaleDownAction = SKAction.scale(to: 0.0, duration: 0.2)
-        
-        // 3. Remove the bee from its parent.
-        let removeAction = SKAction.removeFromParent()
-        
-        // Combine actions in sequence.
-        let removalSequence = SKAction.sequence([scaleUpAction, scaleDownAction, removeAction])
-        
-        // Run the sequence.
-        self.run(removalSequence)
-    }
+            self.run(removalSequence)
+        }
+    
+    
     
     //MARK: - For interactivity within the node
     override func touchesBegan (_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        
-        gameState.increaseTotalHoney(by: 100)
-            
         print("bee touched")
         
-
+        gameState.increaseTotalHoney(by: 100)
         HapticFeedbackManager.shared?.playRichHapticEnsemble()
-        
-      
         GenericHapticFeedback.heavyImpact()
         
         animateRemoval()
+        
     }
     
     
+    //MARK: - Debug Methods
+    private func visualizePhysicsBody() {
+        let shape = SKShapeNode(circleOfRadius: size.width * 0.3)
+        shape.strokeColor = .red
+        shape.lineWidth = 2
+        addChild(shape)
+        
+    }
     
-
+    
+    //MARK: - Public Methods
+    // TODO
+    func adjustForGyroscope(tilt: CGFloat){
+        position.x += tilt * 10
+    }
+    
+    func setPoweredUp(_ isPowered: Bool) {
+        trailEmitter?.particleColor = isPowered ? .orange : .yellow
+        trailEmitter?.particleBirthRate = isPowered ? 40 : 20
+        trailEmitter?.particleAlpha = isPowered ? 0.8 : 0.3
+    }
+    
+    func cleanUp() {
+        removeAllActions()
+        trailEmitter?.removeFromParent()
+        removeFromParent()
+    }
     
 }
+
+
+
+
+
+//MARK: - Contact Handler Extension
+extension BasicBeeSprite{
+    
+    func handleContact(with node: SKNode) {
+        guard let category = node.physicsBody?.categoryBitMask else { return }
+        
+        switch category {
+        case PhysicsCategory.obstacle:
+            handleObsticleContact()
+        case PhysicsCategory.powerup:
+            handlePowerUpContact()
+        default:
+            break
+        }
+    }
+    
+    private func handleObsticleContact() {
+        
+        //TODO
+        
+    }
+    
+    private func handlePowerUpContact() {
+        // TODO
+    }
+
+}
+
+
+    
+//
+//    private func runActions() {
+//        
+//        // Animate through sprite
+//        let frames: [SKTexture] = (00...60).map { index in
+//        // Create a zero-padded string like "00000", "00001", etc.
+//        let fileName = String(format: "basicBee.%05d", index)
+//        return SKTexture(imageNamed: fileName)
+//        }
+//        
+//        // Run repeating animation
+//        let animationAction = SKAction.animate(with: frames, timePerFrame: 0.01)
+//        let repeatForever = SKAction.repeatForever(animationAction)
+//        
+//        //Move Bee
+//        // (G.3) Optionally move or fade the bee
+//        // e.g., a float upward + remove
+//        let moveUp = SKAction.moveBy(x: 0, y: 100, duration: 5.0)
+//        let remove = SKAction.removeFromParent()
+//        let moveSequence = SKAction.sequence([moveUp, remove])
+//        
+//        // Groups actions into a single variable
+//        let groupedActions = SKAction.group([repeatForever, moveSequence])
+//        
+//        // Intializes SKAction
+//        self.run(groupedActions)
+//        print("running actions")
+//
+//    }
+//    
+//    
+//    func animateRemoval() {
+//        // Stop any ongoing actions so they won't conflict with the removal animation.
+//        self.removeAllActions()
+//        
+//        // Create the actions:
+//        // 1. Scale up slightly.
+//        let scaleUpAction = SKAction.scale(to: self.xScale * 1.2, duration: 0.1)
+//        
+//        // 2. Scale down to 0 to simulate disappearing.
+//        let scaleDownAction = SKAction.scale(to: 0.0, duration: 0.2)
+//        
+//        // 3. Remove the bee from its parent.
+//        let removeAction = SKAction.removeFromParent()
+//        
+//        // Combine actions in sequence.
+//        let removalSequence = SKAction.sequence([scaleUpAction, scaleDownAction, removeAction])
+//        
+//        // Run the sequence.
+//        self.run(removalSequence)
+//    }
+//    
+//    //MARK: - For interactivity within the node
+//    override func touchesBegan (_ touches: Set<UITouch>, with event: UIEvent?) {
+//        
+//        
+//        gameState.increaseTotalHoney(by: 100)
+//            
+//        print("bee touched")
+//        
+//
+//        HapticFeedbackManager.shared?.playRichHapticEnsemble()
+//        
+//      
+//        GenericHapticFeedback.heavyImpact()
+//        
+//        animateRemoval()
+//    }
+//    
+//    
+//    
+//
+//    
+//}

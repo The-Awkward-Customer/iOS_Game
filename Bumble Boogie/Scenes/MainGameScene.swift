@@ -78,7 +78,7 @@ class MainGameScene: SKScene {
         // Nodes initial position
         let xPos = CGFloat.random(in:0...size.width)
         let yPos = CGFloat.random(in:0...size.height)
-        let basicBee = BasicBeeSprite(gameState: sharedGameState)
+        let basicBee = BasicBeeSprite(gameState: sharedGameState, parentScene: self)
         basicBee.position = CGPoint(x: xPos, y: yPos)
         addChild(basicBee)
         
