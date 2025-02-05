@@ -42,38 +42,42 @@ struct ContentView: View {
         
                 Spacer()
                 
-                CustomGameButton(title: "Add Currency", action: {
-                    gameState.increaseTotalHoney(by: 10)
-                })
-                
-                CustomGameButton(title: "Remove Currency", action: {
-                    gameState.decreaseTotalHoney(by: 20)
-                })
                 
                 
-                VStack {
-                    Button("+ SpawnRate"){
-                        gameTimeManager.increaseBasicBeeSpawnRate()
+                VStack (spacing : 16){
+                    HStack{
+                        
+                        
+                        CustomGameButton(title: "Add Currency", action: {
+                            gameState.increaseTotalHoney(by: 10)
+                        })
+                        
+                        CustomGameButton(title: "Remove Currency", action: {
+                            gameState.decreaseTotalHoney(by: 20)
+                        })
                     }
-                    Button("Pause") {
-                        gameTimeManager.pauseGame()
+                    
+                    HStack{
+                        CustomGameButton(title: "Faster Spawn", action: gameTimeManager.increaseBasicBeeSpawnRate)
+                        
+                        CustomGameButton(title: "Slower Spawn", action: gameTimeManager.decreaseBasicBeeSpawnRate)
                     }
-                    Button("Resume") {
-                        gameTimeManager.resumeGame()
+                    
+                    HStack{
+                        CustomGameButton(title: "Pause Game", action: gameTimeManager.pauseGame)
+                        
+                        CustomGameButton(title: "Resume Game", action: gameTimeManager.resumeGame)
                     }
-                    Button("- SpawnRate"){
-                        gameTimeManager.decreaseBasicBeeSpawnRate()
-                    }
-                    Button("stop"){
-                        gameTimeManager.stopMasterTimer()
-                    }
-                    Button("start"){
-                        gameTimeManager.startMasterTimer()
+                    
+                    HStack{
+                        CustomGameButton(title: "Macro Stop", action: gameTimeManager.stopMasterTimer)
+                        
+                        CustomGameButton(title: "Master Start", action: gameTimeManager.startMasterTimer)
                     }
                     
                     
                 }
-                .padding(.horizontal, 24.0)
+                .padding(.horizontal, 24)
 
                 
             }

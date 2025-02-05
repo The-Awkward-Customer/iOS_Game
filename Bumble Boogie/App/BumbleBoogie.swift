@@ -15,7 +15,8 @@ struct Conditional_RenderingApp: App {
         WindowGroup {
             ContentView()
                 .preferredColorScheme(.light)
-            
+                // TODO Merge this state
+                // why are these distinct?
                 // Provide it to the entire SwiftUI environment
                 .environmentObject(gameState)
                 .environmentObject(gameTimeManager)

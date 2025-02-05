@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B80A47532D538AC4009648B2 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B80A47522D538AC4009648B2 /* Colors.xcassets */; };
+		B80A47552D538B33009648B2 /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80A47542D538B33009648B2 /* ColorSet.swift */; };
 		B87836D02D36961A00876137 /* BasicBee.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87836CF2D36961A00876137 /* BasicBee.swift */; };
 		B8A6B3F02D3A851B000FEAED /* GameStateExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6B3EF2D3A851B000FEAED /* GameStateExtenstions.swift */; };
 		B8A6B3F22D3AB226000FEAED /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6B3F12D3AB226000FEAED /* HapticFeedback.swift */; };
@@ -52,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B80A47522D538AC4009648B2 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		B80A47542D538B33009648B2 /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		B87836CF2D36961A00876137 /* BasicBee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicBee.swift; sourceTree = "<group>"; };
 		B87D307E2D109A6900186B18 /* BumbleBoogie-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BumbleBoogie-Info.plist"; sourceTree = "<group>"; };
 		B8A6B3EF2D3A851B000FEAED /* GameStateExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateExtenstions.swift; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 			children = (
 				B8ACB46A2D2C36EB00FFE4AE /* Assets.xcassets */,
 				B8ACB4352D284A0700FFE4AE /* Bloxic.otf */,
+				B80A47522D538AC4009648B2 /* Colors.xcassets */,
+				B80A47542D538B33009648B2 /* ColorSet.swift */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -410,6 +416,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B80A47532D538AC4009648B2 /* Colors.xcassets in Resources */,
 				B8ACB46B2D2C36EB00FFE4AE /* Assets.xcassets in Resources */,
 				B8ACB4362D284A0700FFE4AE /* Bloxic.otf in Resources */,
 			);
@@ -458,6 +465,7 @@
 				B8ACB4322D28487A00FFE4AE /* ContentView.swift in Sources */,
 				B8ACB41E2D2844FE00FFE4AE /* MainGameScene.swift in Sources */,
 				B8ACB41F2D2844FE00FFE4AE /* GameState.swift in Sources */,
+				B80A47552D538B33009648B2 /* ColorSet.swift in Sources */,
 				B8ACB4212D2844FE00FFE4AE /* BumbleBoogie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
