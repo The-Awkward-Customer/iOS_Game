@@ -15,10 +15,13 @@ struct ContentView: View {
     @EnvironmentObject var gameState: GameState
     @EnvironmentObject var gameTimeManager: GameTimeManager
     
+    @State private var isControlPanelPresented = false
+    
+    
     // Computed property that creates and configures the scene using the environment objects.
     var scene: MainGameScene {
         let scene = MainGameScene(size: CGSize(width: 800, height: 600), gameState: gameState)
-        scene.scaleMode = .aspectFill
+        scene.scaleMode = .resizeFill
         scene.gameTimeManager = gameTimeManager
         return scene
     }
@@ -26,71 +29,32 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             SpriteView(scene: scene)
+                .edgesIgnoringSafeArea(.all)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.clear)
                 .onAppear {
-                               // Inject the manager so the scene can set up the callback
+                    // Inject the manager so the scene can set up the callback
                     scene.gameTimeManager = gameTimeManager
-                           }
+                }
             VStack {
                 Text("Currency: \(gameState.TotalHoney)")
                     .font(.custom("Bloxic", size: 28))
-                Text("spawnRate: \(gameTimeManager.basicBeeSpawnInterval)")
-                    .frame(width:375)
-                    .padding(24)
-                    .font(.custom("Bloxic", size: 16))
-        
+                
                 Spacer()
                 
-                
-                
-                VStack (spacing : 16){
-                    HStack{
-                        
-                        
-                        CustomGameButton(title: "Add Currency", action: {
-                            gameState.increaseTotalHoney(by: 10)
-                        })
-                        
-                        CustomGameButton(title: "Remove Currency", action: {
-                            gameState.decreaseTotalHoney(by: 20)
-                        })
-                    }
-                    
-                    HStack{
-                        CustomGameButton(title: "Faster Spawn", action: gameTimeManager.increaseBasicBeeSpawnRate)
-                        
-                        CustomGameButton(title: "Slower Spawn", action: gameTimeManager.decreaseBasicBeeSpawnRate)
-                    }
-                    
-                    HStack{
-                        CustomGameButton(title: "Pause Game", action: gameTimeManager.pauseGame)
-                        
-                        CustomGameButton(title: "Resume Game", action: gameTimeManager.resumeGame)
-                    }
-                    
-                    HStack{
-                        CustomGameButton(title: "Macro Stop", action: gameTimeManager.stopMasterTimer)
-                        
-                        CustomGameButton(title: "Master Start", action: gameTimeManager.startMasterTimer)
-                    }
-                    
-                    
-                }
-                .padding(.horizontal, 24)
-
-                
+                CustomGameButton(title: "Game Controls", action: { gameTimeManager.pauseGame()
+                    isControlPanelPresented = true
+                })
+                .padding(.bottom, 24)
+                .padding(.horizontal, 32)
             }
-            
         }
-
-//        .environmentObject(gameState)
-        .onAppear {
-                    // Assign the environment’s manager to the scene, so the scene can reference it before actions can occur…
-        
-                }
+        .sheet(isPresented: $isControlPanelPresented, onDismiss: {
+            gameTimeManager.resumeGame()
+        }) {
+            GameControlPanel()
+        }
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {

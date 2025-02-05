@@ -13,7 +13,7 @@ extension GameTimeManager {
     // Basic bees spawn more frequently by DECREASING the interval
     func increaseBasicBeeSpawnRate() {
         // decrease the interval but clamped to a safe minimum
-        basicBeeSpawnInterval = max(0.2, basicBeeSpawnInterval - 0.2)
+        basicBeeSpawnInterval = max(0.2, basicBeeSpawnInterval - 0.5)
         
         // Optionally reset the accumulator so the change takes immediate effect.
         /// (If you want the partial accumulated time to remain, omit this line.)
