@@ -11,7 +11,7 @@ class GameState: ObservableObject {
         }
     }
     
-    @Published var UpgradeCost: Int = 20
+    @Published var UpgradeCost: Int = 1000
     
     // MARK: - Timer Properties
     @Published var conductorTimerInterval: TimeInterval = 1.0

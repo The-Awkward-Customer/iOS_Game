@@ -15,6 +15,7 @@ struct ContentView: View {
     @EnvironmentObject var gameState: GameState
     
     @State private var isControlPanelPresented = false
+    @State private var isShopViewPresented = false
     
     
     // Computed property that creates and configures the scene using the environment objects.
@@ -35,7 +36,7 @@ struct ContentView: View {
                     // Inject the manager so the scene can set up the callback
                     scene.gameState = gameState
                 }
-            VStack {
+            VStack (spacing: 16){
                 Text("Currency: \(gameState.TotalHoney)")
                     .font(.custom("Bloxic", size: 28))
                 
@@ -51,13 +52,25 @@ struct ContentView: View {
                         
                     })
                 }
-                .padding(.horizontal, 32)
+                
+                CustomGameButton(title: "Shop", action: {
+                    gameState.pauseGame()
+                    isShopViewPresented = true
+                })
             }
+            .padding(.horizontal, 32)
         }
+        ///Opens control dev control panel
         .sheet(isPresented: $isControlPanelPresented, onDismiss: {
             gameState.resumeGame()
         }) {
             GameControlPanel()
+        }
+        ///Opens control dev control panel
+        .sheet(isPresented: $isShopViewPresented, onDismiss: {
+            gameState.resumeGame()
+        }) {
+            ShopView()
         }
     }
 }
