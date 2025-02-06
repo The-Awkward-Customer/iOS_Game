@@ -30,7 +30,18 @@ struct ShopView: View {
                 ScrollView{
                     VStack (spacing : 24){
                         
-                        UpgradeTile(title: "upgrade 1", description: "Does what?", cost: 1000, currentValue: "2000", canAfford: true, action: {print("purchased 1")})
+                        UpgradeTile(
+                            title: "Pruchase Hive",
+                            description: "Increases the number of bees that spawn by 1",
+                            cost: gameState.nextHiveCost,
+                            currentValue: "Current Hives: \(gameState.hiveCount)",
+                            canAfford: gameState.TotalHoney >= gameState.nextHiveCost,
+                            action: {
+                                let success = self.gameState.purchaseHive()
+                                if success {
+                                    print("Purchased hive")
+                                }
+                            })
                         
                         UpgradeTile(title: "upgrade 2", description: "Does what?", cost: 1000, currentValue: "2000", canAfford: true, action: {print("purchased 2")})
                         
