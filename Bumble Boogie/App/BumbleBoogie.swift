@@ -7,19 +7,15 @@ import SwiftUI
 @main
 struct Conditional_RenderingApp: App {
     
-    // Create one manager for the entire app
-    @StateObject private var gameTimeManager = GameTimeManager()
+
     @StateObject private var gameState = GameState()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .preferredColorScheme(.light)
-                // TODO Merge this state
-                // why are these distinct?
-                // Provide it to the entire SwiftUI environment
                 .environmentObject(gameState)
-                .environmentObject(gameTimeManager)
+
         }
     }
 }

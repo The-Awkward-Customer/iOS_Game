@@ -2,13 +2,14 @@ import SwiftUI
 
 struct GameControlPanel: View {
     @EnvironmentObject var gameState: GameState
-    @EnvironmentObject var gameTimeManager: GameTimeManager
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationView {
             VStack(spacing: 16) {
-                Text("spawnRate: \(gameTimeManager.basicBeeSpawnInterval)")
+                Text("Currency: \(gameState.TotalHoney)")
+                    .font(.custom("Bloxic", size: 28))
+                Text("spawnRate: \(gameState.basicBeeSpawnInterval)")
                     .frame(width:375)
                     .padding(24)
                     .font(.custom("Bloxic", size: 16))
@@ -24,15 +25,15 @@ struct GameControlPanel: View {
                 }
                 
                 HStack {
-                    CustomGameButton(title: "Faster Spawn", action: gameTimeManager.increaseBasicBeeSpawnRate)
+                    CustomGameButton(title: "Faster Spawn", action: gameState.increaseBasicBeeSpawnRate)
                     
-                    CustomGameButton(title: "Slower Spawn", action: gameTimeManager.decreaseBasicBeeSpawnRate)
+                    CustomGameButton(title: "Slower Spawn", action: gameState.decreaseBasicBeeSpawnRate)
                 }
                 
                 HStack {
-                    CustomGameButton(title: "Macro Stop", action: gameTimeManager.stopMasterTimer)
+                    CustomGameButton(title: "Macro Stop", action: gameState.stopMasterTimer)
                     
-                    CustomGameButton(title: "Master Start", action: gameTimeManager.startMasterTimer)
+                    CustomGameButton(title: "Master Start", action: gameState.startMasterTimer)
                 }
             }
             .padding(.horizontal, 24)
@@ -41,7 +42,7 @@ struct GameControlPanel: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Close") {
-                        gameTimeManager.resumeGame()
+                        gameState.resumeGame()
                         dismiss()
                     }
                 }
@@ -53,5 +54,4 @@ struct GameControlPanel: View {
 #Preview {
     GameControlPanel()
         .environmentObject(GameState())
-        .environmentObject(GameTimeManager())
 }

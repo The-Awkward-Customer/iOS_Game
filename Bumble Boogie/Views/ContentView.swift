@@ -13,7 +13,6 @@ import SpriteKit
 struct ContentView: View {
     
     @EnvironmentObject var gameState: GameState
-    @EnvironmentObject var gameTimeManager: GameTimeManager
     
     @State private var isControlPanelPresented = false
     
@@ -22,7 +21,7 @@ struct ContentView: View {
     var scene: MainGameScene {
         let scene = MainGameScene(size: CGSize(width: 800, height: 600), gameState: gameState)
         scene.scaleMode = .resizeFill
-        scene.gameTimeManager = gameTimeManager
+        scene.gameState = gameState
         return scene
     }
     
@@ -34,7 +33,7 @@ struct ContentView: View {
                 .background(Color.clear)
                 .onAppear {
                     // Inject the manager so the scene can set up the callback
-                    scene.gameTimeManager = gameTimeManager
+                    scene.gameState = gameState
                 }
             VStack {
                 Text("Currency: \(gameState.TotalHoney)")
@@ -42,7 +41,7 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                CustomGameButton(title: "Game Controls", action: { gameTimeManager.pauseGame()
+                CustomGameButton(title: "Game Controls", action: { gameState.pauseGame()
                     isControlPanelPresented = true
                 })
                 .padding(.bottom, 24)
@@ -50,7 +49,7 @@ struct ContentView: View {
             }
         }
         .sheet(isPresented: $isControlPanelPresented, onDismiss: {
-            gameTimeManager.resumeGame()
+            gameState.resumeGame()
         }) {
             GameControlPanel()
         }
@@ -61,6 +60,5 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(GameState())
-            .environmentObject(GameTimeManager())
     }
 }
