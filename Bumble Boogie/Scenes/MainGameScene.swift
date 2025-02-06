@@ -12,6 +12,9 @@ import SpriteKit
 
 class MainGameScene: SKScene {
     
+    
+    
+    
     // TODO maybe the deglate can be removed.
     // handles connection to the GameDelegate.
     weak var gameDelegate: GameDelegate?
@@ -68,23 +71,63 @@ class MainGameScene: SKScene {
 //        gameState?.speedFactor = 0.0
     }
     
-    // TODO
+    
+
     // MARK: - BASIC BEE
-    private func basicBeeSpawnEvent() {
-        /// Called every time the onBasicBeeAccumulator triggers  onBasicBeeSpawnIntervalTick "ticks".
+    
+    
+    private struct SpawnConfiguration {
         
-        // Nodes initial position
-        let xPos = CGFloat.random(in:0...size.width)
-        let yPos = CGFloat.random(in:0...size.height)
+        static let horizontalMarginPercentage: CGFloat = 0.1
+        static let verticalMarginPercentage: CGFloat = 0.1
+        
+        static func calculateHorizontalMargin(for width: CGFloat) -> CGFloat {
+            return width * horizontalMarginPercentage
+        }
+        
+        static func calculateVerticalMargin(for height: CGFloat) -> CGFloat {
+            return height * verticalMarginPercentage
+        }
+        
+        // Calculates vertical offset
+        static func calculateVerticalOffset(for height: CGFloat) -> CGFloat {
+            let verticalMargin = calculateVerticalMargin(for: height)
+            return height - (height + verticalMarginPercentage)
+        }
+    
+    }
+
+    
+    private func getSpawnPositionWithMargins() -> CGPoint {
+        
+        // Create margins of 10% of screen size width
+        let horizontalMargin = SpawnConfiguration.calculateHorizontalMargin(for: size.width)
+        let safeXRange = horizontalMargin...(size.width - horizontalMargin)
+        
+        let verticalOffset = SpawnConfiguration.calculateVerticalOffset(for: size.height)
+        
+        return CGPoint(
+            x: CGFloat.random(in: safeXRange),
+            y: verticalOffset
+        )
+    }
+    
+    
+    /// Called every time the onBasicBeeAccumulator triggers  onBasicBeeSpawnIntervalTick "ticks".
+    private func basicBeeSpawnEvent() {
+
+        let spawnPosition = getSpawnPositionWithMargins()
         let basicBee = BasicBeeSprite(gameState: sharedGameState, parentScene: self)
-        basicBee.position = CGPoint(x: xPos, y: yPos)
+        basicBee.position = spawnPosition
         addChild(basicBee)
         
         print("Basic Bee Spawned")
     }
     
+    
+    
+    
     // TODO
-    // MARK: - BASIC BEE
     private func conductorTickEvent() {
         /// Called ever time the onBasicBeeAccumulator ticks.
         

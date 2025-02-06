@@ -41,10 +41,16 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                CustomGameButton(title: "Game Controls", action: { gameState.pauseGame()
-                    isControlPanelPresented = true
-                })
-                .padding(.bottom, 24)
+                HStack {
+                    CustomGameButton(title: "Game Controls", action: { gameState.pauseGame()
+                        isControlPanelPresented = true
+                    })
+                    
+                    CustomGameButton(title: "Start Master", action: {
+                        gameState.startMasterTimer()
+                        
+                    })
+                }
                 .padding(.horizontal, 32)
             }
         }
