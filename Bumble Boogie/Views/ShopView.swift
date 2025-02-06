@@ -29,16 +29,15 @@ struct ShopView: View {
                 
                 ScrollView{
                     VStack (spacing : 24){
-                        ShopItemView(
-                            title: "purchase Bee Spawn",
-                            description: "Decrease spawn interval by 0.2 seconds",
-                            cost: gameState.UpgradeCost,
-                            currentValue: "Current: \(String(format: "%.1f", gameState.basicBeeSpawnInterval))s",
-                            canAfford: gameState.TotalHoney >= gameState.UpgradeCost,
-                            action: {
-                                
-                            }
-                        )
+                        
+                        UpgradeTile(title: "upgrade 1", description: "Does what?", cost: 1000, currentValue: "2000", canAfford: true, action: {print("purchased 1")})
+                        
+                        UpgradeTile(title: "upgrade 2", description: "Does what?", cost: 1000, currentValue: "2000", canAfford: true, action: {print("purchased 2")})
+                        
+                        UpgradeTile(title: "upgrade 3", description: "Does what?", cost: 1000, currentValue: "2000", canAfford: true, action: {print("purchased 1")})
+                        
+                        UpgradeTile(title: "upgrade 4", description: "Does what?", cost: 1000, currentValue: "2000", canAfford: true, action: {print("purchased 4")})
+                        
                     }
                 }
                 
@@ -56,48 +55,6 @@ struct ShopView: View {
                 }
                 
             }
-        }
-    }
-    
-    
-    
-    
-    // Reusable shop item component
-    struct ShopItemView: View {
-        @EnvironmentObject var gameState: GameState
-        
-        let title: String
-        let description: String
-        let cost: Int
-        let currentValue: String
-        let canAfford: Bool
-        let action: () -> Void
-        
-        var body: some View {
-            
-            VStack(alignment: .leading, spacing: 10) {
-                Text(title)
-                
-                
-                Text(description)
-                    .foregroundColor(.gray)
-                
-                Text(currentValue)
-                
-                HStack {
-                    HStack {
-                        Image(systemName: "honeycomb")
-                            .foregroundColor(.yellow)
-                        Text("\(cost)")
-                    }
-                    
-                    Spacer()
-                    CustomGameButton(title: "Purchase for \(gameState.UpgradeCost)", action: action, isEnabled: canAfford ? true : false)
-                }
-            }
-            .padding()
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(12)
         }
     }
 }
