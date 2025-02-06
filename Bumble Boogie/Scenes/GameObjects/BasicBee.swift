@@ -26,6 +26,7 @@ class BasicBeeSprite : SKSpriteNode{
     
     private let oscilationAmplitude: CGFloat
     private let oscilationDuration: TimeInterval
+    private let verticalSpeed: CGFloat
     private var trailEmitter: SKEmitterNode?
     private var debugMode: Bool = false
     
@@ -39,6 +40,8 @@ class BasicBeeSprite : SKSpriteNode{
         self.debugMode = debugMode
         self.oscilationAmplitude = CGFloat.random(in: 20...50)
         self.oscilationDuration = TimeInterval.random(in: 1.0...2.5)
+        
+        self.verticalSpeed = BasicBeeSprite.calculateIntialSpeed(gameState: gameState)
         
         // Set default init texture
         let texture = SKTexture(imageNamed: "basicBee.00000")
@@ -65,6 +68,25 @@ class BasicBeeSprite : SKSpriteNode{
         
         
     }
+    
+    private static func calculateIntialSpeed(gameState: GameState) -> CGFloat {
+        
+        // Base speed range
+        let minBaseSpeed: CGFloat = 100
+        let maxBaseSpeed: CGFloat = 250
+        
+        // optional modifier for later
+        //let speedMultiplier = min(1.0 + (Double(gameState.hiveCount) * 0.1), 2.0) // caps at 2x speed
+        //        
+        //let adjustedMinSpeed = minBaseSpeed * CGFloat(speedMultiplier)
+        //let adjustedMaxSpeed = maxBaseSpeed * CGFloat(speedMultiplier)
+        
+        return CGFloat.random(in: minBaseSpeed...maxBaseSpeed)
+        
+        
+        
+    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -95,7 +117,7 @@ class BasicBeeSprite : SKSpriteNode{
         physics.contactTestBitMask = PhysicsCategory.obstacle | PhysicsCategory.powerup
         
         
-        physics.velocity = CGVector(dx: 0, dy: 150)
+        physics.velocity = CGVector(dx: 0, dy: verticalSpeed)
         
         setupOscilation()
         setupBoundryCheck()
@@ -170,6 +192,13 @@ class BasicBeeSprite : SKSpriteNode{
                 addChild(emitter)
         
     }
+    
+    // Optional: Add method to adjust particle effect based on speed
+//        private func updateParticleEffects() {
+//            let speedRatio = (verticalSpeed - 100) / 100 // Normalized to 0-1 range
+//            trailEmitter?.particleBirthRate = 20 + (20 * speedRatio)
+//            trailEmitter?.particleSpeed = 10 + (5 * speedRatio)
+//        }
     
     
     func animateRemoval() {
