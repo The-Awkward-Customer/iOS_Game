@@ -115,13 +115,17 @@ class MainGameScene: SKScene {
     
     /// Called every time the onBasicBeeAccumulator triggers  onBasicBeeSpawnIntervalTick "ticks".
     private func basicBeeSpawnEvent() {
-
-        let spawnPosition = getSpawnPositionWithMargins()
-        let basicBee = BasicBeeSprite(gameState: sharedGameState, parentScene: self)
-        basicBee.position = spawnPosition
-        addChild(basicBee)
         
-        print("Basic Bee Spawned")
+        let beesToSpawn = max(1, sharedGameState.hiveCount)
+
+        
+        for _ in 0..<beesToSpawn {
+            let spawnPosition = getSpawnPositionWithMargins()
+            let basicBee = BasicBeeSprite(gameState: sharedGameState, parentScene: self)
+            basicBee.position = spawnPosition
+            addChild(basicBee)
+        }
+        print("spawned \(beesToSpawn) bees")
     }
     
     

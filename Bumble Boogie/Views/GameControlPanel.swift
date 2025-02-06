@@ -6,13 +6,18 @@ struct GameControlPanel: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 16) {
+                
+                Spacer()
+                
                 Text("Currency: \(gameState.TotalHoney)")
-                    .font(.custom("Bloxic", size: 28))
+                    .font(.subheadline)
                 Text("spawnRate: \(gameState.basicBeeSpawnInterval)")
-                    .frame(width:375)
-                    .padding(24)
-                    .font(.custom("Bloxic", size: 16))
+                    .font(.subheadline)
+                Text("Hives: \(gameState.hiveCount)")
+                    .font(.subheadline)
+                
+                
                 Spacer()
                 HStack {
                     CustomGameButton(title: "Add Currency", action: {

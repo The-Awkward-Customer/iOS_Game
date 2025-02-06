@@ -23,6 +23,20 @@ class GameState: ObservableObject {
     }
     
     
+    @Published var hiveCount: Int = 1 {
+        didSet {
+            print("did set hiveCount: \(hiveCount)")
+            UserDefaultsMemoryManager.shared.set(hiveCount, forKey: .hiveCount)
+        }
+    }
+    
+    @Published var nextHiveCost: Int = 500 {
+        didSet {
+            UserDefaultsMemoryManager.shared.set(nextHiveCost, forKey: .nextHiveCost)
+        }
+    }
+    
+    
     private(set) var masterTimer: DispatchSourceTimer?
     private(set) var isPaused: Bool = false
     var speedFactor: Double = 1.0
@@ -101,6 +115,23 @@ extension GameState {
         print("Resuming game...")
     }
 }
+// MARK: - Hive Management
+extension GameState {
+    func purchaseHive() -> Bool {
+        if TotalHoney >= nextHiveCost {
+            decreaseTotalHoney(by: nextHiveCost)
+            print("Hive purchased!")
+            hiveCount += 1
+            print("hiveCount is: \(hiveCount)")
+            // increase nextHiveost
+            nextHiveCost = Int(Double(nextHiveCost) * 1.5)
+            return true
+        }
+        return false
+    }
+}
+
+
 
 // MARK: - Spawn Rate Management Extension
 extension GameState {
