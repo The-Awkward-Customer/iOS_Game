@@ -29,14 +29,14 @@ struct UpgradeTile: View {
     var body: some View {
         VStack(alignment: .leading, spacing: spacing) {
             Text(title)
-                .font(.custom("Bloxic", size: 20))
+                .font(.custom("JetBrainsMono-Bold", size: 20))
             
             Text(description)
-                .font(.custom("Bloxic", size: 16))
+                .font(.custom("JetBrainsMono-Bold", size: 16))
                 .foregroundColor(.gray)
             
             Text(currentValue)
-                .font(.custom("Bloxic", size: 16))
+                .font(.custom("JetBrainsMono-Bold", size: 16))
             
             HStack {
                 HStack {

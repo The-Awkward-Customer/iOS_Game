@@ -5,6 +5,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Bloxic.otf</string>
+		<string>JetBrainsMono-Bold.ttf</string>
 	</array>
 </dict>
 </plist>
