@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 import SpriteKit
 
+//TODO
+//Prepare for Data base Storage
 
 class MainGameScene: SKScene {
     
@@ -51,7 +53,8 @@ class MainGameScene: SKScene {
            GameFeedbackManager.shared.register(component: visualFeedback)
            GameFeedbackManager.shared.register(component: hapticFeedback)
         
-        
+        //TODO
+        ///Is this relevant?
         // Scene Styling
         // Make the scene’s background transparent
         backgroundColor = .white

@@ -7,6 +7,9 @@
 import SwiftUI
 import SpriteKit
 
+//TODO
+///Replace image with a sprite
+
 struct CustomGameButton: View {
     var title: String
     var spriteNode: SKNode?
