@@ -16,7 +16,7 @@ class HapticFeedbackManager {
     }
     
     /// Play a custom rich haptic ensemble by composing multiple events.
-    func playRichHapticEnsemble() {
+    func testCustomFeedback() {
         // Build an array of haptic events (with different intensities, durations, etc.)
         let event1 = CHHapticEvent(
             eventType: .hapticTransient,

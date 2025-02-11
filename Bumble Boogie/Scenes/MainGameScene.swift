@@ -12,15 +12,6 @@ import SpriteKit
 
 class MainGameScene: SKScene {
     
-    
-    
-    
-    // TODO maybe the deglate can be removed.
-    // handles connection to the GameDelegate.
-    weak var gameDelegate: GameDelegate?
-    
-    
-    
     // MARK: - Shared GameState
     let sharedGameState: GameState
     
@@ -51,6 +42,14 @@ class MainGameScene: SKScene {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         print("Setting up spawn callback")
+        
+        
+        let visualFeedback = VisualFeedbackComponent(scene: self)
+        let hapticFeedback = HapticFeedbackComponent()
+        
+        // Register with manager
+           GameFeedbackManager.shared.register(component: visualFeedback)
+           GameFeedbackManager.shared.register(component: hapticFeedback)
         
         
         // Scene Styling
@@ -92,7 +91,7 @@ class MainGameScene: SKScene {
         // Calculates vertical offset
         static func calculateVerticalOffset(for height: CGFloat) -> CGFloat {
             let verticalMargin = calculateVerticalMargin(for: height)
-            return height - (height + verticalMarginPercentage)
+            return height - (height + verticalMargin)
         }
     
     }
