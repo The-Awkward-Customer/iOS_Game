@@ -1,109 +1,234 @@
-//
-//  UpgradeTile.swift
-//  BumbleBoogie
-//
-//  Created by Peter Abbott on 06/02/2025.
-//
-
 import SwiftUI
 
-
-
-
-struct UpgradeTile: View {
-    @EnvironmentObject var gameState: GameState
+// MARK: - Enums styles and configs
+enum UpgradeTileStyle {
+    case wide
+    case slim
     
-    let title: String
+    var dimensions: (width: CGFloat , height: CGFloat){
+        switch self {
+        case .wide:
+            return (width: 366, height : 306)
+        case .slim:
+            return (width: 177, height: 306)
+        }
+    }
+}
+
+struct UpgradeTileConfiguration {
+    struct Colors {
+        let background: Color
+        let border: Color
+        let description: Color
+        
+        
+        static let enabled = Colors(
+            background: .white,
+            border: .black,
+            description: .black
+        )
+        
+        static let disabled = Colors(
+            background: .white,
+            border: .gray,
+            description: .gray
+        )
+    }
+    
+    struct layout {
+        let cornerRadius: CGFloat = 24
+        let spacing: CGFloat = 10
+        let borderWidth: CGFloat = 2
+        let contentPadding: CGFloat = 14
+    }
+    
+}
+    
+    
+//MARK: - Content model
+//TODO Change or expand current value to number of previously purchased
+struct UpgradeTileContent{
+    let image: String
     let description: String
     let cost: Int
     let currentValue: String
-    let canAfford: Bool
-    let action: () -> Void
+    
+}
+
+
+//MARK: - Main view
+//TODO
+struct UpgradeTile: View {
+    // MARK: - Environment
+    @EnvironmentObject var gameState: GameState
+    
+    @State private var isEnabled: Bool = true
+    
+    // MARK: - Properties
+    private let content : UpgradeTileContent
+    private let style: UpgradeTileStyle
+    private let canAfford: Bool
+    private let action: () -> Void
+    
+    private let layout = UpgradeTileConfiguration.layout()
     
     
-    private let cornerRadius: CGFloat = 12
-    private let spacing: CGFloat = 10
-    private let padding: CGFloat = 16
+    init(
+        content: UpgradeTileContent,
+        style: UpgradeTileStyle = .wide,
+        canAfford: Bool,
+        action: @escaping () -> Void
+    ) {
+        self.content = content
+        self.style = style
+        self.canAfford = canAfford
+        self.action = action
+    }
+    
+    private var colors: UpgradeTileConfiguration.Colors {
+        canAfford ? .enabled : .disabled
+    }
+    
+    // Style configuration structure
+    struct tileStyleConfiguration {
+        let backgroundColor: Color
+        let borderColor: Color
+        let borderWidth: CGFloat
+        let titleTextColor: Color
+        let descriptionTextColor: Color
+    }
     
     
+    
+    // MARK: - body
     var body: some View {
-        VStack(alignment: .leading, spacing: spacing) {
-            Text(title)
-                .font(.custom("JetBrainsMono-Bold", size: 20))
-            
-            Text(description)
-                .font(.custom("JetBrainsMono-Bold", size: 16))
-                .foregroundColor(.gray)
-            
-            Text(currentValue)
-                .font(.custom("JetBrainsMono-Bold", size: 16))
-            
-            HStack {
-                HStack {
-                    costview
-                }
-                
-                Spacer()
-                
-                purchaseButton
+        VStack(alignment: .leading, spacing: layout.spacing) {
+            if style == .wide {
+                wideLayoutContent
+            } else {
+                slimLayoutContent
             }
         }
-        .padding()
-        .background(Color.gray.opacity(0.1))
-        .cornerRadius(12)
-    }
-    
-    
-    
-    //MARK: - Subviews
-    private var costview: some View {
-        HStack(spacing: 8) {
-            Image("honeyIcon")
-                .resizable()
-                .frame(width: 24, height: 24)
-            
-            Text("\(cost)")
-                .font(.custom("Bloxic", size: 18))
-                .foregroundStyle(ColorSet.semantic.foregroundAccentPrimary)
-        }
-    }
-    
-    private var purchaseButton: some View {
-        CustomGameButton(
-            title: "Purchase",
-            action: action,
-            isEnabled: canAfford
+        .frame(
+            width: style.dimensions.width,
+            height: style.dimensions.height
+        )
+        .background(colors.background)
+        .cornerRadius(layout.cornerRadius)
+        .shadow(color: .black, radius: 0, x: 0, y:4)
+        .overlay(
+            RoundedRectangle(cornerRadius: layout.cornerRadius)
+                .strokeBorder(colors.border, lineWidth: layout.borderWidth)
         )
     }
 }
 
+
+//MARK: - layout views
+extension UpgradeTile {
+    //wide layout
+    private var wideLayoutContent: some View {
+        VStack {
+            ZStack {
+                upgradeImage
+     
+                upgradeInfo
+            }
+            .overlay(RoundedRectangle(cornerRadius: layout.cornerRadius)
+                .strokeBorder(colors.border, lineWidth: layout.borderWidth)
+            )
+            purchaseButton
+                .padding(layout.contentPadding)
+        }
+    }
+    
+    private var slimLayoutContent: some View{
+        VStack (spacing: layout.spacing) {
+            ZStack{
+                upgradeImage
+
+                upgradeInfo
+            }.overlay(RoundedRectangle(cornerRadius: layout.cornerRadius)
+                .strokeBorder(colors.border, lineWidth: layout.borderWidth)
+            )
+            
+            purchaseButton
+                .padding(layout.contentPadding)
+        }
+    }
+}
+        
+
+//MARK: - Subviews
+extension UpgradeTile {
+    private var upgradeImage: some View {
+        Image(content.image)
+            .resizable()
+            .scaledToFit()
+            .frame(maxWidth: .infinity)
+            .frame(height: 216)
+    }
+    
+    private var upgradeInfo: some View {
+        VStack (alignment: .center){
+            Spacer()
+            Image("icon-question-filled")
+                .resizable()
+                .frame(width: 16, height: 16)
+            
+            Text(content.description)
+                .font(.custom("JetBrainsMono-Bold", size: 16))
+                .foregroundColor(colors.description)
+                .multilineTextAlignment(.center)
+                .padding(.bottom, layout.contentPadding)
+                .padding(.horizontal, style == .wide ? 64 : 16)
+        }
+        
+    }
+    
+    private var purchaseButton: some View {
+        CustomGameButton(
+            title: "\(content.cost)",
+            suffixImage: "honeyIcon",
+            action: action,
+            isEnabled: canAfford
+            )
+    }
+    
+}
 
 
 // MARK: - Preview Provider
 struct UpgradeTile_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            // Affordable Preview
+            // Wide Layout
             UpgradeTile(
-                title: "Faster Bees",
-                description: "Increases bee spawn rate",
-                cost: 100,
-                currentValue: "Current: 1.0s",
+                content: UpgradeTileContent(
+                    image: "placeholderIMGH",
+                    description: "Increases number of bees that spawn",
+                    cost: 500,
+                    currentValue: "Current Hives: 1"
+                ),
+                style: .wide,
                 canAfford: true,
                 action: { print("Purchase action") }
             )
-            .previewDisplayName("Can Afford")
+            .previewDisplayName("Wide Layout")
             
-            // Cannot Afford Preview
+            // Slim Layout
             UpgradeTile(
-                title: "Faster Bees",
-                description: "Increases bee spawn rate",
-                cost: 1000,
-                currentValue: "Current: 1.0s",
-                canAfford: false,
+                content: UpgradeTileContent(
+                    image: "placeholderIMGV",
+                    description: "Makes bees move faster",
+                    cost: 1000,
+                    currentValue: "Current Speed: 1.0x"
+                ),
+                style: .slim,
+                canAfford: true,
                 action: { print("Purchase action") }
             )
-            .previewDisplayName("Cannot Afford")
+            .previewDisplayName("Slim Layout")
         }
         .padding()
         .environmentObject(GameState())

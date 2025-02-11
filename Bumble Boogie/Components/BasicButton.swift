@@ -127,6 +127,7 @@ struct CustomGameButton: View {
         )
         .buttonStyle(CustomButtonStyle())
         .disabled(!isEnabled)
+        .padding(.bottom, 8)
     }
 }
 
