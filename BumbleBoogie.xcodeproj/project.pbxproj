@@ -11,15 +11,14 @@
 		B80A47552D538B33009648B2 /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80A47542D538B33009648B2 /* ColorSet.swift */; };
 		B8122A512D54E0DF00400968 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A502D54E0DF00400968 /* ShopView.swift */; };
 		B8122A532D54FA8A00400968 /* UpgradeTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A522D54FA8A00400968 /* UpgradeTile.swift */; };
+		B8122A5D2D5A9DA100400968 /* FeedbackSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A5C2D5A9DA100400968 /* FeedbackSystem.swift */; };
 		B830FC822D53C51A0069BA77 /* GameControlPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830FC812D53C51A0069BA77 /* GameControlPanel.swift */; };
 		B87836D02D36961A00876137 /* BasicBee.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87836CF2D36961A00876137 /* BasicBee.swift */; };
-		B8A6B3F02D3A851B000FEAED /* GameStateExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6B3EF2D3A851B000FEAED /* GameStateExtenstions.swift */; };
 		B8A6B3F22D3AB226000FEAED /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6B3F12D3AB226000FEAED /* HapticFeedback.swift */; };
 		B8A6B3FD2D3AB955000FEAED /* HapticFeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6B3FC2D3AB955000FEAED /* HapticFeedbackManager.swift */; };
 		B8ACB4012D2844FE00FFE4AE /* SpriteNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3CF2D2844FE00FFE4AE /* SpriteNodeView.swift */; };
 		B8ACB4032D2844FE00FFE4AE /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3FF2D2844FE00FFE4AE /* MusicManager.swift */; };
 		B8ACB4092D2844FE00FFE4AE /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3CE2D2844FE00FFE4AE /* BasicButton.swift */; };
-		B8ACB40A2D2844FE00FFE4AE /* GameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3D12D2844FE00FFE4AE /* GameDelegate.swift */; };
 		B8ACB41B2D2844FE00FFE4AE /* SpriteKitContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3FD2D2844FE00FFE4AE /* SpriteKitContainer.swift */; };
 		B8ACB41E2D2844FE00FFE4AE /* MainGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3FA2D2844FE00FFE4AE /* MainGameScene.swift */; };
 		B8ACB41F2D2844FE00FFE4AE /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3FE2D2844FE00FFE4AE /* GameState.swift */; };
@@ -27,8 +26,6 @@
 		B8ACB4322D28487A00FFE4AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB4312D28487A00FFE4AE /* ContentView.swift */; };
 		B8ACB4362D284A0700FFE4AE /* Bloxic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B8ACB4352D284A0700FFE4AE /* Bloxic.otf */; };
 		B8ACB4442D2870A700FFE4AE /* UserDefaultsMemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */; };
-		B8ACB45D2D296C7F00FFE4AE /* GameTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB45C2D296C7F00FFE4AE /* GameTimeManager.swift */; };
-		B8ACB4602D2B0E5A00FFE4AE /* SpawnRateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB45F2D2B0E5A00FFE4AE /* SpawnRateExtension.swift */; };
 		B8ACB46B2D2C36EB00FFE4AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8ACB46A2D2C36EB00FFE4AE /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -61,16 +58,15 @@
 		B80A47542D538B33009648B2 /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		B8122A502D54E0DF00400968 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		B8122A522D54FA8A00400968 /* UpgradeTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeTile.swift; sourceTree = "<group>"; };
+		B8122A5C2D5A9DA100400968 /* FeedbackSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSystem.swift; sourceTree = "<group>"; };
 		B830FC812D53C51A0069BA77 /* GameControlPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControlPanel.swift; sourceTree = "<group>"; };
 		B87836CF2D36961A00876137 /* BasicBee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicBee.swift; sourceTree = "<group>"; };
 		B87D307E2D109A6900186B18 /* BumbleBoogie-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BumbleBoogie-Info.plist"; sourceTree = "<group>"; };
-		B8A6B3EF2D3A851B000FEAED /* GameStateExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateExtenstions.swift; sourceTree = "<group>"; };
 		B8A6B3F12D3AB226000FEAED /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
 		B8A6B3FC2D3AB955000FEAED /* HapticFeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackManager.swift; sourceTree = "<group>"; };
 		B8ACB3C82D2844FE00FFE4AE /* BumbleBoogie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumbleBoogie.swift; sourceTree = "<group>"; };
 		B8ACB3CE2D2844FE00FFE4AE /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		B8ACB3CF2D2844FE00FFE4AE /* SpriteNodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteNodeView.swift; sourceTree = "<group>"; };
-		B8ACB3D12D2844FE00FFE4AE /* GameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDelegate.swift; sourceTree = "<group>"; };
 		B8ACB3FA2D2844FE00FFE4AE /* MainGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameScene.swift; sourceTree = "<group>"; };
 		B8ACB3FD2D2844FE00FFE4AE /* SpriteKitContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitContainer.swift; sourceTree = "<group>"; };
 		B8ACB3FE2D2844FE00FFE4AE /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
@@ -79,8 +75,6 @@
 		B8ACB4352D284A0700FFE4AE /* Bloxic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bloxic.otf; sourceTree = "<group>"; };
 		B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsMemoryManager.swift; sourceTree = "<group>"; };
 		B8ACB44C2D28904400FFE4AE /* BumbleBoogieUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogieUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8ACB45C2D296C7F00FFE4AE /* GameTimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimeManager.swift; sourceTree = "<group>"; };
-		B8ACB45F2D2B0E5A00FFE4AE /* SpawnRateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnRateExtension.swift; sourceTree = "<group>"; };
 		B8ACB46A2D2C36EB00FFE4AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8F847CC2C8F30E300F905FE /* BumbleBoogie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumbleBoogie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F847DC2C8F30E800F905FE /* BumbleBoogieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,23 +125,6 @@
 			path = GameObjects;
 			sourceTree = "<group>";
 		};
-		B8A6B3ED2D3A8488000FEAED /* GameState */ = {
-			isa = PBXGroup;
-			children = (
-				B8ACB3FE2D2844FE00FFE4AE /* GameState.swift */,
-				B8A6B3EE2D3A84B9000FEAED /* GameStateExtentions */,
-			);
-			path = GameState;
-			sourceTree = "<group>";
-		};
-		B8A6B3EE2D3A84B9000FEAED /* GameStateExtentions */ = {
-			isa = PBXGroup;
-			children = (
-				B8A6B3EF2D3A851B000FEAED /* GameStateExtenstions.swift */,
-			);
-			path = GameStateExtentions;
-			sourceTree = "<group>";
-		};
 		B8A6B3FB2D3AB92C000FEAED /* Haptics */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,20 +145,13 @@
 		B8ACB3D02D2844FE00FFE4AE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B87836CE2D3695F900876137 /* GameObjects */,
 				B8A6B3FB2D3AB92C000FEAED /* Haptics */,
 				B8ACB3CE2D2844FE00FFE4AE /* BasicButton.swift */,
 				B8ACB3CF2D2844FE00FFE4AE /* SpriteNodeView.swift */,
 				B8122A522D54FA8A00400968 /* UpgradeTile.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		B8ACB3D22D2844FE00FFE4AE /* Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				B8ACB3D12D2844FE00FFE4AE /* GameDelegate.swift */,
-			);
-			path = Delegates;
 			sourceTree = "<group>";
 		};
 		B8ACB3D52D2844FE00FFE4AE /* Integrations */ = {
@@ -196,7 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				B8ACB3FA2D2844FE00FFE4AE /* MainGameScene.swift */,
-				B87836CE2D3695F900876137 /* GameObjects */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -204,10 +173,10 @@
 		B8ACB4002D2844FE00FFE4AE /* State */ = {
 			isa = PBXGroup;
 			children = (
-				B8A6B3ED2D3A8488000FEAED /* GameState */,
+				B8ACB3FE2D2844FE00FFE4AE /* GameState.swift */,
 				B8ACB3FF2D2844FE00FFE4AE /* MusicManager.swift */,
 				B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */,
-				B8ACB45E2D2B0E0B00FFE4AE /* TimeManagement */,
+				B8122A5C2D5A9DA100400968 /* FeedbackSystem.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -231,23 +200,6 @@
 				B80A47542D538B33009648B2 /* ColorSet.swift */,
 			);
 			path = Assets;
-			sourceTree = "<group>";
-		};
-		B8ACB45E2D2B0E0B00FFE4AE /* TimeManagement */ = {
-			isa = PBXGroup;
-			children = (
-				B8ACB45C2D296C7F00FFE4AE /* GameTimeManager.swift */,
-				B8ACB4612D2B0E9500FFE4AE /* TimeManagementExtensions */,
-			);
-			path = TimeManagement;
-			sourceTree = "<group>";
-		};
-		B8ACB4612D2B0E9500FFE4AE /* TimeManagementExtensions */ = {
-			isa = PBXGroup;
-			children = (
-				B8ACB45F2D2B0E5A00FFE4AE /* SpawnRateExtension.swift */,
-			);
-			path = TimeManagementExtensions;
 			sourceTree = "<group>";
 		};
 		B8F847C32C8F30E300F905FE = {
@@ -280,7 +232,6 @@
 				B8ACB3FC2D2844FE00FFE4AE /* Scenes */,
 				B8ACB4002D2844FE00FFE4AE /* State */,
 				B8ACB3D02D2844FE00FFE4AE /* Components */,
-				B8ACB3D22D2844FE00FFE4AE /* Delegates */,
 				B8ACB3D52D2844FE00FFE4AE /* Integrations */,
 			);
 			path = "Bumble Boogie";
@@ -459,20 +410,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8ACB45D2D296C7F00FFE4AE /* GameTimeManager.swift in Sources */,
 				B8ACB4012D2844FE00FFE4AE /* SpriteNodeView.swift in Sources */,
 				B8122A532D54FA8A00400968 /* UpgradeTile.swift in Sources */,
 				B8A6B3FD2D3AB955000FEAED /* HapticFeedbackManager.swift in Sources */,
 				B8A6B3F22D3AB226000FEAED /* HapticFeedback.swift in Sources */,
 				B8122A512D54E0DF00400968 /* ShopView.swift in Sources */,
-				B8A6B3F02D3A851B000FEAED /* GameStateExtenstions.swift in Sources */,
 				B8ACB4032D2844FE00FFE4AE /* MusicManager.swift in Sources */,
 				B8ACB4092D2844FE00FFE4AE /* BasicButton.swift in Sources */,
 				B8ACB4442D2870A700FFE4AE /* UserDefaultsMemoryManager.swift in Sources */,
 				B830FC822D53C51A0069BA77 /* GameControlPanel.swift in Sources */,
 				B87836D02D36961A00876137 /* BasicBee.swift in Sources */,
-				B8ACB4602D2B0E5A00FFE4AE /* SpawnRateExtension.swift in Sources */,
-				B8ACB40A2D2844FE00FFE4AE /* GameDelegate.swift in Sources */,
+				B8122A5D2D5A9DA100400968 /* FeedbackSystem.swift in Sources */,
 				B8ACB41B2D2844FE00FFE4AE /* SpriteKitContainer.swift in Sources */,
 				B8ACB4322D28487A00FFE4AE /* ContentView.swift in Sources */,
 				B8ACB41E2D2844FE00FFE4AE /* MainGameScene.swift in Sources */,
