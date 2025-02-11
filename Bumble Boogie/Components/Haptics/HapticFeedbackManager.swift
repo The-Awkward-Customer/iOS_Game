@@ -1,5 +1,8 @@
 import CoreHaptics
 
+//TODO
+/// Refine this for individual use cases (low Priority)
+
 class HapticFeedbackManager {
     // Internally, you might have a shared CHHapticEngine.
     static let shared = HapticFeedbackManager()  // Shared singleton
@@ -14,7 +17,6 @@ class HapticFeedbackManager {
             return nil
         }
     }
-    
     /// Play a custom rich haptic ensemble by composing multiple events.
     func testCustomFeedback() {
         // Build an array of haptic events (with different intensities, durations, etc.)

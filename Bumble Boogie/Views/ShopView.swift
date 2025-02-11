@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+//TODO
+/// Refactor to accept an array of child objects without having to define each one manually if possible
+/// Implement horizontal "paginated" like scrolling to any "slim HStack children that uses a FR or Grid like approach for layout
+/// Move almost everything out of the navigation view by possibly implementing a "large navigation bar" or custom navigation view
+
 struct ShopView: View {
     
     @EnvironmentObject var gameState: GameState
@@ -109,6 +114,8 @@ struct ShopView: View {
                 }
                 
             }
+            //TODO
+            ///Make a resuseable style
             .background(
             LinearGradient(
             stops: [

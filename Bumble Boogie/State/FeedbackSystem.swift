@@ -21,6 +21,8 @@ protocol FeedbackComponent: AnyObject {
     func trigger(for type: FeedbackType, at position: CGPoint?)
 }
 
+//TODO
+/// can we move this into into own seperate lib like haptics?
 // MARK: - Particle Effects
 class ParticleEffectLibrary {
     static let shared = ParticleEffectLibrary()
