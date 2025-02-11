@@ -17,43 +17,86 @@ struct ShopView: View {
             VStack{
                 HStack{
                     Text("Honey: \(gameState.TotalHoney)")
-                        .font(.custom("Bloxic", size: 24))
+                        .font(.custom("JetBrainsMono-Bold", size: 24))
                         .foregroundStyle(ColorSet.semantic.foregroundAccentPrimary)
                     Image("honeyIcon")
                         .resizable()
-                        .frame(width: 48, height: 48)
+                        .frame(width: 24, height: 24)
                 }
                 
                 
-                Spacer()
+                Spacer(minLength: 32)
                 
-                ScrollView{
+                ScrollView {
                     VStack (spacing : 24){
-                        
                         UpgradeTile(
-                            title: "Pruchase Hive",
-                            description: "Increases the number of bees that spawn by 1",
-                            cost: gameState.nextHiveCost,
-                            currentValue: "Current Hives: \(gameState.hiveCount)",
-                            canAfford: gameState.TotalHoney >= gameState.nextHiveCost,
-                            action: {
-                                let success = self.gameState.purchaseHive()
-                                if success {
-                                    print("Purchased hive")
-                                }
-                            })
+                            content: UpgradeTileContent(
+                                image: "placeholderIMGH",
+                                description: "Increases number of bees that spawn",
+                                cost: 500,
+                                currentValue: "Current Hives: 1"
+                            ),
+                            style: .wide,
+                            canAfford: true,
+                            action: { print("Purchase action") }
+                        )
                         
-                        UpgradeTile(title: "upgrade 2", description: "Does what?", cost: 1000, currentValue: "2000", canAfford: true, action: {print("purchased 2")})
-                        
-                        UpgradeTile(title: "upgrade 3", description: "Does what?", cost: 1000, currentValue: "2000", canAfford: true, action: {print("purchased 1")})
-                        
-                        UpgradeTile(title: "upgrade 4", description: "Does what?", cost: 1000, currentValue: "2000", canAfford: true, action: {print("purchased 4")})
-                        
+                        HStack{
+                            UpgradeTile(
+                                content: UpgradeTileContent(
+                                    image: "placeholderIMGV",
+                                    description: "Increases number of bees that spawn",
+                                    cost: 500,
+                                    currentValue: "Current Hives: 1"
+                                ),
+                                style: .slim,
+                                canAfford: true,
+                                action: { print("Purchase action") }
+                            )
+                            UpgradeTile(
+                                content: UpgradeTileContent(
+                                    image: "placeholderIMGV",
+                                    description: "Increases number of bees that spawn",
+                                    cost: 500,
+                                    currentValue: "Current Hives: 1"
+                                ),
+                                style: .slim,
+                                canAfford: true,
+                                action: { print("Purchase action") }
+                            )
+                            
+                        }
+                        HStack{
+                            UpgradeTile(
+                                content: UpgradeTileContent(
+                                    image: "placeholderIMGV",
+                                    description: "Increases number of bees that spawn",
+                                    cost: 500,
+                                    currentValue: "Current Hives: 1"
+                                ),
+                                style: .slim,
+                                canAfford: true,
+                                action: { print("Purchase action") }
+                            )
+                            UpgradeTile(
+                                content: UpgradeTileContent(
+                                    image: "placeholderIMGV",
+                                    description: "Increases number of bees that spawn",
+                                    cost: 500,
+                                    currentValue: "Current Hives: 1"
+                                ),
+                                style: .slim,
+                                canAfford: true,
+                                action: { print("Purchase action") }
+                            )
+                            
+                        }
                     }
+                    
                 }
                 
             }
-            .padding(24)
+            .padding(.horizontal, 24)
             .navigationTitle("Upgrade Shops")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -66,6 +109,20 @@ struct ShopView: View {
                 }
                 
             }
+            .background(
+            LinearGradient(
+            stops: [
+            Gradient.Stop(color: Color(red: 0.31, green: 0.04, blue: 0.58), location: 0.00),
+            Gradient.Stop(color: Color(red: 0.53, green: 0.11, blue: 0.71), location: 0.20),
+            Gradient.Stop(color: Color(red: 1, green: 0.41, blue: 0.33), location: 0.40),
+            Gradient.Stop(color: Color(red: 1, green: 0.68, blue: 0.24), location: 0.60),
+            Gradient.Stop(color: Color(red: 0.98, green: 0.82, blue: 0.65), location: 0.80),
+            Gradient.Stop(color: Color(red: 1, green: 0.92, blue: 0.8), location: 1.00),
+            ],
+            startPoint: UnitPoint(x: 0.5, y: 0),
+            endPoint: UnitPoint(x: 0.5, y: 1)
+            )
+            )
         }
     }
 }
