@@ -37,8 +37,13 @@ struct ContentView: View {
                     scene.gameState = gameState
                 }
             VStack (spacing: 16){
-                Text("Currency: \(gameState.TotalHoney)")
-                    .font(.custom("Bloxic", size: 28))
+                HStack {
+                    Text("Total Honey: \(gameState.TotalHoney)")
+                        .font(.custom("JetBrainsMono-Bold", size: 24))
+                    Image("honeyIcon")
+                        .resizable()
+                        .frame(width: 32, height: 32)
+                }
                 
                 Spacer()
                 

@@ -10,6 +10,7 @@ import SpriteKit
 struct CustomGameButton: View {
     var title: String
     var spriteNode: SKNode?
+    var suffixImage: String?
     var action: (() -> Void)?
     var isEnabled: Bool = true
     
@@ -88,13 +89,23 @@ struct CustomGameButton: View {
                             .frame(height: buttonHeight)
                         
                         // Button content
-                        VStack {
+                        HStack {
+                            
                             if let spriteNode = spriteNode {
                                 SpriteNodeView(node: spriteNode)
                             }
+                            
                             Text(title)
-                                .font(.headline)
+                                .font(.custom("JetBrainsMono-bold", size: 16))
                                 .foregroundStyle(buttonStyle.textColor)
+                            
+                            
+                            if let suffixImage = suffixImage {
+                                Image(suffixImage)
+                                    .resizable()
+                                    .frame(width: 24, height: 24)
+                            }
+    
                         }
                     }
                     .offset(y: isPressed && isEnabled ? pressedOffset : 0)
@@ -150,9 +161,19 @@ struct CustomGameButton_Previews: PreviewProvider {
             
             // Button with longer text
             CustomGameButton(
-                title: "Button with Sprite",
+                title: "Button with too much text",
                 action: {
-                    print("Long button tapped")
+                    print("Button with too much text")
+                }
+            )
+            
+            
+            //Button with Image as child
+            CustomGameButton(
+                title: "Button with image",
+                suffixImage: "honeyIcon",
+                action: {
+                    print("button with image pressed")
                 }
             )
             
