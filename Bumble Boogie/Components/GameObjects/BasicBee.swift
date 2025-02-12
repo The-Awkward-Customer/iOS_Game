@@ -27,7 +27,7 @@ class BasicBeeSprite : SKSpriteNode{
     private let oscilationAmplitude: CGFloat
     private let oscilationDuration: TimeInterval
     private let verticalSpeed: CGFloat
-    private var trailEmitter: SKEmitterNode?
+    private(set) var trailEmitter: SKEmitterNode?
     private var debugMode: Bool = false
     
     //MARK: - Animation properties
@@ -142,7 +142,6 @@ class BasicBeeSprite : SKSpriteNode{
             
             if self.position.y > scene.size.height + self.size.height {
                 self.removeFromParent()
-                print("boundry detected & bee removed")
             }
         }
         
@@ -298,3 +297,33 @@ extension BasicBeeSprite{
 
 }
 
+//MARK: - pause extension
+extension BasicBeeSprite {
+    func pause() {
+        // store current state
+        physicsBody?.velocity = .zero
+        removeAction(forKey: "oscillation")
+        removeAction(forKey: "beeAnimation")
+        trailEmitter?.isPaused = true
+    }
+    
+    
+    func resume(at position: CGPoint,
+                velocity: CGVector,
+                resumeAnimation: Bool,
+                resumeEmitter: Bool) {
+        //restore state
+        self.position = position
+        physicsBody?.velocity = velocity
+        
+        if resumeAnimation {
+            setupAnimations()
+        }
+        
+        
+        setupOscilation()
+        
+        trailEmitter?.isPaused = !resumeEmitter
+        
+    }
+}

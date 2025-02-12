@@ -50,6 +50,13 @@ struct ContentView: View {
                 
                 
                 Spacer()
+                // In ContentView - Add a test button
+                CustomGameButton(title: "Test Pause", action: {
+                    gameState.pauseGame()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        gameState.resumeGame()
+                    }
+                })
                 
                 HStack {
                     CustomGameButton(title: "Game Controls", action: { gameState.pauseGame()
