@@ -13,6 +13,7 @@
 		B8122A532D54FA8A00400968 /* UpgradeTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A522D54FA8A00400968 /* UpgradeTile.swift */; };
 		B8122A5D2D5A9DA100400968 /* FeedbackSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A5C2D5A9DA100400968 /* FeedbackSystem.swift */; };
 		B8122A672D5B7A7500400968 /* JetBrainsMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8122A662D5B7A7500400968 /* JetBrainsMono-Bold.ttf */; };
+		B8122A722D5C0F2E00400968 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A712D5C0F2E00400968 /* ProgressView.swift */; };
 		B830FC822D53C51A0069BA77 /* GameControlPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830FC812D53C51A0069BA77 /* GameControlPanel.swift */; };
 		B87836D02D36961A00876137 /* BasicBee.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87836CF2D36961A00876137 /* BasicBee.swift */; };
 		B8A6B3F22D3AB226000FEAED /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6B3F12D3AB226000FEAED /* HapticFeedback.swift */; };
@@ -61,6 +62,7 @@
 		B8122A522D54FA8A00400968 /* UpgradeTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeTile.swift; sourceTree = "<group>"; };
 		B8122A5C2D5A9DA100400968 /* FeedbackSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSystem.swift; sourceTree = "<group>"; };
 		B8122A662D5B7A7500400968 /* JetBrainsMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JetBrainsMono-Bold.ttf"; sourceTree = "<group>"; };
+		B8122A712D5C0F2E00400968 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		B830FC812D53C51A0069BA77 /* GameControlPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControlPanel.swift; sourceTree = "<group>"; };
 		B87836CF2D36961A00876137 /* BasicBee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicBee.swift; sourceTree = "<group>"; };
 		B87D307E2D109A6900186B18 /* BumbleBoogie-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BumbleBoogie-Info.plist"; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				B8ACB3CE2D2844FE00FFE4AE /* BasicButton.swift */,
 				B8ACB3CF2D2844FE00FFE4AE /* SpriteNodeView.swift */,
 				B8122A522D54FA8A00400968 /* UpgradeTile.swift */,
+				B8122A712D5C0F2E00400968 /* ProgressView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				B8ACB41F2D2844FE00FFE4AE /* GameState.swift in Sources */,
 				B80A47552D538B33009648B2 /* ColorSet.swift in Sources */,
 				B8ACB4212D2844FE00FFE4AE /* BumbleBoogie.swift in Sources */,
+				B8122A722D5C0F2E00400968 /* ProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
