@@ -38,12 +38,16 @@ struct ContentView: View {
                 }
             VStack (spacing: 16){
                 HStack {
-                    Text("Total Honey: \(gameState.TotalHoney)")
-                        .font(.custom("JetBrainsMono-Bold", size: 24))
-                    Image("honeyIcon")
-                        .resizable()
-                        .frame(width: 32, height: 32)
+                    Spacer()
+                    ProgressView(
+                        isButton: true,
+                        canUpgrade: true,
+                        action: {
+                            print ("Upgrade!")
+                            isShopViewPresented = true }
+                    )
                 }
+                
                 
                 Spacer()
                 
@@ -58,10 +62,6 @@ struct ContentView: View {
                     })
                 }
                 
-                CustomGameButton(title: "Shop", action: {
-                    gameState.pauseGame()
-                    isShopViewPresented = true
-                })
             }
             .padding(.horizontal, 32)
         }
@@ -70,19 +70,25 @@ struct ContentView: View {
             gameState.resumeGame()
         }) {
             GameControlPanel()
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
         }
         ///Opens control dev control panel
         .sheet(isPresented: $isShopViewPresented, onDismiss: {
             gameState.resumeGame()
         }) {
             ShopView()
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
         }
     }
 }
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-            .environmentObject(GameState())
+    
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
+                .environmentObject(GameState())
+        }
     }
-}
+

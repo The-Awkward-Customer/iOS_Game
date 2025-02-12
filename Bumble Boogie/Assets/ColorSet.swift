@@ -18,6 +18,7 @@ enum ColorSet {
         static let foregroundPrimary = Color("green-800")
         static let foregroundDisabled = Color("green-300")
         static let foregroundAccentPrimary = Color("yellow-500")
+        static let foregroundAlert = Color("red-500")
         
         /// background
         static let backgroundPrimary = Color("green-600")

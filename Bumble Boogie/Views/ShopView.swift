@@ -21,13 +21,14 @@ struct ShopView: View {
         NavigationView{
             VStack{
                 HStack{
-                    Text("Honey: \(gameState.TotalHoney)")
-                        .font(.custom("JetBrainsMono-Bold", size: 24))
-                        .foregroundStyle(ColorSet.semantic.foregroundAccentPrimary)
                     Image("honeyIcon")
                         .resizable()
                         .frame(width: 24, height: 24)
+                    Text("\(gameState.TotalHoney)")
+                        .font(.custom("JetBrainsMono-Bold", size: 24))
+                        .foregroundStyle(ColorSet.semantic.foregroundInverse)
                 }
+                .padding(.top, 32)
                 
                 
                 Spacer(minLength: 32)
@@ -102,18 +103,6 @@ struct ShopView: View {
                 
             }
             .padding(.horizontal, 24)
-            .navigationTitle("Upgrade Shops")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Close") {
-                        gameState.resumeGame()
-                        dismiss()
-                    }
-                    .foregroundStyle(ColorSet.semantic.foregroundAccentPrimary)
-                }
-                
-            }
             //TODO
             ///Make a resuseable style
             .background(
@@ -130,9 +119,12 @@ struct ShopView: View {
             endPoint: UnitPoint(x: 0.5, y: 1)
             )
             )
+                
+            }
+            
         }
     }
-}
+
     
     #Preview {
         ShopView()
