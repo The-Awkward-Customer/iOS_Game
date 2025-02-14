@@ -6,7 +6,6 @@ class GameState: ObservableObject {
     // MARK: - Game Properties
     @Published var TotalHoney: Int = 0 {
         didSet {
-            print("did set TotalHoney: \(TotalHoney)")
             UserDefaultsMemoryManager.shared.set(TotalHoney, forKey: .TotalHoney)
         }
     }
@@ -17,7 +16,6 @@ class GameState: ObservableObject {
     @Published var conductorTimerInterval: TimeInterval = 1.0
     @Published var basicBeeSpawnInterval: TimeInterval = 1.0 {
         didSet {
-            print("did set basicBeeSpawnInterval: \(basicBeeSpawnInterval)")
             UserDefaultsMemoryManager.shared.set(basicBeeSpawnInterval, forKey: .basicBeeSpawnInterval)
         }
     }
@@ -25,7 +23,6 @@ class GameState: ObservableObject {
     
     @Published var hiveCount: Int = 1 {
         didSet {
-            print("did set hiveCount: \(hiveCount)")
             UserDefaultsMemoryManager.shared.set(hiveCount, forKey: .hiveCount)
         }
     }
@@ -40,7 +37,7 @@ class GameState: ObservableObject {
     
     
     private(set) var masterTimer: DispatchSourceTimer?
-    private(set) var isPaused: Bool = false
+    @Published var isPaused: Bool = false
     var speedFactor: Double = 1.0
     
     // MARK: - Accumulators
@@ -51,10 +48,16 @@ class GameState: ObservableObject {
     var onConductorTimerIntervalTick: (() -> Void)?
     var onBasicBeeSpawnIntervalTick: (() -> Void)?
     
+    
+    
     // MARK: - Initialization
     init() {
         loadSavedState()
     }
+    
+   
+    
+    
     
     private func loadSavedState() {
         if let savedTotalHoney: Int = UserDefaultsMemoryManager.shared.get(forKey: .TotalHoney) {
@@ -85,15 +88,18 @@ extension GameState {
     }
     
     private func update(_ deltaTime: TimeInterval) {
-        guard !isPaused else { return }
-        
+        // Early return if paused
+        guard !isPaused else {
+            print("⏸️ Update skipped - game is paused")
+            return
+        }
+
         let scaledDelta = deltaTime * speedFactor
         print("Update called: delta=\(scaledDelta)")
         
         basicBeeSpawnAccumulator += scaledDelta
         print("Accumulator: \(basicBeeSpawnAccumulator)")
-        
-    
+
         if basicBeeSpawnAccumulator >= basicBeeSpawnInterval {
             print("Triggering spawn...")
             basicBeeSpawnAccumulator = 0
@@ -107,15 +113,8 @@ extension GameState {
         print("master timer stopping...")
     }
     
-    func pauseGame() {
-        isPaused = true
-        print("Pausing game...")
-    }
-    
-    func resumeGame() {
-        isPaused = false
-        print("Resuming game...")
-    }
+   
+
 }
 // MARK: - Hive Management
 extension GameState {
@@ -166,4 +165,23 @@ extension GameState {
             }
         }
     }
+}
+
+//MARK: - pauseFunctions
+extension GameState {
+    func pauseGame() {
+        print("🔄 GameState - Pausing game")
+        isPaused = true
+        
+        basicBeeSpawnAccumulator = 0
+        GamePauseManager.shared.pauseGame()
+    }
+    
+    
+    func resumeGame() {
+        print("🔄 GameState - Resuming game")
+        isPaused = false
+        GamePauseManager.shared.resumeGame()
+    }
+    
 }

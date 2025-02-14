@@ -13,8 +13,31 @@ import Combine
 //TODO
 //Prepare for Data base Storage
 
+
+// At the top of MainGameScene.swift, outside the class definition
+private struct BeeState {
+    let position: CGPoint
+    let velocity: CGVector
+    let wasAnimating: Bool
+    let emitterState: Bool
+    
+    init(bee: BasicBeeSprite) {
+        self.position = bee.position
+        if let physicsBody = bee.physicsBody {
+            self.velocity = physicsBody.velocity
+        } else {
+            self.velocity = .zero
+        }
+        self.wasAnimating = bee.action(forKey: "beeAnimation") != nil
+        self.emitterState = !(bee.trailEmitter?.isPaused ?? true)
+    }
+}
+
 class MainGameScene: SKScene {
     
+
+    private var cancellables = Set<AnyCancellable>()
+      
     private var debugGridSubscription: AnyCancellable?
     
     
@@ -37,6 +60,9 @@ class MainGameScene: SKScene {
     }
     
     
+    private var pausedBees: [BasicBeeSprite: BeeState] = [:]
+    
+    
     
     // MARK: - GAME TIME MANAGER
     // We'll assign this from outside. It's not an EnvironmentObject here
@@ -47,11 +73,14 @@ class MainGameScene: SKScene {
     // Track the last frames time for calculating deltaTime.
     private var lastUpdateTime: TimeInterval = 0.0
     
+    
+    
     // LEARN
     /// Better undertand didMove && override functions
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-        print("Setting up spawn callback")
+        print("🎮 Setting up pause handling")
+            setupPauseHandling()
         
         // Initialize GridManager with debug mode
         gridManager = GridManager(scene: self, columns: 8, rows: 14, cellSize: 50, debugMode: sharedGameState.showDebugGrid)
@@ -87,7 +116,6 @@ class MainGameScene: SKScene {
         
         // Set up a callback for basic bee spawn.
         sharedGameState.onBasicBeeSpawnIntervalTick = { [weak self] in
-            print("SpawnTickReceived")
             self?.basicBeeSpawnEvent()
         }
     }
@@ -164,20 +192,60 @@ class MainGameScene: SKScene {
             basicBee.position = spawnPosition
             addChild(basicBee)
         }
-        print("spawned \(beesToSpawn) bees")
+//        print("spawned \(beesToSpawn) bees")
     }
     
     
+    //MARK: - Pause game functions
+    
+    private func setupPauseHandling() {
+        sharedGameState.$isPaused
+            .sink { [weak self] isPaused in
+                self?.handlePauseState(isPaused)
+            }
+            .store(in: &cancellables)
+        }
     
     
-    // TODO
-    private func conductorTickEvent() {
-        /// Called ever time the onBasicBeeAccumulator ticks.
-        
-        
-        print("tick")
+    private func handlePauseState(_ isPaused: Bool) {
+        if isPaused {
+            print("🔴 Game Paused - Storing \(children.compactMap { $0 as? BasicBeeSprite }.count) bees")
+            storeBeeStates()
+            pauseAllBees()
+        } else {
+            print("🟢 Game Resumed - Restoring \(pausedBees.count) bees")
+            resumeAllBees()
+        }
     }
     
+    private func storeBeeStates() {
+        children.compactMap { $0 as? BasicBeeSprite }.forEach { bee in
+            pausedBees[bee] = BeeState(bee: bee)
+        }
+    }
+    
+    private func pauseAllBees() {
+        children.compactMap { $0 as? BasicBeeSprite }.forEach { bee in
+            bee.pause()
+        }
+    }
+    
+    private func resumeAllBees() {
+        pausedBees.forEach { bee, state in
+            bee.resume(
+                at: state.position,
+                velocity: state.velocity,
+                resumeAnimation: state.wasAnimating,
+                resumeEmitter: state.emitterState
+            )
+        }
+        pausedBees.removeAll()
+    }
+    
+    
+    deinit {
+        cancellables.removeAll()
+        }
 }
 
 

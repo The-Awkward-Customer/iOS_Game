@@ -14,6 +14,7 @@
 		B8122A5D2D5A9DA100400968 /* FeedbackSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A5C2D5A9DA100400968 /* FeedbackSystem.swift */; };
 		B8122A672D5B7A7500400968 /* JetBrainsMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8122A662D5B7A7500400968 /* JetBrainsMono-Bold.ttf */; };
 		B8122A722D5C0F2E00400968 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A712D5C0F2E00400968 /* ProgressView.swift */; };
+		B8122A7C2D5CDFF900400968 /* GamePauseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A7B2D5CDFF900400968 /* GamePauseManager.swift */; };
 		B830FC822D53C51A0069BA77 /* GameControlPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830FC812D53C51A0069BA77 /* GameControlPanel.swift */; };
 		B87836D02D36961A00876137 /* BasicBee.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87836CF2D36961A00876137 /* BasicBee.swift */; };
 		B8A6B3F22D3AB226000FEAED /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6B3F12D3AB226000FEAED /* HapticFeedback.swift */; };
@@ -66,6 +67,7 @@
 		B8122A5C2D5A9DA100400968 /* FeedbackSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSystem.swift; sourceTree = "<group>"; };
 		B8122A662D5B7A7500400968 /* JetBrainsMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JetBrainsMono-Bold.ttf"; sourceTree = "<group>"; };
 		B8122A712D5C0F2E00400968 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		B8122A7B2D5CDFF900400968 /* GamePauseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePauseManager.swift; sourceTree = "<group>"; };
 		B830FC812D53C51A0069BA77 /* GameControlPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControlPanel.swift; sourceTree = "<group>"; };
 		B87836CF2D36961A00876137 /* BasicBee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicBee.swift; sourceTree = "<group>"; };
 		B87D307E2D109A6900186B18 /* BumbleBoogie-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BumbleBoogie-Info.plist"; sourceTree = "<group>"; };
@@ -192,7 +194,14 @@
 			isa = PBXGroup;
 			children = (
 				B8ACB3FE2D2844FE00FFE4AE /* GameState.swift */,
+
+				B8ACB3FF2D2844FE00FFE4AE /* MusicManager.swift */,
+				B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */,
+				B8122A5C2D5A9DA100400968 /* FeedbackSystem.swift */,
+				B8122A7B2D5CDFF900400968 /* GamePauseManager.swift */,
+
 				B8B888F42D5E578900A92611 /* Managers */,
+
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -466,6 +475,7 @@
 				B8ACB41B2D2844FE00FFE4AE /* SpriteKitContainer.swift in Sources */,
 				B8ACB4322D28487A00FFE4AE /* ContentView.swift in Sources */,
 				B8ACB41E2D2844FE00FFE4AE /* MainGameScene.swift in Sources */,
+				B8122A7C2D5CDFF900400968 /* GamePauseManager.swift in Sources */,
 				B8ACB41F2D2844FE00FFE4AE /* GameState.swift in Sources */,
 				B8B888F12D5E3FC600A92611 /* GridManager.swift in Sources */,
 				B80A47552D538B33009648B2 /* ColorSet.swift in Sources */,
