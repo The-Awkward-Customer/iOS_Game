@@ -8,11 +8,19 @@
 import Foundation
 import SwiftUI
 import SpriteKit
+import Combine
 
 //TODO
 //Prepare for Data base Storage
 
 class MainGameScene: SKScene {
+    
+    private var debugGridSubscription: AnyCancellable?
+    
+    
+    private var gridManager: GridManager?
+    private var flowerManager: FlowerManager?
+    
     
     // MARK: - Shared GameState
     let sharedGameState: GameState
@@ -45,20 +53,34 @@ class MainGameScene: SKScene {
         super.didMove(to: view)
         print("Setting up spawn callback")
         
+        // Initialize GridManager with debug mode
+        gridManager = GridManager(scene: self, columns: 8, rows: 14, cellSize: 50, debugMode: sharedGameState.showDebugGrid)
+        
+        debugGridSubscription = sharedGameState.objectWillChange.sink { [weak self] _ in
+            self?.gridManager?.toggleDebugMode()
+        }
+        
+        // Initialize FlowerManager if we have a valid GridManager
+        if let gridManager = gridManager {
+            flowerManager = FlowerManager(scene: self, gridManager: gridManager)
+            flowerManager?.startSpawningFlowers()
+            print("Flower spawning started")
+        }
+        
         
         let visualFeedback = VisualFeedbackComponent(scene: self)
         let hapticFeedback = HapticFeedbackComponent()
         
         // Register with manager
-           GameFeedbackManager.shared.register(component: visualFeedback)
-           GameFeedbackManager.shared.register(component: hapticFeedback)
+        GameFeedbackManager.shared.register(component: visualFeedback)
+        GameFeedbackManager.shared.register(component: hapticFeedback)
         
         //TODO
         ///Is this relevant?
         // Scene Styling
         // Make the scene’s background transparent
         backgroundColor = .white
-            
+        
         // Also allow the underlying SKView to render transparency
         view.allowsTransparency = true
         
@@ -68,13 +90,28 @@ class MainGameScene: SKScene {
             print("SpawnTickReceived")
             self?.basicBeeSpawnEvent()
         }
-        
-        // Example of starting at double speed.
-//        gameState?.speedFactor = 0.0
+    }
+    
+    deinit {
+        flowerManager?.cleanup()
+    }
+    
+    func debugSpawnFlower() {
+        flowerManager?.trySpawnFlower()
+        print("manually spawned flower")
+        }
+    
+    func toggleFlowerSpawning(enabled: Bool) {
+        if enabled {
+            flowerManager?.startSpawningFlowers()
+        }else {
+            flowerManager?.stopSpawingFlowers()
+        }
     }
     
     
-
+    
+    
     // MARK: - BASIC BEE
     
     
@@ -96,9 +133,9 @@ class MainGameScene: SKScene {
             let verticalMargin = calculateVerticalMargin(for: height)
             return height - (height + verticalMargin)
         }
-    
+        
     }
-
+    
     
     private func getSpawnPositionWithMargins() -> CGPoint {
         
@@ -119,7 +156,7 @@ class MainGameScene: SKScene {
     private func basicBeeSpawnEvent() {
         
         let beesToSpawn = max(1, sharedGameState.hiveCount)
-
+        
         
         for _ in 0..<beesToSpawn {
             let spawnPosition = getSpawnPositionWithMargins()
@@ -142,4 +179,5 @@ class MainGameScene: SKScene {
     }
     
 }
+
 

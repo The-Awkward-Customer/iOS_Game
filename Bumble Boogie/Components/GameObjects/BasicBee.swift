@@ -168,8 +168,8 @@ class BasicBeeSprite : SKSpriteNode{
         
         let emitter = SKEmitterNode()
         
-        emitter.particleTexture = SKTexture(imageNamed: "Pollen")
-                emitter.particleBirthRate = 20
+        emitter.particleTexture = SKTexture(imageNamed: "drag")
+                emitter.particleBirthRate = 4
                 emitter.numParticlesToEmit = 0
                 
                 emitter.particleColor = .yellow
@@ -193,12 +193,6 @@ class BasicBeeSprite : SKSpriteNode{
         
     }
     
-    // Optional: Add method to adjust particle effect based on speed
-//        private func updateParticleEffects() {
-//            let speedRatio = (verticalSpeed - 100) / 100 // Normalized to 0-1 range
-//            trailEmitter?.particleBirthRate = 20 + (20 * speedRatio)
-//            trailEmitter?.particleSpeed = 10 + (5 * speedRatio)
-//        }
     
     
     func animateRemoval() {
