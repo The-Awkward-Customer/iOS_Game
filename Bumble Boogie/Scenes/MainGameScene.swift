@@ -241,11 +241,7 @@ class MainGameScene: SKScene {
         }
         pausedBees.removeAll()
     }
-    
-    
-    deinit {
-        cancellables.removeAll()
-        }
+
 }
 
 
