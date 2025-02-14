@@ -19,6 +19,7 @@ struct GameControlPanel: View {
                 
                 
                 Spacer()
+                Toggle("Display debug grid", isOn: $gameState.showDebugGrid)
                 HStack {
                     CustomGameButton(title: "Add Currency", action: {
                         gameState.increaseTotalHoney(by: 10)

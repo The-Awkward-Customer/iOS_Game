@@ -33,6 +33,8 @@ class GameState: ObservableObject {
         }
     }
     
+    @Published var showDebugGrid: Bool = false
+    
     
     private(set) var masterTimer: DispatchSourceTimer?
     @Published var isPaused: Bool = false
