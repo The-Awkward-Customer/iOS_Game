@@ -61,25 +61,23 @@ class GridManager {
     private var availablePoints: Set<SpawnPoint> = []
     
     // MARK: - Debug Visualization
-    func toggleDebugMode() {
-        debugMode = !debugMode
+    func setDebugMode(_ enabled: Bool) {
+        debugMode = enabled
         updateDebugVisualization()
     }
     
     private func updateDebugVisualization() {
-        for row in spawnPoints {
-            for point in row {
-                if debugMode {
-                    // Show and update debug nodes
-                    point.debugNode?.isHidden = false
-                    point.debugNode?.fillColor = point.isOccupied ? .red : .gray
-                } else {
-                    // Hide debug nodes
-                    point.debugNode?.isHidden = true
+            for row in spawnPoints {
+                for point in row {
+                    if let debugNode = point.debugNode {
+                        debugNode.isHidden = !debugMode
+                        if !debugNode.isHidden {
+                            debugNode.fillColor = point.isOccupied ? .red : .gray
+                        }
+                    }
                 }
             }
         }
-    }
     
     
     // MARK: - Initialization
