@@ -11,7 +11,6 @@
 		B80A47552D538B33009648B2 /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80A47542D538B33009648B2 /* ColorSet.swift */; };
 		B8122A512D54E0DF00400968 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A502D54E0DF00400968 /* ShopView.swift */; };
 		B8122A532D54FA8A00400968 /* UpgradeTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A522D54FA8A00400968 /* UpgradeTile.swift */; };
-		B8122A5D2D5A9DA100400968 /* FeedbackSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A5C2D5A9DA100400968 /* FeedbackSystem.swift */; };
 		B8122A672D5B7A7500400968 /* JetBrainsMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8122A662D5B7A7500400968 /* JetBrainsMono-Bold.ttf */; };
 		B8122A722D5C0F2E00400968 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A712D5C0F2E00400968 /* ProgressView.swift */; };
 		B8122A7C2D5CDFF900400968 /* GamePauseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A7B2D5CDFF900400968 /* GamePauseManager.swift */; };
@@ -28,11 +27,12 @@
 		B8ACB4212D2844FE00FFE4AE /* BumbleBoogie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB3C82D2844FE00FFE4AE /* BumbleBoogie.swift */; };
 		B8ACB4322D28487A00FFE4AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB4312D28487A00FFE4AE /* ContentView.swift */; };
 		B8ACB4362D284A0700FFE4AE /* Bloxic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B8ACB4352D284A0700FFE4AE /* Bloxic.otf */; };
-		B8ACB4442D2870A700FFE4AE /* UserDefaultsMemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */; };
 		B8ACB46B2D2C36EB00FFE4AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8ACB46A2D2C36EB00FFE4AE /* Assets.xcassets */; };
 		B8B888F12D5E3FC600A92611 /* GridManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B888F02D5E3FC600A92611 /* GridManager.swift */; };
 		B8B888F32D5E4C7600A92611 /* FlowerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B888F22D5E4C7600A92611 /* FlowerNode.swift */; };
 		B8B888F62D5E57B700A92611 /* FlowerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B888F52D5E57B700A92611 /* FlowerManager.swift */; };
+		B8B888FB2D5F574900A92611 /* FeedbackSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A5C2D5A9DA100400968 /* FeedbackSystem.swift */; };
+		B8B888FC2D5F577600A92611 /* UserDefaultsMemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +82,7 @@
 		B8ACB3FF2D2844FE00FFE4AE /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
 		B8ACB4312D28487A00FFE4AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B8ACB4352D284A0700FFE4AE /* Bloxic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bloxic.otf; sourceTree = "<group>"; };
-		B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsMemoryManager.swift; sourceTree = "<group>"; };
+		B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaultsMemoryManager.swift; path = "Bumble Boogie/State/Managers/UserDefaultsMemoryManager.swift"; sourceTree = SOURCE_ROOT; };
 		B8ACB44C2D28904400FFE4AE /* BumbleBoogieUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumbleBoogieUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8ACB46A2D2C36EB00FFE4AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8B888F02D5E3FC600A92611 /* GridManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridManager.swift; sourceTree = "<group>"; };
@@ -194,14 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				B8ACB3FE2D2844FE00FFE4AE /* GameState.swift */,
-
-				B8ACB3FF2D2844FE00FFE4AE /* MusicManager.swift */,
-				B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */,
-				B8122A5C2D5A9DA100400968 /* FeedbackSystem.swift */,
 				B8122A7B2D5CDFF900400968 /* GamePauseManager.swift */,
-
 				B8B888F42D5E578900A92611 /* Managers */,
-
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -242,8 +236,8 @@
 			isa = PBXGroup;
 			children = (
 				B8ACB3FF2D2844FE00FFE4AE /* MusicManager.swift */,
-				B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */,
 				B8122A5C2D5A9DA100400968 /* FeedbackSystem.swift */,
+				B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */,
 				B8B888F02D5E3FC600A92611 /* GridManager.swift */,
 				B8B888F52D5E57B700A92611 /* FlowerManager.swift */,
 			);
@@ -466,12 +460,11 @@
 				B8A6B3F22D3AB226000FEAED /* HapticFeedback.swift in Sources */,
 				B8B888F32D5E4C7600A92611 /* FlowerNode.swift in Sources */,
 				B8122A512D54E0DF00400968 /* ShopView.swift in Sources */,
+				B8B888FB2D5F574900A92611 /* FeedbackSystem.swift in Sources */,
 				B8ACB4032D2844FE00FFE4AE /* MusicManager.swift in Sources */,
 				B8ACB4092D2844FE00FFE4AE /* BasicButton.swift in Sources */,
-				B8ACB4442D2870A700FFE4AE /* UserDefaultsMemoryManager.swift in Sources */,
 				B830FC822D53C51A0069BA77 /* GameControlPanel.swift in Sources */,
 				B87836D02D36961A00876137 /* BasicBee.swift in Sources */,
-				B8122A5D2D5A9DA100400968 /* FeedbackSystem.swift in Sources */,
 				B8ACB41B2D2844FE00FFE4AE /* SpriteKitContainer.swift in Sources */,
 				B8ACB4322D28487A00FFE4AE /* ContentView.swift in Sources */,
 				B8ACB41E2D2844FE00FFE4AE /* MainGameScene.swift in Sources */,
@@ -479,6 +472,7 @@
 				B8ACB41F2D2844FE00FFE4AE /* GameState.swift in Sources */,
 				B8B888F12D5E3FC600A92611 /* GridManager.swift in Sources */,
 				B80A47552D538B33009648B2 /* ColorSet.swift in Sources */,
+				B8B888FC2D5F577600A92611 /* UserDefaultsMemoryManager.swift in Sources */,
 				B8ACB4212D2844FE00FFE4AE /* BumbleBoogie.swift in Sources */,
 				B8122A722D5C0F2E00400968 /* ProgressView.swift in Sources */,
 			);
