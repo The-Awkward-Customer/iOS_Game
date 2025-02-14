@@ -85,9 +85,12 @@ class MainGameScene: SKScene {
         // Initialize GridManager with debug mode
         gridManager = GridManager(scene: self, columns: 8, rows: 14, cellSize: 50, debugMode: sharedGameState.showDebugGrid)
         
-        debugGridSubscription = sharedGameState.objectWillChange.sink { [weak self] _ in
-            self?.gridManager?.toggleDebugMode()
+        debugGridSubscription = sharedGameState.$showDebugGrid.sink { [weak self] showDebugGrid in
+            if let gridManager = self?.gridManager {
+                gridManager.setDebugMode(showDebugGrid)
+            }
         }
+        
         
         // Initialize FlowerManager if we have a valid GridManager
         if let gridManager = gridManager {
