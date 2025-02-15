@@ -121,7 +121,9 @@ struct ShopView: View {
             )
             
         }
-        
+        .onAppear(){
+            gameState.pauseGame()
+        }
         
     }
 }

@@ -39,8 +39,15 @@ class FlowerNode: SKSpriteNode {
     let powerUpType: PowerUpType
     weak var spawnPoint: SpawnPoint?
     let duration: TimeInterval
+    private(set) var remainingLifespan: TimeInterval = 3.00
     private var isCollected: Bool = false
+    private(set) var isPulsing: Bool = false
+    private var removalScheduled: Bool = false
     
+    var onRemovalComplete: (() -> Void)?
+    
+    
+    //MARK: - Init
     init(powerUpType: PowerUpType, size: CGSize = CGSize(width: 40, height: 40)){
         self.powerUpType = powerUpType
         self.duration = powerUpType.duration
@@ -69,19 +76,63 @@ class FlowerNode: SKSpriteNode {
     }
     
     
-    private func setupVisuals() {
-        // Add a subtle pulsing animation
-        let scaleUp = SKAction.scale(to: 1.1, duration: 0.5)
-        let scaleDown = SKAction.scale(to: 0.9, duration: 0.5)
-        let sequence = SKAction.sequence([scaleUp, scaleDown])
-        run(SKAction.repeatForever(sequence))
+    func setupVisuals(restartPulsing: Bool = true) {
+        if restartPulsing {
+            isPulsing = true
+            // Add a subtle pulsing animation
+            let scaleUp = SKAction.scale(to: 1.1, duration: 0.5)
+            let scaleDown = SKAction.scale(to: 0.9, duration: 0.5)
+            let sequence = SKAction.sequence([scaleUp, scaleDown])
+            run(SKAction.repeatForever(sequence), withKey: "pulseAnimation")
+            
+        }
         
-        // Add a glow effect
-        let glowNode = SKEffectNode()
-        glowNode.shouldRasterize = true
-        glowNode.filter = CIFilter(name: "CIGaussianBlur", parameters: ["inputRadius": 2.0])
-        addChild(glowNode)
+        
+        if !children.contains(where: { $0 is SKEffectNode }) {
+            let glowNode = SKEffectNode()
+            glowNode.shouldRasterize = true
+            glowNode.filter = CIFilter(name: "CIGaussianBlur", parameters: ["inputRadius": 2.0])
+            addChild(glowNode)
+        }
     }
+    
+    func pauseAnimations() {
+           isPulsing = action(forKey: "pulseAnimation") != nil
+           removeAllActions()
+       }
+       
+       func resumeAnimations() {
+           if isPulsing {
+               setupVisuals(restartPulsing: true)
+           }
+           
+           // If removal was scheduled, reschedule it with remaining time
+           if removalScheduled && remainingLifespan > 0 {
+               scheduleRemoval(after: remainingLifespan)
+           }
+       }
+       
+    func scheduleRemoval(after timeInterval: TimeInterval) {
+            removalScheduled = true
+            remainingLifespan = timeInterval
+            
+            removeAllActions()  // Clear any existing removal schedules
+            
+            let wait = SKAction.wait(forDuration: timeInterval)
+            let remove = SKAction.run { [weak self] in
+                self?.animateCollection()
+                self?.onRemovalComplete?()
+            }
+            
+            run(SKAction.sequence([wait, remove]), withKey: "removalSequence")
+        }
+       
+       func updateRemainingLifespan() {
+           if let action = action(forKey: "removalSequence") {
+               remainingLifespan = action.duration
+           }
+       }
+   
     
     //MARK: - Collision handling
     func handleBeeCollision(with bee: BasicBeeSprite) {

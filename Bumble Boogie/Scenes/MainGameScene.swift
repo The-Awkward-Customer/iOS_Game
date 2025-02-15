@@ -92,12 +92,17 @@ class MainGameScene: SKScene {
         }
         
         
-        // Initialize FlowerManager if we have a valid GridManager
+        // Flower manager init
         if let gridManager = gridManager {
-            flowerManager = FlowerManager(scene: self, gridManager: gridManager)
-            flowerManager?.startSpawningFlowers()
-            print("Flower spawning started")
-        }
+            flowerManager = FlowerManager(
+                        scene: self,
+                        gridManager: gridManager,
+                        maxConcurrentFlowers: 3,  // Custom max flowers
+                        spawnInterval: 0.5    // Custom spawn interval in seconds
+                    )
+                    flowerManager?.startSpawningFlowers()
+                    print("Flower spawning started with custom configuration")
+                }
         
         
         let visualFeedback = VisualFeedbackComponent(scene: self)
@@ -144,8 +149,6 @@ class MainGameScene: SKScene {
     
     
     // MARK: - BASIC BEE
-    
-    
     private struct SpawnConfiguration {
         
         static let horizontalMarginPercentage: CGFloat = 0.1
