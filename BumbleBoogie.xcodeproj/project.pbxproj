@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B80163912D6601BB00910BDF /* BeeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80163902D6601BB00910BDF /* BeeManager.swift */; };
 		B80A47532D538AC4009648B2 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B80A47522D538AC4009648B2 /* Colors.xcassets */; };
 		B80A47552D538B33009648B2 /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80A47542D538B33009648B2 /* ColorSet.swift */; };
 		B8122A512D54E0DF00400968 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8122A502D54E0DF00400968 /* ShopView.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B80163902D6601BB00910BDF /* BeeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeManager.swift; sourceTree = "<group>"; };
 		B80A47522D538AC4009648B2 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		B80A47542D538B33009648B2 /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		B8122A502D54E0DF00400968 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				B8ACB4432D2870A700FFE4AE /* UserDefaultsMemoryManager.swift */,
 				B8B888F02D5E3FC600A92611 /* GridManager.swift */,
 				B8B888F52D5E57B700A92611 /* FlowerManager.swift */,
+				B80163902D6601BB00910BDF /* BeeManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B80163912D6601BB00910BDF /* BeeManager.swift in Sources */,
 				B8ACB4012D2844FE00FFE4AE /* SpriteNodeView.swift in Sources */,
 				B8B888F62D5E57B700A92611 /* FlowerManager.swift in Sources */,
 				B8122A532D54FA8A00400968 /* UpgradeTile.swift in Sources */,
