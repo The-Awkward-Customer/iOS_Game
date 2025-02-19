@@ -22,7 +22,6 @@ struct ContentView: View {
     var scene: MainGameScene {
         let scene = MainGameScene(size: CGSize(width: 800, height: 600), gameState: gameState)
         scene.scaleMode = .resizeFill
-        scene.gameState = gameState
         return scene
     }
     
@@ -32,10 +31,7 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.clear)
-                .onAppear {
-                    // Inject the manager so the scene can set up the callback
-                    scene.gameState = gameState
-                }
+            
             VStack (spacing: 16){
                 HStack {
                     Spacer()

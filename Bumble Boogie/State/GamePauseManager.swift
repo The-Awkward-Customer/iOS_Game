@@ -21,7 +21,7 @@ class GamePauseManager {
         pauseStateObservers.append(observer)
     }
     
-    func removePauseStateObservers() {
+    func removePauseStateObservers(_ id: UUID) {
         pauseStateObservers.removeAll()
     }
     

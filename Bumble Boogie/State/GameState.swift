@@ -20,6 +20,12 @@ class GameState: ObservableObject {
         }
     }
     
+    @Published var flowerSpawnInterval: TimeInterval = 1.0 {
+            didSet {
+                UserDefaultsMemoryManager.shared.set(flowerSpawnInterval, forKey: .flowerSpawnInterval)
+            }
+        }
+    
     
     @Published var hiveCount: Int = 1 {
         didSet {
@@ -43,10 +49,12 @@ class GameState: ObservableObject {
     // MARK: - Accumulators
     var conductorAccumulator: TimeInterval = 0.0
     var basicBeeSpawnAccumulator: TimeInterval = 0.0
+    var flowerSpawnAccumulator: TimeInterval = 0.0
     
     // MARK: - Callbacks
     var onConductorTimerIntervalTick: (() -> Void)?
     var onBasicBeeSpawnIntervalTick: (() -> Void)?
+    var onFlowerSpawnIntervalTick: (() -> Void)?
     
     
     
@@ -98,13 +106,23 @@ extension GameState {
         print("Update called: delta=\(scaledDelta)")
         
         basicBeeSpawnAccumulator += scaledDelta
-        print("Accumulator: \(basicBeeSpawnAccumulator)")
+        print("Basic Bee Acc: \(basicBeeSpawnAccumulator)")
 
         if basicBeeSpawnAccumulator >= basicBeeSpawnInterval {
-            print("Triggering spawn...")
+            print("Attemping Bee spawn...")
             basicBeeSpawnAccumulator = 0
             onBasicBeeSpawnIntervalTick?()
         }
+        
+        flowerSpawnAccumulator += scaledDelta
+        print("Flower Acc: \(flowerSpawnAccumulator)")
+        
+        if flowerSpawnAccumulator >= flowerSpawnInterval {
+            print("Attemping Flower spawn...")
+            flowerSpawnAccumulator = 0
+            onFlowerSpawnIntervalTick?()
+        }
+        
     }
     
     func stopMasterTimer() {
@@ -185,3 +203,16 @@ extension GameState {
     }
     
 }
+
+extension GameState {
+    
+    // Add to existing update method in GameState
+        private func updateFlowerSpawning(_ deltaTime: TimeInterval) {
+            flowerSpawnAccumulator += deltaTime
+            
+            if flowerSpawnAccumulator >= flowerSpawnInterval {
+                flowerSpawnAccumulator = 0
+                onFlowerSpawnIntervalTick?()
+                print(flowerSpawnInterval)
+            }
+        }}

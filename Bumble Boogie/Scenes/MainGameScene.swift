@@ -14,7 +14,8 @@ import Combine
 //Prepare for Data base Storage
 
 
-// At the top of MainGameScene.swift, outside the class definition
+
+// Bee state tracking structure
 private struct BeeState {
     let position: CGPoint
     let velocity: CGVector
@@ -34,22 +35,25 @@ private struct BeeState {
 }
 
 class MainGameScene: SKScene {
+    // MARK: - Properties
+       private var cancellables = Set<AnyCancellable>()
+       private var debugGridSubscription: AnyCancellable?
+       private var gridManager: GridManager?
+       private var flowerManager: FlowerManager?
+       private var pausedBees: [BasicBeeSprite: BeeState] = [:]
     
-
-    private var cancellables = Set<AnyCancellable>()
-      
-    private var debugGridSubscription: AnyCancellable?
-    
-    
-    private var gridManager: GridManager?
-    private var flowerManager: FlowerManager?
     
     
     // MARK: - Shared GameState
     let sharedGameState: GameState
     
-    // Require init
-    init (size: CGSize, gameState: GameState) {
+    // Track the last frames time for calculating deltaTime.
+    private var lastUpdateTime: TimeInterval = 0.0
+    
+    
+    
+    //MARK: - Init
+    init(size: CGSize, gameState: GameState ){
         self.sharedGameState = gameState
         super.init(size: size)
     }
@@ -60,97 +64,70 @@ class MainGameScene: SKScene {
     }
     
     
-    private var pausedBees: [BasicBeeSprite: BeeState] = [:]
     
-    
-    
-    // MARK: - GAME TIME MANAGER
-    // We'll assign this from outside. It's not an EnvironmentObject here
-    // because SpriteKit isn't a SwiftUI view.
-    var gameState: GameState?
-    
-    
-    // Track the last frames time for calculating deltaTime.
-    private var lastUpdateTime: TimeInterval = 0.0
-    
-    
-    
-    // LEARN
-    /// Better undertand didMove && override functions
+    //MARK: - Scene setup
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-        print("🎮 Setting up pause handling")
-            setupPauseHandling()
+        print("did move to view")
         
-        // Initialize GridManager with debug mode
-        gridManager = GridManager(scene: self, columns: 8, rows: 14, cellSize: 50, debugMode: sharedGameState.showDebugGrid)
+        setupScene()
+        setupManagers()
+        setupCallbacks()
+    }
+    
+    private func setupScene() {
+        backgroundColor = .white
+        view?.allowsTransparency = true
+    }
+    
+    private func setupManagers() {
+        // GridManager
+        gridManager = GridManager(
+            scene: self,
+            columns: 8,
+            rows: 14,
+            cellSize: 50,
+            debugMode: sharedGameState.showDebugGrid
+        )
         
+        // Debug subscription
         debugGridSubscription = sharedGameState.$showDebugGrid.sink { [weak self] showDebugGrid in
             if let gridManager = self?.gridManager {
                 gridManager.setDebugMode(showDebugGrid)
             }
         }
         
-        
         // Flower manager init
         if let gridManager = gridManager {
             flowerManager = FlowerManager(
-                        scene: self,
-                        gridManager: gridManager,
-                        maxConcurrentFlowers: 3,  // Custom max flowers
-                        spawnInterval: 0.5    // Custom spawn interval in seconds
-                    )
-                    flowerManager?.startSpawningFlowers()
-                    print("Flower spawning started with custom configuration")
-                }
+                scene: self,
+                gridManager: gridManager,
+                gameState: sharedGameState,
+                maxConcurrentFlowers: 3
+            )
+        }
         
-        
+        // Feedback components
         let visualFeedback = VisualFeedbackComponent(scene: self)
         let hapticFeedback = HapticFeedbackComponent()
-        
-        // Register with manager
         GameFeedbackManager.shared.register(component: visualFeedback)
         GameFeedbackManager.shared.register(component: hapticFeedback)
-        
-        //TODO
-        ///Is this relevant?
-        // Scene Styling
-        // Make the scene’s background transparent
-        backgroundColor = .white
-        
-        // Also allow the underlying SKView to render transparency
-        view.allowsTransparency = true
-        
-        
-        // Set up a callback for basic bee spawn.
+    }
+    
+    
+    private func setupCallbacks() {
+        // Bee Spawn Callback
         sharedGameState.onBasicBeeSpawnIntervalTick = { [weak self] in
-            self?.basicBeeSpawnEvent()
+            self?.basicBeeSpawnEvent( )
         }
-    }
-    
-    deinit {
-        flowerManager?.cleanup()
-    }
-    
-    func debugSpawnFlower() {
-        flowerManager?.trySpawnFlower()
-        print("manually spawned flower")
-        }
-    
-    func toggleFlowerSpawning(enabled: Bool) {
-        if enabled {
-            flowerManager?.startSpawningFlowers()
-        }else {
-            flowerManager?.stopSpawingFlowers()
-        }
-    }
-    
-    
-    
-    
-    // MARK: - BASIC BEE
-    private struct SpawnConfiguration {
         
+        setupPauseHandling()
+    }
+    
+    
+    
+    // MARK: - Bee spawing
+    private struct SpawnConfiguration {
         static let horizontalMarginPercentage: CGFloat = 0.1
         static let verticalMarginPercentage: CGFloat = 0.1
         
@@ -186,11 +163,8 @@ class MainGameScene: SKScene {
     }
     
     
-    /// Called every time the onBasicBeeAccumulator triggers  onBasicBeeSpawnIntervalTick "ticks".
     private func basicBeeSpawnEvent() {
-        
         let beesToSpawn = max(1, sharedGameState.hiveCount)
-        
         
         for _ in 0..<beesToSpawn {
             let spawnPosition = getSpawnPositionWithMargins()
@@ -198,19 +172,18 @@ class MainGameScene: SKScene {
             basicBee.position = spawnPosition
             addChild(basicBee)
         }
-//        print("spawned \(beesToSpawn) bees")
     }
     
     
-    //MARK: - Pause game functions
     
+    //MARK: - Pause game functions
     private func setupPauseHandling() {
         sharedGameState.$isPaused
             .sink { [weak self] isPaused in
                 self?.handlePauseState(isPaused)
             }
             .store(in: &cancellables)
-        }
+    }
     
     
     private func handlePauseState(_ isPaused: Bool) {
@@ -218,11 +191,14 @@ class MainGameScene: SKScene {
             print("🔴 Game Paused - Storing \(children.compactMap { $0 as? BasicBeeSprite }.count) bees")
             storeBeeStates()
             pauseAllBees()
+            self.isPaused = true
         } else {
             print("🟢 Game Resumed - Restoring \(pausedBees.count) bees")
+            self.isPaused = false
             resumeAllBees()
         }
     }
+    
     
     private func storeBeeStates() {
         children.compactMap { $0 as? BasicBeeSprite }.forEach { bee in
@@ -230,11 +206,13 @@ class MainGameScene: SKScene {
         }
     }
     
+    
     private func pauseAllBees() {
         children.compactMap { $0 as? BasicBeeSprite }.forEach { bee in
             bee.pause()
         }
     }
+    
     
     private func resumeAllBees() {
         pausedBees.forEach { bee, state in
@@ -247,7 +225,33 @@ class MainGameScene: SKScene {
         }
         pausedBees.removeAll()
     }
-
+    
+    
+    
+    //MARK: - Debug methods
+    func debugSpawnFlower() {
+        flowerManager?.trySpawnFlower()
+        print("manually spawned flower")
+    }
+    
+    
+    func toggleFlowerSpawning(enabled : Bool) {
+        // Note: This is maintained for backwards compatibility
+        // but doesn't do anything in the new implementation
+        print("Flower spawning is now controlled by GameState timing")
+    }
+    
+    
+    
+    //MARK: - Cleanup
+    deinit {
+        debugGridSubscription?.cancel()
+        cancellables.removeAll()
+        flowerManager?.cleanup()
+    }
+    
+    
+    
 }
 
 
