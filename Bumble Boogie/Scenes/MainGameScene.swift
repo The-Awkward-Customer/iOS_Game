@@ -15,24 +15,7 @@ import Combine
 
 
 
-// Bee state tracking structure
-private struct BeeState {
-    let position: CGPoint
-    let velocity: CGVector
-    let wasAnimating: Bool
-    let emitterState: Bool
-    
-    init(bee: BasicBeeSprite) {
-        self.position = bee.position
-        if let physicsBody = bee.physicsBody {
-            self.velocity = physicsBody.velocity
-        } else {
-            self.velocity = .zero
-        }
-        self.wasAnimating = bee.action(forKey: "beeAnimation") != nil
-        self.emitterState = !(bee.trailEmitter?.isPaused ?? true)
-    }
-}
+
 
 class MainGameScene: SKScene {
     // MARK: - Properties
@@ -40,7 +23,7 @@ class MainGameScene: SKScene {
        private var debugGridSubscription: AnyCancellable?
        private var gridManager: GridManager?
        private var flowerManager: FlowerManager?
-       private var pausedBees: [BasicBeeSprite: BeeState] = [:]
+       private var beeManager: BeeManager?
     
     
     
@@ -107,6 +90,12 @@ class MainGameScene: SKScene {
             )
         }
         
+        // Bee manager init
+        beeManager = BeeManager(
+            scene: self,
+            gameState: sharedGameState
+        )
+        
         // Feedback components
         let visualFeedback = VisualFeedbackComponent(scene: self)
         let hapticFeedback = HapticFeedbackComponent()
@@ -116,63 +105,9 @@ class MainGameScene: SKScene {
     
     
     private func setupCallbacks() {
-        // Bee Spawn Callback
-        sharedGameState.onBasicBeeSpawnIntervalTick = { [weak self] in
-            self?.basicBeeSpawnEvent( )
-        }
-        
         setupPauseHandling()
     }
     
-    
-    
-    // MARK: - Bee spawing
-    private struct SpawnConfiguration {
-        static let horizontalMarginPercentage: CGFloat = 0.1
-        static let verticalMarginPercentage: CGFloat = 0.1
-        
-        static func calculateHorizontalMargin(for width: CGFloat) -> CGFloat {
-            return width * horizontalMarginPercentage
-        }
-        
-        static func calculateVerticalMargin(for height: CGFloat) -> CGFloat {
-            return height * verticalMarginPercentage
-        }
-        
-        // Calculates vertical offset
-        static func calculateVerticalOffset(for height: CGFloat) -> CGFloat {
-            let verticalMargin = calculateVerticalMargin(for: height)
-            return height - (height + verticalMargin)
-        }
-        
-    }
-    
-    
-    private func getSpawnPositionWithMargins() -> CGPoint {
-        
-        // Create margins of 10% of screen size width
-        let horizontalMargin = SpawnConfiguration.calculateHorizontalMargin(for: size.width)
-        let safeXRange = horizontalMargin...(size.width - horizontalMargin)
-        
-        let verticalOffset = SpawnConfiguration.calculateVerticalOffset(for: size.height)
-        
-        return CGPoint(
-            x: CGFloat.random(in: safeXRange),
-            y: verticalOffset
-        )
-    }
-    
-    
-    private func basicBeeSpawnEvent() {
-        let beesToSpawn = max(1, sharedGameState.hiveCount)
-        
-        for _ in 0..<beesToSpawn {
-            let spawnPosition = getSpawnPositionWithMargins()
-            let basicBee = BasicBeeSprite(gameState: sharedGameState, parentScene: self)
-            basicBee.position = spawnPosition
-            addChild(basicBee)
-        }
-    }
     
     
     
@@ -180,51 +115,11 @@ class MainGameScene: SKScene {
     private func setupPauseHandling() {
         sharedGameState.$isPaused
             .sink { [weak self] isPaused in
-                self?.handlePauseState(isPaused)
+                self?.scene?.isPaused = isPaused
             }
             .store(in: &cancellables)
     }
     
-    
-    private func handlePauseState(_ isPaused: Bool) {
-        if isPaused {
-            print("🔴 Game Paused - Storing \(children.compactMap { $0 as? BasicBeeSprite }.count) bees")
-            storeBeeStates()
-            pauseAllBees()
-            self.isPaused = true
-        } else {
-            print("🟢 Game Resumed - Restoring \(pausedBees.count) bees")
-            self.isPaused = false
-            resumeAllBees()
-        }
-    }
-    
-    
-    private func storeBeeStates() {
-        children.compactMap { $0 as? BasicBeeSprite }.forEach { bee in
-            pausedBees[bee] = BeeState(bee: bee)
-        }
-    }
-    
-    
-    private func pauseAllBees() {
-        children.compactMap { $0 as? BasicBeeSprite }.forEach { bee in
-            bee.pause()
-        }
-    }
-    
-    
-    private func resumeAllBees() {
-        pausedBees.forEach { bee, state in
-            bee.resume(
-                at: state.position,
-                velocity: state.velocity,
-                resumeAnimation: state.wasAnimating,
-                resumeEmitter: state.emitterState
-            )
-        }
-        pausedBees.removeAll()
-    }
     
     
     
@@ -248,6 +143,7 @@ class MainGameScene: SKScene {
         debugGridSubscription?.cancel()
         cancellables.removeAll()
         flowerManager?.cleanup()
+        beeManager?.cleanup()
     }
     
     
