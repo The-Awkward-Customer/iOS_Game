@@ -13,6 +13,7 @@ class UserDefaultsMemoryManager {
     private let defaults = UserDefaults.standard
     
     enum Keys: String {
+        case GameProgress
         case TotalHoney
         case basicBeeSpawnInterval
         case flowerSpawnInterval

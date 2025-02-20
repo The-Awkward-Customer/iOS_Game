@@ -10,7 +10,7 @@ struct GameControlPanel: View {
                 
                 Spacer()
                 
-                Text("Currency: \(gameState.TotalHoney)")
+                Text("Currency: \(gameState.totalHoney)")
                     .font(.subheadline)
                 Text("spawnRate: \(gameState.basicBeeSpawnInterval)")
                     .font(.subheadline)

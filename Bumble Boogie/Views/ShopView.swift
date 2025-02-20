@@ -24,7 +24,7 @@ struct ShopView: View {
                     Image("honeyIcon")
                         .resizable()
                         .frame(width: 24, height: 24)
-                    Text("\(gameState.TotalHoney)")
+                    Text("\(gameState.totalHoney)")
                         .font(.custom("JetBrainsMono-Bold", size: 24))
                         .foregroundStyle(ColorSet.semantic.foregroundInverse)
                 }
