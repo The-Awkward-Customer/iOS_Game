@@ -8,6 +8,7 @@
 import Foundation
 import SpriteKit
 
+@MainActor
 class FlowerManager {
     
     // MARK: - Properties

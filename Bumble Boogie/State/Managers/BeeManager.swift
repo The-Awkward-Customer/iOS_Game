@@ -10,7 +10,7 @@ import SpriteKit
 
 
 
-
+@MainActor
 class BeeManager {
     // MARK: - Properties
     private let scene: SKScene

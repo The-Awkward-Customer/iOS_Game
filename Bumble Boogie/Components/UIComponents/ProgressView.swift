@@ -57,7 +57,7 @@ extension ProgressView {
             Image("honeyIcon")
                 .resizable()
                 .frame(width: 32, height: 32)
-            Text("\(gameState.TotalHoney)")
+            Text("\(gameState.totalHoney)")
                 .font(.custom("JetBrainsMono-Bold", size: 24))
                 .foregroundStyle(ColorSet.semantic.foregroundPrimary)
         }
