@@ -47,7 +47,7 @@ class FlowerNode: SKSpriteNode {
     
     
     //MARK: - Init
-    init(powerUpType: PowerUpType, lifeSpan: TimeInterval = 0.3, size: CGSize = CGSize(width: 40, height: 40)){
+    init(powerUpType: PowerUpType, lifeSpan: TimeInterval = 0.3, size: CGSize = CGSize(width: 80, height: 80)){
         print("Before super.init - lifeSpan: \(lifeSpan)")
         self.powerUpType = powerUpType
         self.duration = powerUpType.duration
@@ -72,7 +72,7 @@ class FlowerNode: SKSpriteNode {
     
     //MARK: - Setup
     private func setupPhysics() {
-        physicsBody = SKPhysicsBody(circleOfRadius: size.width * 0.1)
+        physicsBody = SKPhysicsBody(circleOfRadius: size.width * 0.3)
         physicsBody?.isDynamic = false
         physicsBody?.categoryBitMask = PhysicsCategory.powerup
         physicsBody?.contactTestBitMask = PhysicsCategory.bee

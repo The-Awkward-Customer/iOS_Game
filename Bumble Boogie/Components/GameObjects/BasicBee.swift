@@ -63,7 +63,7 @@ class BasicBeeSprite : SKSpriteNode{
         
         
         // Optionally, enable interactivity if using touch methods in the node
-         self.isUserInteractionEnabled = true
+        self.isUserInteractionEnabled = true
         
         // runActions()
         
@@ -78,7 +78,7 @@ class BasicBeeSprite : SKSpriteNode{
         
         // optional modifier for later
         //let speedMultiplier = min(1.0 + (Double(gameState.hiveCount) * 0.1), 2.0) // caps at 2x speed
-        //        
+        //
         //let adjustedMinSpeed = minBaseSpeed * CGFloat(speedMultiplier)
         //let adjustedMaxSpeed = maxBaseSpeed * CGFloat(speedMultiplier)
         
@@ -114,8 +114,7 @@ class BasicBeeSprite : SKSpriteNode{
         
         
         physics.categoryBitMask = PhysicsCategory.bee
-        physics.collisionBitMask = PhysicsCategory.obstacle
-        physics.contactTestBitMask = PhysicsCategory.obstacle | PhysicsCategory.powerup
+        physics.contactTestBitMask = PhysicsCategory.powerup
         
         
         physics.velocity = CGVector(dx: 0, dy: verticalSpeed)
@@ -139,7 +138,7 @@ class BasicBeeSprite : SKSpriteNode{
     private func setupBoundryCheck() {
         let check = SKAction.run { [weak self] in
             guard let self = self,
-                let scene = self.scene else { return }
+                  let scene = self.scene else { return }
             
             if self.position.y > scene.size.height + self.size.height {
                 self.removeFromParent()
@@ -151,7 +150,7 @@ class BasicBeeSprite : SKSpriteNode{
             check
         ])),withKey: "boundryCheck")
         
-
+        
     }
     
     
@@ -169,46 +168,45 @@ class BasicBeeSprite : SKSpriteNode{
         let emitter = SKEmitterNode()
         
         emitter.particleTexture = SKTexture(imageNamed: "drag")
-                emitter.particleBirthRate = 4
-                emitter.numParticlesToEmit = 0
-                
-                emitter.particleColor = .yellow
-                emitter.particleAlpha = 0.3
-                emitter.particleAlphaRange = 0.2
-                emitter.particleScale = 0.5
-                emitter.particleScaleRange = 0.1
-                
-                emitter.particleLifetime = 0.5
-                emitter.particleLifetimeRange = 0.2
-                emitter.particleSpeed = 10
-                emitter.particleSpeedRange = 5
-                emitter.emissionAngle = .pi * 1.5
-                emitter.emissionAngleRange = .pi / 8
-                
-                emitter.targetNode = self
-                emitter.position = CGPoint(x: 0, y: -size.height/2)
-                
-                trailEmitter = emitter
-                addChild(emitter)
+        emitter.particleBirthRate = 4
+        emitter.numParticlesToEmit = 0
+        
+        emitter.particleColor = .yellow
+        emitter.particleAlpha = 0.3
+        emitter.particleAlphaRange = 0.2
+        emitter.particleScale = 0.5
+        emitter.particleScaleRange = 0.1
+        
+        emitter.particleLifetime = 0.5
+        emitter.particleLifetimeRange = 0.2
+        emitter.particleSpeed = 10
+        emitter.particleSpeedRange = 5
+        emitter.emissionAngle = .pi * 1.5
+        emitter.emissionAngleRange = .pi / 8
+        
+        emitter.targetNode = self
+        emitter.position = CGPoint(x: 0, y: -size.height/2)
+        
+        trailEmitter = emitter
+        addChild(emitter)
         
     }
     
     
     
     func animateRemoval() {
-        
-            print("bee removed")
-            self.removeAllActions()
-            let scaleUpAction = SKAction.scale(to: self.xScale * 1.2, duration: 0.1)
-            let scaleDownAction = SKAction.scale(to: 0.0, duration: 0.2)
-            let removeAction = SKAction.run { [weak self] in
+        print("bee removed")
+        self.removeAllActions()
+        let scaleUpAction = SKAction.scale(to: self.xScale * 1.2, duration: 0.1)
+        let scaleDownAction = SKAction.scale(to: 0.0, duration: 0.2)
+        let removeAction = SKAction.run { [weak self] in
             self?.cleanUp()
-            }
-        
-            let removalSequence = SKAction.sequence([scaleUpAction, scaleDownAction, removeAction])
-        
-            self.run(removalSequence)
         }
+        
+        let removalSequence = SKAction.sequence([scaleUpAction, scaleDownAction, removeAction])
+        
+        self.run(removalSequence)
+    }
     
     
     
@@ -297,7 +295,7 @@ extension BasicBeeSprite{
     private func handlePowerUpContact() {
         // TODO
     }
-
+    
 }
 
 //MARK: - pause extension
