@@ -25,7 +25,7 @@ class FlowerManager {
       init(scene: SKScene,
            gridManager: GridManager,
            gameState: GameState,
-           maxConcurrentFlowers: Int = 3) {
+           maxConcurrentFlowers: Int = 5) {
           self.scene = scene
           self.gridManager = gridManager
           self.gameState = gameState

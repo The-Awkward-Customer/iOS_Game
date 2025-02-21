@@ -13,6 +13,7 @@ import SpriteKit
 enum FeedbackType {
     case beeTapped
     case hiveUpgrade
+    case flowerCollisionDetected
     // Add more as needed
 }
 
@@ -116,6 +117,8 @@ class VisualFeedbackComponent: FeedbackComponent {
             triggerBeeTappedEffect(at: position, in: scene)
         case .hiveUpgrade:
             triggerHiveUpgradeEffect(at: position, in: scene)
+        case .flowerCollisionDetected:
+            triggerFlowerCollisionDetected()
         }
     }
     
@@ -131,6 +134,10 @@ class VisualFeedbackComponent: FeedbackComponent {
         let sequence = SKAction.sequence([expand, fade, remove])
         
         emitter.run(sequence)
+    }
+    
+    private func triggerFlowerCollisionDetected() {
+        print("triggered flower collision detected feedback!!!")
     }
     
     private func triggerHiveUpgradeEffect(at position: CGPoint, in scene: SKScene) {
@@ -158,6 +165,8 @@ class HapticFeedbackComponent: FeedbackComponent {
             HapticFeedbackManager.shared?.testCustomFeedback()
         case .hiveUpgrade:
             GenericHapticFeedback.lightImpact()
+        case .flowerCollisionDetected:
+            HapticFeedbackManager.shared?.testCustomFeedback()
         }
     }
 }

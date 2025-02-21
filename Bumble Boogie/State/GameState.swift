@@ -7,6 +7,7 @@ class GameState: ObservableObject {
     @Published private(set) var progress: GameProgress
     @Published var isPaused: Bool = false
     @Published var showDebugGrid: Bool = false
+    @Published var showPhysicsDebug: Bool = false
     
     // MARK: - Timer Callbacks
     var onBasicBeeSpawnIntervalTick: (() -> Void)?
@@ -21,6 +22,7 @@ class GameState: ObservableObject {
     private var lastTickTime: TimeInterval = CACurrentMediaTime()
     private let memoryManager: UserDefaultsMemoryManager
     private var hasCleanedUp = false
+    
     
     // MARK: - Initialization
     init(memoryManager: UserDefaultsMemoryManager = .shared) {

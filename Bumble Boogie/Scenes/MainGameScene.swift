@@ -10,7 +10,7 @@ import Combine
 
 
 
-class MainGameScene: SKScene {
+class MainGameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Properties
     private var cancellables = Set<AnyCancellable>()
     private var debugGridSubscription: AnyCancellable?
@@ -53,6 +53,10 @@ class MainGameScene: SKScene {
     private func setupScene() {
         backgroundColor = .white
         view?.allowsTransparency = true
+        
+        // Basic Physics setup
+        physicsWorld.contactDelegate = self
+        physicsWorld.gravity = .zero
     }
     
     private func setupManagers() {
@@ -109,6 +113,29 @@ class MainGameScene: SKScene {
                 self?.isPaused = isPaused
             }
             .store(in: &cancellables)
+        
+        // Add physics debug subscription
+        sharedGameState.$showPhysicsDebug
+            .sink { [weak self] showDebug in
+                self?.view?.showsPhysics = showDebug
+            }
+            .store(in: &cancellables)
+    }
+    
+    
+    //MARK: - Physics handling
+    func togglePhysicsDebug() {
+        view?.showsPhysics.toggle()
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        print("collision detected between \(contact.bodyA.node?.name ?? "unknown") and \(contact.bodyB.node?.name ?? "Unknown")")
+        
+        if contact.bodyA.node is BasicBeeSprite && contact.bodyB.node is FlowerNode ||
+            contact.bodyB.node is BasicBeeSprite && contact.bodyA.node is FlowerNode {
+            print("✅ Bee and Flower collision confirmed!")
+            GameFeedbackManager.shared.trigger(.flowerCollisionDetected)
+        }
     }
     
     // MARK: - Cleanup
