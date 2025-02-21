@@ -29,6 +29,7 @@ class BasicBeeSprite : SKSpriteNode{
     private let verticalSpeed: CGFloat
     private(set) var trailEmitter: SKEmitterNode?
     private var debugMode: Bool = false
+    private var isProcessingTouch: Bool = false
     
     //MARK: - Animation properties
     private var spriteFrames: [SKTexture] = []
@@ -200,7 +201,10 @@ class BasicBeeSprite : SKSpriteNode{
             self.removeAllActions()
             let scaleUpAction = SKAction.scale(to: self.xScale * 1.2, duration: 0.1)
             let scaleDownAction = SKAction.scale(to: 0.0, duration: 0.2)
-            let removeAction = SKAction.removeFromParent()
+            let removeAction = SKAction.run { [weak self] in
+            self?.cleanUp()
+            }
+        
             let removalSequence = SKAction.sequence([scaleUpAction, scaleDownAction, removeAction])
         
             self.run(removalSequence)
@@ -210,8 +214,12 @@ class BasicBeeSprite : SKSpriteNode{
     
     //MARK: - For interactivity within the node
     override func touchesBegan (_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first,
+        guard !isProcessingTouch,
+              let touch = touches.first,
               let scene = self.scene else { return }
+        
+        // Set flag
+        isProcessingTouch = true
         
         //convert touch position into passable coordinates
         let touchPostionInNode = touch.location(in: self)
@@ -252,6 +260,7 @@ class BasicBeeSprite : SKSpriteNode{
     }
     
     func cleanUp() {
+        isProcessingTouch = false
         removeAllActions()
         trailEmitter?.removeFromParent()
         removeFromParent()
