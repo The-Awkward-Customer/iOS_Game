@@ -47,7 +47,7 @@ class FlowerNode: SKSpriteNode {
     
     
     //MARK: - Init
-    init(powerUpType: PowerUpType, lifeSpan: TimeInterval = 0.3, size: CGSize = CGSize(width: 80, height: 80)){
+    init(powerUpType: PowerUpType, lifeSpan: TimeInterval, size: CGSize = CGSize(width: 80, height: 80)){
         print("Before super.init - lifeSpan: \(lifeSpan)")
         self.powerUpType = powerUpType
         self.duration = powerUpType.duration
