@@ -88,7 +88,7 @@ class MainGameScene: SKScene, SKPhysicsContactDelegate {
             scene: self,
             gridManager: gridManager,
             gameState: sharedGameState,
-            maxConcurrentFlowers: 3
+            maxConcurrentFlowers: 5
         )
     }
     
