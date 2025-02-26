@@ -5,15 +5,14 @@
 import SwiftUI
 
 @main
-struct Conditional_RenderingApp: App {
+struct BumbleBoogie: App {
     
 
     @StateObject private var gameState = GameState()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .preferredColorScheme(.light)
+            SplashScreen()
                 .environmentObject(gameState)
 
         }
