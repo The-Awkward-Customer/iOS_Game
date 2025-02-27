@@ -29,6 +29,9 @@ class BasicBeeSprite : SKSpriteNode{
     private let verticalSpeed: CGFloat
     private(set) var trailEmitter: SKEmitterNode?
     private var debugMode: Bool = false
+    
+    private var honeyMultiplier: Double = 1.0
+    
     private var isProcessingTouch: Bool = false
     
     //MARK: - Animation properties
@@ -64,10 +67,11 @@ class BasicBeeSprite : SKSpriteNode{
         
         // Optionally, enable interactivity if using touch methods in the node
         self.isUserInteractionEnabled = true
-        
-        // runActions()
-        
-        
+    }
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private static func calculateIntialSpeed(gameState: GameState) -> CGFloat {
@@ -88,10 +92,6 @@ class BasicBeeSprite : SKSpriteNode{
         
     }
     
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     //MARK: - setup methods
     
@@ -114,7 +114,8 @@ class BasicBeeSprite : SKSpriteNode{
         
         
         physics.categoryBitMask = PhysicsCategory.bee
-        physics.contactTestBitMask = PhysicsCategory.powerup
+        physics.collisionBitMask = PhysicsCategory.obstacle
+        physics.contactTestBitMask = PhysicsCategory.obstacle | PhysicsCategory.powerup
         
         
         physics.velocity = CGVector(dx: 0, dy: verticalSpeed)
@@ -161,6 +162,7 @@ class BasicBeeSprite : SKSpriteNode{
         
         let animation = SKAction.animate(with: spriteFrames, timePerFrame: 0.1)
         run(SKAction.repeatForever(animation), withKey: "beeAnimation")
+        print("Animating bee")
     }
     
     private func setupParticles() {
@@ -192,7 +194,28 @@ class BasicBeeSprite : SKSpriteNode{
         
     }
     
+    //MARK: - Powerup methods
     
+    func setHoneyMultiplier(_ multiplier: Double) {
+        honeyMultiplier = multiplier
+        
+        if multiplier > 1 {
+            print("⚡️ Mutilpier triggered ⚡️")
+        }
+    }
+    
+    func applyVerticalBoost(factor: CGFloat = 1.5) {
+        guard let physics = physicsBody else { return }
+        
+        physics.velocity.dy *= factor
+        
+        let originalScale = xScale
+        let pusleAction = SKAction.sequence([
+        SKAction.scale(to: originalScale * 1.2, duration: 0.1),
+        SKAction.scale(to: originalScale, duration: 0.1)
+        ])
+        run(pusleAction)
+    }
     
     func animateRemoval() {
         print("bee removed")
@@ -225,8 +248,26 @@ class BasicBeeSprite : SKSpriteNode{
         
         print("bee touched at scene postion: \(positionInScene)")
         
+        let baseHoney = 100
+        let honeyReward = Int(Double(baseHoney) * honeyMultiplier)
         // adjust gamestate value
-        gameState.increaseTotalHoney(by: 100)
+        gameState.increaseTotalHoney(by: honeyReward)
+        
+        // Show feedback with appropriate effect based on multiplier
+                if honeyMultiplier > 1.0 {
+                    // Special feedback for multiplier effect
+                    let specialFeedback = SKLabelNode(text: "+\(honeyReward)")
+                    specialFeedback.fontColor = .orange
+                    specialFeedback.fontSize = 18
+                    specialFeedback.position = CGPoint(x: 0, y: size.height/2)
+                    addChild(specialFeedback)
+                    
+                    let moveUp = SKAction.moveBy(x: 0, y: 30, duration: 0.5)
+                    let fade = SKAction.fadeOut(withDuration: 0.5)
+                    let remove = SKAction.removeFromParent()
+                    specialFeedback.run(SKAction.sequence([SKAction.group([moveUp, fade]), remove]))
+                }
+        
         
         GameFeedbackManager.shared.trigger(.beeTapped, at: positionInScene)
         
@@ -277,23 +318,18 @@ extension BasicBeeSprite{
         guard let category = node.physicsBody?.categoryBitMask else { return }
         
         switch category {
-        case PhysicsCategory.obstacle:
-            handleObsticleContact()
         case PhysicsCategory.powerup:
-            handlePowerUpContact()
+            handlePowerUpContact(with: node)
         default:
             break
         }
     }
+ 
     
-    private func handleObsticleContact() {
-        
-        //TODO
-        
-    }
-    
-    private func handlePowerUpContact() {
-        // TODO
+    private func handlePowerUpContact(with node: SKNode) {
+        if let flower = node as? FlowerNode {
+            flower.handleBeeCollision(with: self)
+        }
     }
     
 }

@@ -12,6 +12,8 @@ import SpriteKit
 enum PowerUpType: String, Codable {
     case speedBoost
     case honeyMultiplier
+    case verticalBoost
+    case slowEffect
     
     var duration: TimeInterval {
         switch self {
@@ -19,6 +21,10 @@ enum PowerUpType: String, Codable {
             return 5
         case .honeyMultiplier:
             return 10
+        case .verticalBoost:
+            return 3
+        case .slowEffect:
+            return 7
         }
     }
     
@@ -28,6 +34,10 @@ enum PowerUpType: String, Codable {
             return "Speed Boost"
         case .honeyMultiplier:
             return "x2 Honey"
+        case .verticalBoost:
+            return "Vertical Boost"
+        case .slowEffect:
+            return "Slow Down"
         }
     }
 }
@@ -44,6 +54,9 @@ class FlowerNode: SKSpriteNode {
     private var lifespanRemaining: TimeInterval
     
     var onRemovalComplete: (() -> Void)?
+    
+    // Track bees with active effects applied
+    private var affectedBees: [ObjectIdentifier: PowerUpType] = [:]
     
     
     //MARK: - Init
@@ -72,25 +85,40 @@ class FlowerNode: SKSpriteNode {
     
     //MARK: - Setup
     private func setupPhysics() {
-        physicsBody = SKPhysicsBody(circleOfRadius: size.width * 0.3)
+        physicsBody = SKPhysicsBody(circleOfRadius: size.width * 0.4)
         physicsBody?.isDynamic = false
         physicsBody?.categoryBitMask = PhysicsCategory.powerup
         physicsBody?.contactTestBitMask = PhysicsCategory.bee
+        
+        // Set collision mask to 0 to prevent physical collision interactions
+        // This allows us to handle the physics response programmatically
         physicsBody?.collisionBitMask = 0
     }
     
     func setupVisuals() {
+        let textureName: String
+        
+        switch powerUpType {
+        case.speedBoost:
+            textureName = "powerupflower_1"
+        case.honeyMultiplier:
+            textureName = "powerupflower_2"
+        case.verticalBoost:
+            textureName = "powerupflower_3"
+        case.slowEffect:
+            textureName = "powerupflower_4"
+        }
+        
+        let newTexture = SKTexture(imageNamed: textureName)
+        self.texture = newTexture
+        
+        
         // Add pulsing animation
                let scaleUp = SKAction.scale(to: 1.1, duration: 0.5)
                let scaleDown = SKAction.scale(to: 0.9, duration: 0.5)
                let sequence = SKAction.sequence([scaleUp, scaleDown])
                run(SKAction.repeatForever(sequence), withKey: "pulseAnimation")
-               
-               // Add glow effect
-               let glowNode = SKEffectNode()
-               glowNode.shouldRasterize = true
-               glowNode.filter = CIFilter(name: "CIGaussianBlur", parameters: ["inputRadius": 2.0])
-               addChild(glowNode)
+
     }
     
     private func startLifespanTimer() {
@@ -138,41 +166,99 @@ class FlowerNode: SKSpriteNode {
         guard !isCollected else { return }
         isCollected = true
         
-        print("_Collision with flower handled_")
+        print("_Collision with flower handled - Powerup: \(powerUpType)")
         
         GameFeedbackManager.shared.trigger(.beeTapped, at: position)
         
         // Apply PowerUpEffect to bee
         applyPowerUpEffect(to: bee)
         
+        // Track affected bees
+        let beeId = ObjectIdentifier(bee)
+        affectedBees[beeId] = powerUpType
+        
         // Animate collection
         animateCollection()
     }
     
     private func applyPowerUpEffect(to bee: BasicBeeSprite) {
+        
+        guard let physicsBody = bee.physicsBody else {
+            print("WARNING: Could not apply powerup effect to bee as it has no physics body!")
+            return
+        }
+        
         switch powerUpType {
         case .speedBoost:
+            // horizontal speed boost
             bee.physicsBody?.velocity.dx *= 1.5
             
         case .honeyMultiplier:
-            print("Honey multiplier collected")
+            // Apply honey multiplier effect
+            bee.setHoneyMultiplier(2.0)
+            print("Honey multiplier applied - will return 2x honey when tapped")
+            
+        case .verticalBoost:
+            // New: Boost vertical momentum by 150%
+            let currentVelocity = physicsBody.velocity.dy
+            physicsBody.velocity.dy = currentVelocity * 1.5
+            print("Vertical boost applied: \(currentVelocity) -> \(physicsBody.velocity.dy)")
+                        
+            
+        case .slowEffect:
+            // New: Slow down effect (50% reduction)
+            physicsBody.velocity.dy *= 0.5
+            print("Slow effect applied: Speed reduced by 50%")
+                        
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
-            self?.removePowerUpEffect(from: bee)
+        let beeId = ObjectIdentifier(bee)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self, weak bee] in
+            guard let self = self, let bee = bee else { return }
+            self.removePowerUpEffect(from: bee)
+            self.affectedBees.removeValue(forKey: beeId)
         }
     }
     
     
     private func removePowerUpEffect(from bee: BasicBeeSprite?) {
-        guard let bee = bee else { return }
         
-        switch powerUpType {
+        guard let bee = bee else {
+            print("Warning: Bee is nil when trying to remove power-up effect")
+            return
+        }
+        
+        // Get bee identifier
+        let beeId = ObjectIdentifier(bee)
+        
+        // Check if the bee exists in affected bees dictionary
+        guard let powerUp = affectedBees[beeId] else { return }
+        
+        // Safely unwrap physics body
+        guard let physicsBody = bee.physicsBody else {
+            print("WARNING: Could not remove powerup effect from bee as it has no physics body!")
+            return
+        }
+        
+
+        switch powerUp {
         case .speedBoost:
-            bee.physicsBody?.velocity.dx /= 1.5
+            physicsBody.velocity.dx /= 1.5
             
         case .honeyMultiplier:
+            bee.setHoneyMultiplier(10.0)
             print("Honey multiplier removed")
+            
+        case .verticalBoost:
+            // No need to revert velocity as it's a one-time boost
+            print("Vertical boost effect duration ended")
+            
+        case .slowEffect:
+            // Restore normal speed (assuming original was 2x current)
+            physicsBody.velocity.dy *= 2.0
+            print("Slow effect removed, speed restored")
+            bee.setPoweredUp(true)  // Restore visual
         }
         
     }

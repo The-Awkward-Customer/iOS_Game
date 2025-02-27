@@ -32,6 +32,14 @@ class FlowerManager {
     //debug vars
     private var tickCount = 0
     
+    //MARK: - Powerup distribution
+    private let powerUpWeights: [(PowerUpType, Double)] = [
+        (.speedBoost, 0.25), // 25%
+        (.honeyMultiplier, 0.25), // 25%
+        (.verticalBoost, 0.30), // 30%
+        (.slowEffect, 0.20) // 20%
+    ]
+    
     // MARK: - Initialization
     init(scene: SKScene,
          gridManager: GridManager,
@@ -128,12 +136,36 @@ class FlowerManager {
         queueFlowerSpawn()
     }
     
+    // Select a random powerip based on allocated weights
+    private func selectRandomPowerUpType() -> PowerUpType {
+        // Calculate total weight
+        let totalWeight = powerUpWeights.reduce(0) { $0 + $1.1 }
+        
+        // Generate a random valye between 0 and total weight
+        let randomValue = Double.random(in: 0..<totalWeight)
+        
+        // Get the powerup based on weights
+        var accumulatedWeight: Double = 0
+        for (powerUp, weight) in powerUpWeights {
+            accumulatedWeight += weight
+            if randomValue < accumulatedWeight {
+                return powerUp
+            }
+        }
+        
+        // Fallback (should never be reached with proper weights)
+        return .speedBoost
+        
+        
+    }
+    
     
     private func createFlower(at spawnPoint: SpawnPoint) -> FlowerNode {
-        let powerUpTypes: [PowerUpType] = [.speedBoost, .honeyMultiplier]
-        let randomType = powerUpTypes.randomElement()!
         
-        let flower = FlowerNode(powerUpType: randomType, lifeSpan: gameState.progress.flowerLifespan)
+        let powerUpType = selectRandomPowerUpType()
+        
+        
+        let flower = FlowerNode(powerUpType: powerUpType, lifeSpan: gameState.progress.flowerLifespan)
         flower.position = spawnPoint.position
         flower.spawnPoint = spawnPoint
         
@@ -144,6 +176,7 @@ class FlowerManager {
         
         gridManager.occupySpawnPoint(spawnPoint, with: flower)
         
+        print("Created flower with power-up type: \(powerUpType)")
         return flower
     }
     
@@ -194,10 +227,28 @@ class FlowerManager {
             }
     
     // MARK: - Debug
-    var debugInfo: String {
-            """
+        var debugInfo: String {
+            // Count power-up types
+            var powerUpCounts: [PowerUpType: Int] = [
+                .speedBoost: 0,
+                .honeyMultiplier: 0,
+                .verticalBoost: 0,
+                .slowEffect: 0
+            ]
+            
+            activeFlowers.forEach { flower in
+                powerUpCounts[flower.powerUpType, default: 0] += 1
+            }
+            
+            return """
             Active Flowers: \(activeFlowers.count)
             Max Flowers: \(maxConcurrentFlowers)
             Currently Paused: \(gameState.isPaused)
+            Power-up Distribution:
+              - Speed Boost: \(powerUpCounts[.speedBoost, default: 0])
+              - Honey Multiplier: \(powerUpCounts[.honeyMultiplier, default: 0])
+              - Vertical Boost: \(powerUpCounts[.verticalBoost, default: 0])
+              - Slow Effect: \(powerUpCounts[.slowEffect, default: 0])
             """
-    }}
+        }
+    }

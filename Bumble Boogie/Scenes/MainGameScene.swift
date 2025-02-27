@@ -128,14 +128,31 @@ class MainGameScene: SKScene, SKPhysicsContactDelegate {
         view?.showsPhysics.toggle()
     }
     
+    
+    
     func didBegin(_ contact: SKPhysicsContact) {
-        print("collision detected between \(contact.bodyA.node?.name ?? "unknown") and \(contact.bodyB.node?.name ?? "Unknown")")
         
-        if contact.bodyA.node is BasicBeeSprite && contact.bodyB.node is FlowerNode ||
-            contact.bodyB.node is BasicBeeSprite && contact.bodyA.node is FlowerNode {
-            print("✅ Bee and Flower collision confirmed!")
-            GameFeedbackManager.shared.trigger(.flowerCollisionDetected)
+        let bodyA = contact.bodyA
+        let bodyB = contact.bodyB
+        
+       // Check if contact involves a bee and a flower
+        if bodyA.categoryBitMask == PhysicsCategory.bee && bodyB.categoryBitMask == PhysicsCategory.powerup {
+            handleBeeFlowerContact(bee: bodyA.node, flower: bodyB.node)
         }
+        else if bodyA.categoryBitMask == PhysicsCategory.powerup && bodyB.categoryBitMask == PhysicsCategory.bee {
+            handleBeeFlowerContact(bee: bodyB.node, flower: bodyA.node)
+        }
+          // Future handling…
+    }
+    
+    private func handleBeeFlowerContact(bee: SKNode?, flower: SKNode?) {
+        guard let bee = bee as? BasicBeeSprite, let flower = flower as? FlowerNode else { return }
+        
+        flower.handleBeeCollision(with: bee)
+        
+        print("Contact detected between bee and flower with power-up: \(flower.powerUpType)")
+        
+        
     }
     
     // MARK: - Cleanup
